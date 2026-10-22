@@ -1,5 +1,5 @@
 {
- "latency_s": 3.137,
+ "latency_s": 4.438,
  "model": "gpt-4.1-mini",
  "response": {
   "consent": {
@@ -22,9 +22,9 @@
    "references_hp_missing_quote": null
   },
   "procedure_date": {
-   "date": "2026-03-15",
-   "quote": "Visit date: 03/15/2026",
-   "status": "DATE_STATED"
+   "date": null,
+   "quote": null,
+   "status": "NOT_MENTIONED"
   },
   "vitals": [
    {

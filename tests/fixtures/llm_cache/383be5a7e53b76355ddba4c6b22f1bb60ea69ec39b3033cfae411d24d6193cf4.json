@@ -1,5 +1,5 @@
 {
- "latency_s": 2.012,
+ "latency_s": 3.277,
  "model": "gpt-4.1-mini",
  "response": {
   "consent": {
@@ -27,8 +27,8 @@
    "status": "NOT_MENTIONED"
   },
   "vitals": [],
-  "vitals_deferred_or_not_recorded": true,
-  "vitals_deferred_quote": "No acute complaints."
+  "vitals_deferred_or_not_recorded": false,
+  "vitals_deferred_quote": null
  },
  "schema_name": "doc_facts"
 }
