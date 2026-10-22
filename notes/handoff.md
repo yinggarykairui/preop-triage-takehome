@@ -1,4 +1,14 @@
-# Handoff notes (written 2026-10-22, end of first build session)
+# Handoff notes
+
+> **Final-pass update (2026-10-22, second session).** The repo was taken through a submission pass:
+> clean-clone reproduction, claims audit, write-up rewrite, lint/format (ruff, config in `pyproject.toml`),
+> dependency pins, Makefile targets (`make help`), `notes/assumptions.md` + sync test, and
+> `notes/submission_checklist.md` (what was verified, what changed, remaining risks, reviewer commands).
+> Read the checklist first; the notes below describe the build session and remain accurate except
+> where the checklist says otherwise (test count is now 84; `make score`/`make report` fall back to
+> `results/final_eval_report.json`; A3/A7 wording was aligned with the code).
+
+## Build session notes (written 2026-10-22, end of first build session)
 
 For a fresh agent picking this repo up. Everything here was verified in-session; where something
 is a judgement call it is labelled as one. Read this, then `WRITEUP.md`, then the code.
@@ -84,7 +94,7 @@ run_baseline.py ──► core.triage_submission ──► preop_triage.pipeline
 | `results/final_summary.md` (local) | confusion diagonal 17/25/8; per-category P/R 100%; 0 false READY |
 | `results/determinism_report.json` | 100 / 100 / 100 (record 0, 10 runs, all from cache) |
 | final run telemetry | 342 live calls, 0 provider failures, 2 unverified quotes (both correct rejections) |
-| tests | `make test` -> 81 passed (no network) |
+| tests | `make test` -> 84 passed (no network) |
 
 The 100% is in-sample: labels were visible while iterating and two prompts were revised after
 seeing two misses. Treat it as "no known miss", not as a generalization estimate.
@@ -181,7 +191,7 @@ different policy reading is defensible are listed in `notes/error_analysis.md` (
 ## 8. Quick verification sequence for a fresh checkout
 
 ```bash
-uv --version && make test                    # 81 passed, no key needed
+uv --version && make test                    # 84 passed, no key needed
 make baseline && make summary                # 100.0%, 0 live calls (cache hits only)
 make determinism                             # 100/100/100
 uv run scripts/run_case.py --case-id case_00037 --compact   # READY; plan for rivaroxaban PASS

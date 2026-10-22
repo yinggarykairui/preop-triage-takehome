@@ -33,4 +33,12 @@ data/eval_report.json
 data/determinism_report.json
 
 # LLM response cache is committed on purpose (reproducible reruns); scratch outputs are not
-results/*.log
+
+
+# Secrets and local overrides (any variant)
+.env.*
+*.env
+*.log
+
+# Agent/editor session files
+.claude/

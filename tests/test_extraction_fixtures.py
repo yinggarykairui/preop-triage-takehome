@@ -7,6 +7,7 @@ silently calling the API. Regenerate with:
 
     LLM_CACHE_DIR=tests/fixtures/llm_cache uv run scripts/run_case.py --case-id case_00016 --compact
 """
+
 from __future__ import annotations
 
 import json
@@ -33,7 +34,11 @@ class NoNetworkProvider:
 
 @pytest.fixture(scope="module")
 def case():
-    rows = [json.loads(l) for l in (ROOT / "data" / "patients_sample_50.jsonl").read_text().splitlines() if l.strip()]
+    rows = [
+        json.loads(line)
+        for line in (ROOT / "data" / "patients_sample_50.jsonl").read_text().splitlines()
+        if line.strip()
+    ]
     return next(r for r in rows if r["case_id"] == CASE_ID)
 
 
@@ -51,7 +56,9 @@ def test_extraction_from_fixtures_reads_the_record(case, llm):
 
     facts = build_case_facts(sub, exs)
     # The nursing note's 08:06 reading and the 08:30 addendum recheck are both extracted, with times.
-    text_bps = sorted((r.clock, r.systolic, r.diastolic) for r in facts.readings if r.kind == "BP" and r.source == "document")
+    text_bps = sorted(
+        (r.clock, r.systolic, r.diastolic) for r in facts.readings if r.kind == "BP" and r.source == "document"
+    )
     assert (time(8, 6), 189.0, 112.0) in text_bps and (time(8, 30), 137.0, 78.0) in text_bps
     # Celsius temperature converted.
     assert any(r.kind == "TEMP" and r.source == "document" and abs(r.temp_f - 98.78) < 0.01 for r in facts.readings)
@@ -78,7 +85,12 @@ def test_fixture_decision_matches_label(case, llm):
 def test_llm_failure_degrades_to_unknown_not_ready(case):
     """Fail-safe (A17): with no cache and a failing provider, every document is 'unknown' and the case is NEEDS_FOLLOW_UP."""
     sub = case["submission"]
-    llm = CachedLLM(model="gpt-4.1-mini", provider=NoNetworkProvider(), cache_dir=ROOT / "tests" / "fixtures" / "empty_cache", use_cache=False)
+    llm = CachedLLM(
+        model="gpt-4.1-mini",
+        provider=NoNetworkProvider(),
+        cache_dir=ROOT / "tests" / "fixtures" / "empty_cache",
+        use_cache=False,
+    )
     exs = extract_all(llm, sub["documents"], sub["procedure"]["procedure_type"])
     packet = assemble_packet(sub, build_case_facts(sub, exs), exs, llm)
     assert packet.decision == "NEEDS_FOLLOW_UP"

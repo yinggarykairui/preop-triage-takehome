@@ -32,7 +32,9 @@ class LLMError(Exception):
 class Provider(Protocol):
     name: str
 
-    def complete(self, *, model: str, instructions: str, user_text: str, schema_model: type[T], schema_name: str) -> dict:
+    def complete(
+        self, *, model: str, instructions: str, user_text: str, schema_model: type[T], schema_name: str
+    ) -> dict:
         """Return the parsed JSON object (not yet validated)."""
 
 
@@ -44,7 +46,9 @@ class OpenAIProvider:
 
         self._client = OpenAI(timeout=timeout_s, max_retries=max_retries)
 
-    def complete(self, *, model: str, instructions: str, user_text: str, schema_model: type[T], schema_name: str) -> dict:
+    def complete(
+        self, *, model: str, instructions: str, user_text: str, schema_model: type[T], schema_name: str
+    ) -> dict:
         kwargs: dict = {}
         # Reasoning models reject sampling params; everything else is pinned to 0.
         if not (model.startswith("o") or model.startswith("gpt-5")):

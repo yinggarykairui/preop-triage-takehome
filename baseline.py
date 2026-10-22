@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import json
 
-
 # -------------------------
 # Policy + system prompt
 # -------------------------
@@ -59,7 +58,6 @@ from core import (  # noqa: E402
     TriageOutput,
     triage_output_json_schema,
 )
-
 
 # -------------------------
 # Prompt helpers

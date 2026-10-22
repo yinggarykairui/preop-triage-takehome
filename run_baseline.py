@@ -2,8 +2,8 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#   "openai>=2.0.0",
-#   "pydantic>=2.8.0",
+#   "openai==3.37.0",
+#   "pydantic==2.14.1",
 # ]
 # ///
 
@@ -12,8 +12,8 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import dataclass
 import json
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -73,11 +73,7 @@ def load_cases(path: Path) -> list[BaselineInputCase]:
             if not line:
                 continue
             payload = json.loads(line)
-            if (
-                isinstance(payload, dict)
-                and "submission" in payload
-                and "case_id" in payload
-            ):
+            if isinstance(payload, dict) and "submission" in payload and "case_id" in payload:
                 case = BaselineInputCase(
                     case_id=str(payload["case_id"]),
                     submission=PatientSubmission.model_validate(payload["submission"]),

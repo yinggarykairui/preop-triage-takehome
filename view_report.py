@@ -2,8 +2,8 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#   "textual>=1.0.0",
-#   "rich>=13.0.0",
+#   "textual==8.2.8",
+#   "rich==15.0.0",
 # ]
 # ///
 
@@ -112,11 +112,15 @@ def _fmt_issues(issues: list[dict] | None) -> str:
         lines.extend(_fmt_evidence(iss.get("evidence")))
         if iss.get("resolution"):
             lines.append(f"       resolution: {iss['resolution']}")
-    return "\n".join(escape(l) for l in lines)
+    return "\n".join(escape(line) for line in lines)
 
 
-_STATUS_MARK = {"PASS": "[green]PASS[/green]", "FAIL": "[red]FAIL[/red]", "UNKNOWN": "[yellow]UNKNOWN[/yellow]",
-                "NOT_APPLICABLE": "[dim]N/A[/dim]"}
+_STATUS_MARK = {
+    "PASS": "[green]PASS[/green]",
+    "FAIL": "[red]FAIL[/red]",
+    "UNKNOWN": "[yellow]UNKNOWN[/yellow]",
+    "NOT_APPLICABLE": "[dim]N/A[/dim]",
+}
 
 
 def _fmt_checks(checks: list[dict] | None) -> str:
@@ -127,11 +131,13 @@ def _fmt_checks(checks: list[dict] | None) -> str:
     lines: list[str] = []
     for c in checks:
         mark = _STATUS_MARK.get(c.get("status"), c.get("status"))
-        lines.append(f"  {mark} {escape(c.get('rule', ''))} {escape(c.get('name', ''))}: {escape(c.get('summary', ''))}")
+        lines.append(
+            f"  {mark} {escape(c.get('rule', ''))} {escape(c.get('name', ''))}: {escape(c.get('summary', ''))}"
+        )
         inputs = c.get("inputs") or {}
         if inputs:
             lines.append(escape(f"       inputs: {json.dumps(inputs, ensure_ascii=False, default=str)}"))
-        lines.extend(escape(l) for l in _fmt_evidence(c.get("evidence")))
+        lines.extend(escape(line) for line in _fmt_evidence(c.get("evidence")))
     return "\n".join(lines)
 
 
@@ -141,7 +147,11 @@ def _fmt_reference_dates(ref: dict | None) -> str:
     src = ref.get("procedure_date_source") or {}
     parts = [f"procedure_date={ref.get('procedure_date')}"]
     if src:
-        parts.append(f"(from {src.get('source')}" + (f' doc_id={str(src.get("doc_id"))[:8]}… "{src.get("quote")}"' if src.get("doc_id") else "") + ")")
+        parts.append(
+            f"(from {src.get('source')}"
+            + (f' doc_id={str(src.get("doc_id"))[:8]}… "{src.get("quote")}"' if src.get("doc_id") else "")
+            + ")"
+        )
     parts.append(f"risk={ref.get('procedure_risk')}")
     parts.append(f"review_time={ref.get('review_time')}")
     return escape(" ".join(str(p) for p in parts))
@@ -229,10 +239,7 @@ class EvalReportApp(App):
         n_records = len(self.records)
         ts = self.report.get("generated_at", "")[:19]
         mode = self.report.get("mode", "eval")
-        text = (
-            f" Score: [bold]{score_val}%[/bold]  |  Records: {n_records}"
-            f"  |  Mode: {mode}  |  Generated: {ts}"
-        )
+        text = f" Score: [bold]{score_val}%[/bold]  |  Records: {n_records}  |  Mode: {mode}  |  Generated: {ts}"
         if self._active_filter is not None:
             text += f"  |  Filter: [bold]{self._active_filter}[/bold]"
         return text
@@ -264,9 +271,8 @@ class EvalReportApp(App):
     def _populate_record_list(self, table: DataTable) -> None:
         sorted_records = sorted(self.records, key=lambda r: r["record_index"])
         for rec in sorted_records:
-            if self._active_filter is not None:
-                if rec.get("metrics", {}).get(self._active_filter):
-                    continue
+            if self._active_filter is not None and rec.get("metrics", {}).get(self._active_filter):
+                continue
             idx = rec["record_index"]
             case_id = rec.get("case_id", f"#{idx}")
             score = rec.get("aggregate_local_score", 0)
@@ -331,12 +337,14 @@ class EvalReportApp(App):
         sub_log = self.query_one("#submission-log", RichLog)
         sub_log.clear()
         sub = rec.get("submission", {}) or {}
-        sub_log.write(Syntax(
-            json.dumps(sub, indent=2, default=str),
-            "json",
-            theme="monokai",
-            word_wrap=True,
-        ))
+        sub_log.write(
+            Syntax(
+                json.dumps(sub, indent=2, default=str),
+                "json",
+                theme="monokai",
+                word_wrap=True,
+            )
+        )
         sub_log.scroll_home(animate=False)
 
     def _render_detail(self, rec: dict) -> str:
@@ -400,10 +408,14 @@ class EvalReportApp(App):
 
         meta = actual.get("meta")
         if meta:
-            lines.append("\n[bold]Meta:[/bold] " + escape(
-                f"model={meta.get('model')} pipeline={meta.get('pipeline_version')} llm_calls={meta.get('llm_calls')} "
-                f"cache_hits={meta.get('llm_cache_hits')} llm_failures={meta.get('llm_failures')} "
-                f"unverified_quotes={meta.get('unverified_quotes')} docs_failed={meta.get('documents_failed')}"))
+            lines.append(
+                "\n[bold]Meta:[/bold] "
+                + escape(
+                    f"model={meta.get('model')} pipeline={meta.get('pipeline_version')} llm_calls={meta.get('llm_calls')} "
+                    f"cache_hits={meta.get('llm_cache_hits')} llm_failures={meta.get('llm_failures')} "
+                    f"unverified_quotes={meta.get('unverified_quotes')} docs_failed={meta.get('documents_failed')}"
+                )
+            )
 
         return "\n".join(lines)
 
@@ -431,7 +443,7 @@ def main() -> None:
         report = json.loads(path.read_text())
     except json.JSONDecodeError as exc:
         print(f"Invalid JSON in {path}: {exc}")
-        raise SystemExit(1)
+        raise SystemExit(1) from exc
 
     EvalReportApp(report).run()
 

@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from datetime import date, datetime, time, timezone
+from datetime import UTC, date, datetime, time
 
 # ---------------------------------------------------------------------------
 # Dates (A1)
@@ -44,8 +44,8 @@ def parse_datetime(value: str | None) -> datetime | None:
     except ValueError:
         return None
     if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc)
+        dt = dt.replace(tzinfo=UTC)
+    return dt.astimezone(UTC)
 
 
 def parse_clock_time(value: str | None) -> time | None:
@@ -120,21 +120,42 @@ def lab_status_counts(status: str | None) -> bool:
 
 # brand / alias -> generic
 ANTICOAGULANT_ALIASES: dict[str, str] = {
-    "warfarin": "warfarin", "coumadin": "warfarin", "jantoven": "warfarin",
-    "apixaban": "apixaban", "eliquis": "apixaban",
-    "rivaroxaban": "rivaroxaban", "xarelto": "rivaroxaban",
-    "dabigatran": "dabigatran", "pradaxa": "dabigatran",
-    "edoxaban": "edoxaban", "savaysa": "edoxaban", "lixiana": "edoxaban",
-    "betrixaban": "betrixaban", "bevyxxa": "betrixaban",
-    "enoxaparin": "enoxaparin", "lovenox": "enoxaparin",
-    "dalteparin": "dalteparin", "fragmin": "dalteparin",
-    "fondaparinux": "fondaparinux", "arixtra": "fondaparinux",
+    "warfarin": "warfarin",
+    "coumadin": "warfarin",
+    "jantoven": "warfarin",
+    "apixaban": "apixaban",
+    "eliquis": "apixaban",
+    "rivaroxaban": "rivaroxaban",
+    "xarelto": "rivaroxaban",
+    "dabigatran": "dabigatran",
+    "pradaxa": "dabigatran",
+    "edoxaban": "edoxaban",
+    "savaysa": "edoxaban",
+    "lixiana": "edoxaban",
+    "betrixaban": "betrixaban",
+    "bevyxxa": "betrixaban",
+    "enoxaparin": "enoxaparin",
+    "lovenox": "enoxaparin",
+    "dalteparin": "dalteparin",
+    "fragmin": "dalteparin",
+    "fondaparinux": "fondaparinux",
+    "arixtra": "fondaparinux",
     "heparin": "heparin",
 }
 
 ANTIPLATELET_ALIASES: set[str] = {
-    "aspirin", "asa", "ecotrin", "clopidogrel", "plavix", "ticagrelor", "brilinta",
-    "prasugrel", "effient", "dipyridamole", "aggrenox", "ticlopidine",
+    "aspirin",
+    "asa",
+    "ecotrin",
+    "clopidogrel",
+    "plavix",
+    "ticagrelor",
+    "brilinta",
+    "prasugrel",
+    "effient",
+    "dipyridamole",
+    "aggrenox",
+    "ticlopidine",
 }
 
 _WORD = re.compile(r"[a-z]+")

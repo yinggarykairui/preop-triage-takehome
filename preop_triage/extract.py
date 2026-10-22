@@ -73,7 +73,13 @@ def _collect_quotes_doc(f: DocFacts) -> list[tuple[str, str | None, bool]]:
     q.append(("hp.quote", f.hp.quote, f.hp.is_completed_hp))
     q.append(("hp.references_hp_missing_quote", f.hp.references_hp_missing_quote, f.hp.references_hp_missing))
     q.append(("consent.quote", f.consent.quote, f.consent.patient_signed != "NOT_A_CONSENT"))
-    q.append(("consent.references_consent_missing_quote", f.consent.references_consent_missing_quote, f.consent.references_consent_missing))
+    q.append(
+        (
+            "consent.references_consent_missing_quote",
+            f.consent.references_consent_missing_quote,
+            f.consent.references_consent_missing,
+        )
+    )
     q.append(("procedure_date.quote", f.procedure_date.quote, f.procedure_date.status != "NOT_MENTIONED"))
     for i, v in enumerate(f.vitals):
         q.append((f"vitals[{i}].quote", v.quote, True))
@@ -97,18 +103,23 @@ def _failed_quotes(text: str, triples) -> list[tuple[str, str | None]]:
     return [(name, quote) for name, quote, required in triples if required and not quote_in_text(quote, text)]
 
 
-def _run_with_repair(llm: CachedLLM, *, instructions: str, user_text: str, schema_model, schema_name: str, text: str, collect):
+def _run_with_repair(
+    llm: CachedLLM, *, instructions: str, user_text: str, schema_model, schema_name: str, text: str, collect
+):
     """Call the extractor; if quotes fail verification, retry once with the failures listed."""
-    facts = llm.extract(instructions=instructions, user_text=user_text, schema_model=schema_model, schema_name=schema_name)
+    facts = llm.extract(
+        instructions=instructions, user_text=user_text, schema_model=schema_model, schema_name=schema_name
+    )
     failed = _failed_quotes(text, collect(facts))
     if failed:
         repair = (
-            user_text
-            + "\n\nYour previous answer contained quotes that are NOT verbatim substrings of the document. "
+            user_text + "\n\nYour previous answer contained quotes that are NOT verbatim substrings of the document. "
             "Re-extract, copying each quote exactly from the text (or drop the claim if it is not in the text):\n"
             + "\n".join(f"- {name}: {quote!r}" for name, quote in failed)
         )
-        facts = llm.extract(instructions=instructions, user_text=repair, schema_model=schema_model, schema_name=schema_name)
+        facts = llm.extract(
+            instructions=instructions, user_text=repair, schema_model=schema_model, schema_name=schema_name
+        )
         failed = _failed_quotes(text, collect(facts))
     return facts, failed
 
@@ -123,8 +134,13 @@ def extract_document(llm: CachedLLM, doc: dict, planned_procedure: str | None) -
     user_text = _doc_user_text(doc, planned_procedure)
     try:
         facts, failed = _run_with_repair(
-            llm, instructions=DOC_FACTS_INSTRUCTIONS, user_text=user_text, schema_model=DocFacts,
-            schema_name="doc_facts", text=ex.text, collect=_collect_quotes_doc,
+            llm,
+            instructions=DOC_FACTS_INSTRUCTIONS,
+            user_text=user_text,
+            schema_model=DocFacts,
+            schema_name="doc_facts",
+            text=ex.text,
+            collect=_collect_quotes_doc,
         )
         ex.facts = facts
         ex.unverified += [f"doc_facts.{n}: {q!r}" for n, q in failed]
@@ -135,8 +151,13 @@ def extract_document(llm: CachedLLM, doc: dict, planned_procedure: str | None) -
         ex.anticoag_attempted = True
         try:
             ac, failed = _run_with_repair(
-                llm, instructions=ANTICOAG_INSTRUCTIONS, user_text=user_text, schema_model=AnticoagFacts,
-                schema_name="anticoag_facts", text=ex.text, collect=_collect_quotes_ac,
+                llm,
+                instructions=ANTICOAG_INSTRUCTIONS,
+                user_text=user_text,
+                schema_model=AnticoagFacts,
+                schema_name="anticoag_facts",
+                text=ex.text,
+                collect=_collect_quotes_ac,
             )
             ex.anticoag = ac
             ex.unverified += [f"anticoag_facts.{n}: {q!r}" for n, q in failed]
@@ -145,7 +166,9 @@ def extract_document(llm: CachedLLM, doc: dict, planned_procedure: str | None) -
     return ex
 
 
-def extract_all(llm: CachedLLM, documents: list[dict], planned_procedure: str | None, max_workers: int = 6) -> list[DocExtraction]:
+def extract_all(
+    llm: CachedLLM, documents: list[dict], planned_procedure: str | None, max_workers: int = 6
+) -> list[DocExtraction]:
     """Extract every document; order is preserved. Failures are recorded, never raised."""
     if not documents:
         return []

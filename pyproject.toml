@@ -3,16 +3,18 @@ name = "preop-triage"
 version = "1.0.0"
 description = "Cadence pre-op scheduling triage: LLM extracts, code decides"
 requires-python = ">=3.11"
+# Pinned to the versions in uv.lock (the versions every result in results/ was produced with).
 dependencies = [
-    "openai>=2.0.0",
-    "pydantic>=2.8.0",
+    "openai==3.37.0",
+    "pydantic==2.14.1",
 ]
 
 [dependency-groups]
 dev = [
-    "pytest>=8.0.0",
-    "textual>=1.0.0",
-    "rich>=13.0.0",
+    "pytest==9.1.1",
+    "textual==8.2.8",
+    "rich==15.0.0",
+    "ruff==0.17.2",
 ]
 
 [tool.pytest.ini_options]
@@ -20,3 +22,17 @@ testpaths = ["tests"]
 
 [tool.uv]
 package = false
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [".venv", "cache"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF100"]
+ignore = [
+    "E501",  # long f-strings in summaries/evidence; the formatter handles code layout
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["preop_triage", "core", "baseline"]

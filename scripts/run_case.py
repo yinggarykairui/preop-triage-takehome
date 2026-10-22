@@ -6,6 +6,7 @@ Examples:
   uv run scripts/run_case.py --index 3 --model gpt-4.1-mini
   uv run scripts/run_case.py --file my_submission.json      # a bare submission package
 """
+
 from __future__ import annotations
 
 import argparse
@@ -34,11 +35,8 @@ def main() -> None:
         sub = json.loads(Path(args.file).read_text())
         sub = sub.get("submission", sub)
     else:
-        rows = [json.loads(l) for l in Path(args.input).read_text().splitlines() if l.strip()]
-        if args.case_id:
-            row = next(r for r in rows if r["case_id"] == args.case_id)
-        else:
-            row = rows[args.index or 0]
+        rows = [json.loads(line) for line in Path(args.input).read_text().splitlines() if line.strip()]
+        row = next(r for r in rows if r["case_id"] == args.case_id) if args.case_id else rows[args.index or 0]
         sub, label = row["submission"], row.get("label")
 
     packet = triage_submission(sub, model=args.model).model_dump()

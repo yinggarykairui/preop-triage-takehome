@@ -2,8 +2,8 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#   "openai>=2.0.0",
-#   "pydantic>=2.8.0",
+#   "openai==3.37.0",
+#   "pydantic==2.14.1",
 # ]
 # ///
 
@@ -12,11 +12,11 @@
 from __future__ import annotations
 
 import argparse
+import json
+import time
 from collections import Counter
 from datetime import UTC, datetime
-import json
 from pathlib import Path
-import time
 from typing import Any
 
 from openai import OpenAI
@@ -188,9 +188,7 @@ def _local_metrics_for_row(
     decision_match_oracle = parsed_output is not None and actual_decision == label.decision
 
     expected_categories = sorted(set(label.categories))
-    actual_categories = (
-        sorted({issue.category for issue in parsed_output.issues}) if parsed_output else []
-    )
+    actual_categories = sorted({issue.category for issue in parsed_output.issues}) if parsed_output else []
     issue_categories_match_oracle = expected_categories == actual_categories
 
     metrics = {
@@ -199,8 +197,7 @@ def _local_metrics_for_row(
         "issue_categories_match_oracle": issue_categories_match_oracle,
     }
     aggregate_local_score = 100.0 * (
-        sum(METRIC_WEIGHTS[k] * float(v) for k, v in metrics.items())
-        / sum(METRIC_WEIGHTS.values())
+        sum(METRIC_WEIGHTS[k] * float(v) for k, v in metrics.items()) / sum(METRIC_WEIGHTS.values())
     )
 
     return {
@@ -319,9 +316,7 @@ def _create_eval(client: OpenAI) -> Any:
     )
 
 
-def _create_eval_run(
-    client: OpenAI, eval_id: str, content_rows: list[dict[str, object]]
-) -> Any:
+def _create_eval_run(client: OpenAI, eval_id: str, content_rows: list[dict[str, object]]) -> Any:
     timestamp = datetime.now(tz=UTC).strftime("%Y%m%d_%H%M%S")
     return client.evals.runs.create(
         eval_id=eval_id,
@@ -353,9 +348,7 @@ def _wait_for_run_completion(
         if run.status in TERMINAL_RUN_STATUSES:
             return run
         if time.time() >= deadline:
-            raise TimeoutError(
-                f"Timed out waiting for eval run completion (eval_id={eval_id}, run_id={run_id})"
-            )
+            raise TimeoutError(f"Timed out waiting for eval run completion (eval_id={eval_id}, run_id={run_id})")
         time.sleep(poll_interval_seconds)
 
 
@@ -401,9 +394,7 @@ def _summarize_local_rows(local_rows: list[dict[str, object]]) -> dict[str, obje
         summary[f"{metric_name}_rate_pct"] = round(rate, 2)
 
     aggregate_values = [float(row["aggregate_local_score"]) for row in local_rows]
-    summary["aggregate_local_score_pct"] = round(
-        sum(aggregate_values) / len(aggregate_values), 2
-    )
+    summary["aggregate_local_score_pct"] = round(sum(aggregate_values) / len(aggregate_values), 2)
     summary["primary_score_pct"] = summary["aggregate_local_score_pct"]
 
     return summary
@@ -453,9 +444,7 @@ def run_eval_mode(args: argparse.Namespace) -> dict[str, object]:
         "run_status": final_run.status,
         "run_report_url": final_run.report_url,
         "run_result_counts": final_run.result_counts.model_dump(),
-        "run_per_testing_criteria_results": [
-            result.model_dump() for result in final_run.per_testing_criteria_results
-        ],
+        "run_per_testing_criteria_results": [result.model_dump() for result in final_run.per_testing_criteria_results],
         "criteria_summary_from_output_items": _summarize_output_items(output_items),
         "local_metrics_summary": local_metrics_summary,
         "records": local_rows,
@@ -472,9 +461,7 @@ def run_determinism_mode(args: argparse.Namespace) -> dict[str, object]:
     if not cases:
         raise ValueError(f"No patient records found in {input_path}")
     if args.record_index < 0 or args.record_index >= len(cases):
-        raise IndexError(
-            f"record-index {args.record_index} out of range for {len(cases)} records"
-        )
+        raise IndexError(f"record-index {args.record_index} out of range for {len(cases)} records")
 
     case = cases[args.record_index]
     submission = case.submission
@@ -490,9 +477,7 @@ def run_determinism_mode(args: argparse.Namespace) -> dict[str, object]:
                 model=args.model,
             )
             decision = output.decision
-            canonical = json.dumps(
-                output.model_dump(), sort_keys=True, separators=(",", ":")
-            )
+            canonical = json.dumps(output.model_dump(), sort_keys=True, separators=(",", ":"))
             valid_json = True
             error = None
         except Exception as exc:  # pragma: no cover - network/runtime failure path
@@ -516,15 +501,9 @@ def run_determinism_mode(args: argparse.Namespace) -> dict[str, object]:
     canonical_counts = Counter(canonical_outputs)
     json_valid_count = sum(1 for row in run_rows if row["json_schema_valid"])
 
-    decision_stability_pct = (
-        100.0 * max(decision_counts.values()) / args.runs if args.runs else 0.0
-    )
-    json_format_stability_pct = (
-        100.0 * json_valid_count / args.runs if args.runs else 0.0
-    )
-    exact_output_match_pct = (
-        100.0 * max(canonical_counts.values()) / args.runs if args.runs else 0.0
-    )
+    decision_stability_pct = 100.0 * max(decision_counts.values()) / args.runs if args.runs else 0.0
+    json_format_stability_pct = 100.0 * json_valid_count / args.runs if args.runs else 0.0
+    exact_output_match_pct = 100.0 * max(canonical_counts.values()) / args.runs if args.runs else 0.0
 
     report = {
         "generated_at": datetime.now(tz=UTC).isoformat(),
@@ -548,16 +527,11 @@ def main() -> None:
     if args.runs <= 0:
         raise ValueError("--runs must be > 0")
 
-    if args.determinism:
-        report = run_determinism_mode(args)
-    else:
-        report = run_eval_mode(args)
+    report = run_determinism_mode(args) if args.determinism else run_eval_mode(args)
 
     report_path = Path(args.report)
     report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(
-        json.dumps(report, indent=2, ensure_ascii=True), encoding="utf-8"
-    )
+    report_path.write_text(json.dumps(report, indent=2, ensure_ascii=True), encoding="utf-8")
 
     print(f"Wrote report -> {report_path}")
     if report.get("mode") == "eval":
