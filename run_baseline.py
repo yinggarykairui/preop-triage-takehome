@@ -51,6 +51,12 @@ def parse_args() -> argparse.Namespace:
         help="OpenAI model id",
     )
     parser.add_argument(
+        "--implementation",
+        choices=("pipeline", "naive"),
+        default="pipeline",
+        help="pipeline = core.triage_submission (default); naive = the original single-call baseline",
+    )
+    parser.add_argument(
         "--max-records",
         type=int,
         default=0,
@@ -93,6 +99,9 @@ def main() -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     cases = load_cases(input_path)
+    triage = triage_submission
+    if args.implementation == "naive":
+        from baseline import triage_submission_naive as triage
     if args.max_records > 0:
         cases = cases[: args.max_records]
 
@@ -110,7 +119,7 @@ def main() -> None:
             }
 
             try:
-                output = triage_submission(
+                output = triage(
                     submission=submission,
                     model=args.model,
                 )

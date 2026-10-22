@@ -1,0 +1,37 @@
+{
+ "latency_s": 2.228,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "warfarin",
+    "quote": "maintained on warfarin 5 mg PO daily",
+    "status": "CURRENTLY_TAKING"
+   },
+   {
+    "drug_as_written": "enoxaparin",
+    "quote": "Bridge with enoxaparin 1 mg/kg SC q12h starting 3 days prior, last dose 24 hours pre-op. Resume warfarin at the usual home dose the evening of surgery if hemostasis is adequate, with enoxaparin bridging restarted 48-72 hours post-op until INR is therapeutic",
+    "status": "OTHER"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": null,
+   "deferred_to_another_team": false,
+   "drug_named": "warfarin",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": true,
+    "present": true,
+    "quote": "Resume warfarin at the usual home dose the evening of surgery if hemostasis is adequate, with enoxaparin bridging restarted 48-72 hours post-op until INR is therapeutic"
+   },
+   "pre_op": {
+    "explicit": true,
+    "present": true,
+    "quote": "Stop warfarin 5 days before surgery (last dose 02/27/2026); check INR the day before surgery with goal <1.5. Bridge with enoxaparin 1 mg/kg SC q12h starting 3 days prior, last dose 24 hours pre-op"
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

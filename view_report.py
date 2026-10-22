@@ -70,23 +70,81 @@ def _fmt_pct(n: int, total: int) -> str:
     return f"{100 * n / total:.1f}%"
 
 
+def _fmt_evidence(evidence: list[dict] | str | None, indent: str = "       ") -> list[str]:
+    """Render evidence pointers: structured field paths or doc_id + verbatim quote."""
+
+    if not evidence:
+        return []
+    if isinstance(evidence, str):
+        return [f"{indent}evidence: {evidence}"]
+    if not isinstance(evidence, list):
+        return [f"{indent}evidence: {json.dumps(evidence, ensure_ascii=False)}"]
+    out: list[str] = []
+    for e in evidence:
+        if not isinstance(e, dict):
+            out.append(f"{indent}- {e}")
+            continue
+        src = e.get("source", "?")
+        if e.get("doc_id"):
+            src = f"{e.get('doc_type') or 'document'} {e.get('date') or ''} doc_id={str(e.get('doc_id'))[:8]}…"
+        line = f"{indent}- [{src}]"
+        if e.get("value"):
+            line += f" {e['value']}"
+        if e.get("quote"):
+            line += f'  "{e["quote"]}"'
+        if e.get("verified") is False:
+            line += "  (UNVERIFIED QUOTE)"
+        out.append(line)
+    return out
+
+
 def _fmt_issues(issues: list[dict] | None) -> str:
-    """Render issues without assuming an evidence format (it is implementation-defined)."""
+    """Render issues; evidence may be a string (baseline) or a list of pointers (pipeline)."""
 
     if not issues:
         return "(none)"
     lines: list[str] = []
     for i, iss in enumerate(issues, 1):
         cat = iss.get("category", "?")
-        desc = iss.get("description", "")
-        line = f"  {i}. [{cat}] {desc}"
-        evidence = iss.get("evidence")
-        if evidence:
-            if not isinstance(evidence, str):
-                evidence = json.dumps(evidence, ensure_ascii=False)
-            line += f"\n     evidence: {evidence}"
-        lines.append(escape(line))
+        desc = iss.get("summary") or iss.get("description", "")
+        rule = f" {iss['rule']}" if iss.get("rule") else ""
+        lines.append(f"  {i}. [{cat}]{rule} {desc}")
+        lines.extend(_fmt_evidence(iss.get("evidence")))
+        if iss.get("resolution"):
+            lines.append(f"       resolution: {iss['resolution']}")
+    return "\n".join(escape(l) for l in lines)
+
+
+_STATUS_MARK = {"PASS": "[green]PASS[/green]", "FAIL": "[red]FAIL[/red]", "UNKNOWN": "[yellow]UNKNOWN[/yellow]",
+                "NOT_APPLICABLE": "[dim]N/A[/dim]"}
+
+
+def _fmt_checks(checks: list[dict] | None) -> str:
+    """One line per rule check (including PASS) with the evidence it used."""
+
+    if not checks:
+        return "(none)"
+    lines: list[str] = []
+    for c in checks:
+        mark = _STATUS_MARK.get(c.get("status"), c.get("status"))
+        lines.append(f"  {mark} {escape(c.get('rule', ''))} {escape(c.get('name', ''))}: {escape(c.get('summary', ''))}")
+        inputs = c.get("inputs") or {}
+        if inputs:
+            lines.append(escape(f"       inputs: {json.dumps(inputs, ensure_ascii=False, default=str)}"))
+        lines.extend(escape(l) for l in _fmt_evidence(c.get("evidence")))
     return "\n".join(lines)
+
+
+def _fmt_reference_dates(ref: dict | None) -> str:
+    if not ref:
+        return "—"
+    src = ref.get("procedure_date_source") or {}
+    parts = [f"procedure_date={ref.get('procedure_date')}"]
+    if src:
+        parts.append(f"(from {src.get('source')}" + (f' doc_id={str(src.get("doc_id"))[:8]}… "{src.get("quote")}"' if src.get("doc_id") else "") + ")")
+    parts.append(f"risk={ref.get('procedure_risk')}")
+    parts.append(f"review_time={ref.get('review_time')}")
+    return escape(" ".join(str(p) for p in parts))
 
 
 # ---------------------------------------------------------------------------
@@ -326,8 +384,26 @@ class EvalReportApp(App):
         lines.append("\n[bold]Actual issues:[/bold]")
         lines.append(_fmt_issues(actual.get("issues")))
 
-        lines.append("\n[bold]Actual explanation:[/bold]")
-        lines.append(f"  {escape(str(actual.get('explanation', '—')))}")
+        lines.append("\n[bold]Decision rationale:[/bold]")
+        lines.append(f"  {escape(str(actual.get('decision_rationale') or actual.get('explanation', '—')))}")
+
+        if actual.get("reference_dates"):
+            lines.append("\n[bold]Reference dates:[/bold]")
+            lines.append("  " + _fmt_reference_dates(actual.get("reference_dates")))
+
+        if actual.get("checks"):
+            lines.append("\n[bold]Rule checks (audit trail, incl. PASS):[/bold]")
+            lines.append(_fmt_checks(actual.get("checks")))
+
+        if actual.get("assumptions_applied"):
+            lines.append("\n[bold]Assumptions applied:[/bold] " + escape(", ".join(actual["assumptions_applied"])))
+
+        meta = actual.get("meta")
+        if meta:
+            lines.append("\n[bold]Meta:[/bold] " + escape(
+                f"model={meta.get('model')} pipeline={meta.get('pipeline_version')} llm_calls={meta.get('llm_calls')} "
+                f"cache_hits={meta.get('llm_cache_hits')} llm_failures={meta.get('llm_failures')} "
+                f"unverified_quotes={meta.get('unverified_quotes')} docs_failed={meta.get('documents_failed')}"))
 
         return "\n".join(lines)
 

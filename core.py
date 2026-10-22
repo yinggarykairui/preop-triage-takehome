@@ -7,6 +7,8 @@ from typing import Literal
 
 from pydantic import AliasChoices, BaseModel, Field
 
+from preop_triage.schemas import TriagePacket  # noqa: E402  (re-exported for callers)
+
 # -------------------------
 # Policy + system prompt
 # -------------------------
@@ -196,42 +198,18 @@ def triage_submission(
     submission: dict[str, object] | PatientSubmission,
     *,
     model: str,
-) -> TriageOutput:
-    """Naive baseline implementation: single LLM call with JSON response output."""
+) -> "TriagePacket":
+    """Harness entry point: normalize -> LLM extraction -> verify -> deterministic rules.
 
-    # Import lazily so core utilities remain usable without OpenAI installed.
-    from openai import OpenAI
+    The returned packet keeps `decision`, `issues[].category` and `explanation`, so the
+    harness and the report viewer keep working. The naive single-call baseline lives in
+    baseline.py for comparison.
+    """
+
+    from preop_triage.pipeline import triage
 
     if isinstance(submission, PatientSubmission):
-        submission_payload = submission.model_dump()
+        payload = submission.model_dump()
     else:
-        submission_payload = PatientSubmission.model_validate(submission).model_dump()
-
-    client = OpenAI()
-    request_kwargs: dict[str, object] = {
-        "model": model,
-        "instructions": BASELINE_SYSTEM_PROMPT,
-        "input": [
-            {
-                "type": "message",
-                "role": "user",
-                "content": [
-                    {
-                        "type": "input_text",
-                        "text": build_user_prompt(submission_payload),
-                    }
-                ],
-            }
-        ],
-        "text": {
-            "format": {
-                "type": "json_schema",
-                "name": "preop_triage_output",
-                "schema": triage_output_json_schema(),
-                "strict": False,
-            }
-        },
-    }
-
-    response = client.responses.create(**request_kwargs)
-    return TriageOutput.model_validate_json(response.output_text)
+        payload = PatientSubmission.model_validate(submission).model_dump()
+    return triage(payload, model=model)
