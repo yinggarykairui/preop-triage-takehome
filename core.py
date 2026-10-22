@@ -60,6 +60,7 @@ class BloodPressureVital(BaseModel):
 class TemperatureVital(BaseModel):
     type: str | None = None
     value_f: float | int | None = None
+    value_c: float | int | None = None
     date: str | None = None
     source: str | None = None
 

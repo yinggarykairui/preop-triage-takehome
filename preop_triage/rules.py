@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from datetime import time as dtime
 
+from .config import settings
 from .normalize import Reading, days_between, most_recent_reading, within_window
 from .schemas import Check, Evidence, Issue, ProcedureDateSource
 
@@ -707,8 +708,13 @@ UNKNOWN_LABELS = {
 }
 
 
-def build_issues(checks: list[Check]) -> list[Issue]:
-    """A19: one issue per FAIL; UNKNOWNs grouped into one MISSING_REQUIRED_DATA issue per missing datum."""
+def build_issues(checks: list[Check], *, fail_safe: bool | None = None) -> list[Issue]:
+    """A19: one issue per FAIL; UNKNOWNs grouped into one MISSING_REQUIRED_DATA issue per missing datum.
+
+    `fail_safe=False` (ablation only) drops the UNKNOWN issues.
+    """
+    if fail_safe is None:
+        fail_safe = settings().fail_safe
     issues: list[Issue] = []
     for c in checks:
         if c.status == "FAIL":
@@ -725,7 +731,7 @@ def build_issues(checks: list[Check]) -> list[Issue]:
     # UNKNOWN -> one MISSING_REQUIRED_DATA issue per missing datum (A19)
     by_key: dict[str, list[Check]] = {}
     for c in checks:
-        if c.status == "UNKNOWN":
+        if c.status == "UNKNOWN" and fail_safe:
             by_key.setdefault(c.unknown_key or c.name, []).append(c)
     for key, group in by_key.items():
         label = UNKNOWN_LABELS.get(key) or key.replace("_", " ").replace(":", ": ")
@@ -755,11 +761,13 @@ def build_issues(checks: list[Check]) -> list[Issue]:
     return issues
 
 
-def decide(checks: list[Check]) -> tuple[str, str]:
-    """Return (decision, one-sentence rationale)."""
+def decide(checks: list[Check], *, fail_safe: bool | None = None) -> tuple[str, str]:
+    """Return (decision, one-sentence rationale). `fail_safe=False` (ablation only) ignores UNKNOWN checks."""
+    if fail_safe is None:
+        fail_safe = settings().fail_safe
     safety = [c for c in checks if c.status == "FAIL" and c.category == "ACUTE_SAFETY_EXCLUSION"]
     fails = [c for c in checks if c.status == "FAIL" and c.category != "ACUTE_SAFETY_EXCLUSION"]
-    unknowns = [c for c in checks if c.status == "UNKNOWN"]
+    unknowns = [c for c in checks if c.status == "UNKNOWN"] if fail_safe else []
     if safety:
         extra = f"; also {len(fails) + len(unknowns)} follow-up item(s)" if (fails or unknowns) else ""
         return "NOT_CLEARED", "Rule 4 acute safety exclusion: " + "; ".join(c.summary for c in safety) + extra + "."

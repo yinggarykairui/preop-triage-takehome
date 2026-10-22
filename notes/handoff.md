@@ -5,7 +5,7 @@
 > dependency pins, Makefile targets (`make help`), `notes/assumptions.md` + sync test, and
 > `notes/submission_checklist.md` (what was verified, what changed, remaining risks, reviewer commands).
 > Read the checklist first; the notes below describe the build session and remain accurate except
-> where the checklist says otherwise (test count is now 84; `make score`/`make report` fall back to
+> where the checklist says otherwise (test count is now 90; `make perturb` / `make ablation` and `eval/` were added in a third session; `make score`/`make report` fall back to
 > `results/final_eval_report.json`; A3/A7 wording was aligned with the code).
 
 ## Build session notes (written 2026-10-22, end of first build session)

@@ -1,0 +1,34 @@
+{
+ "latency_s": 1.975,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "consent": {
+   "is_consent_document": true,
+   "matches_planned_procedure": true,
+   "patient_signed": "PENDING_OR_UNSIGNED",
+   "procedure_named": "inguinal hernia repair",
+   "quote": "Patient signature: pending (to be signed on the day of surgery).",
+   "references_consent_missing": false,
+   "references_consent_missing_quote": null,
+   "signed_date": null
+  },
+  "document_kind": "SURGICAL_CONSENT",
+  "hp": {
+   "date_of_service": null,
+   "is_completed_hp": false,
+   "is_preop_evaluation_for_planned_procedure": false,
+   "quote": null,
+   "references_hp_missing": false,
+   "references_hp_missing_quote": null
+  },
+  "procedure_date": {
+   "date": null,
+   "quote": null,
+   "status": "NOT_MENTIONED"
+  },
+  "vitals": [],
+  "vitals_deferred_or_not_recorded": false,
+  "vitals_deferred_quote": null
+ },
+ "schema_name": "doc_facts"
+}

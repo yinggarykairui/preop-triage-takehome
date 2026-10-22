@@ -1,0 +1,32 @@
+{
+ "latency_s": 1.686,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "Eliquis",
+    "quote": "maintained on Eliquis 5 mg PO BID",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": "Post-operative resumption: to be determined by the surgical team.",
+   "deferred_to_another_team": true,
+   "drug_named": "Eliquis",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": false,
+    "present": true,
+    "quote": "Post-operative resumption: to be determined by the surgical team."
+   },
+   "pre_op": {
+    "explicit": true,
+    "present": true,
+    "quote": "Hold Eliquis for the 2 days before surgery (last dose 03/01/2026; no doses in the 48 hours prior)"
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

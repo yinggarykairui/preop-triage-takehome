@@ -15,6 +15,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 
+from .config import settings
 from .llm import CachedLLM, LLMError
 from .normalize import mentions_anticoagulation
 from .schemas import AnticoagFacts, DocFacts
@@ -54,6 +55,8 @@ class DocExtraction:
     unverified: list[str] = field(default_factory=list)  # human-readable "field: quote" entries
 
     def verified(self, quote: str | None) -> bool:
+        if not settings().verify_quotes:  # ablation only
+            return True
         return quote_in_text(quote, self.text)
 
 
@@ -100,6 +103,8 @@ def _collect_quotes_ac(f: AnticoagFacts) -> list[tuple[str, str | None, bool]]:
 
 
 def _failed_quotes(text: str, triples) -> list[tuple[str, str | None]]:
+    if not settings().verify_quotes:  # ablation only: no verification, so no repair retry either
+        return []
     return [(name, quote) for name, quote, required in triples if required and not quote_in_text(quote, text)]
 
 

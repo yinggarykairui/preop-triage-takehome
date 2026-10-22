@@ -1,0 +1,118 @@
+{
+ "seed": 0,
+ "model": "gpt-4.1-mini",
+ "perturbations_used": 170,
+ "perturbations_skipped": 0,
+ "variants": {
+  "full pipeline": {
+   "flags": "",
+   "sample": {
+    "n": 50,
+    "unavailable": 0,
+    "decision_acc_pct": 100.0,
+    "categories_acc_pct": 100.0,
+    "harness_aggregate_pct": 100.0,
+    "exact_pct": 100.0,
+    "false_ready": []
+   },
+   "perturbation": {
+    "n": 170,
+    "unavailable": 0,
+    "decision_acc_pct": 100.0,
+    "categories_acc_pct": 100.0,
+    "harness_aggregate_pct": 100.0,
+    "exact_pct": 100.0,
+    "false_ready": []
+   }
+  },
+  "no quote verification": {
+   "flags": "no_verify",
+   "sample": {
+    "n": 50,
+    "unavailable": 0,
+    "decision_acc_pct": 100.0,
+    "categories_acc_pct": 100.0,
+    "harness_aggregate_pct": 100.0,
+    "exact_pct": 100.0,
+    "false_ready": []
+   },
+   "perturbation": {
+    "n": 170,
+    "unavailable": 0,
+    "decision_acc_pct": 100.0,
+    "categories_acc_pct": 100.0,
+    "harness_aggregate_pct": 100.0,
+    "exact_pct": 100.0,
+    "false_ready": []
+   }
+  },
+  "no fail-safe": {
+   "flags": "no_failsafe",
+   "sample": {
+    "n": 50,
+    "unavailable": 0,
+    "decision_acc_pct": 90.0,
+    "categories_acc_pct": 82.0,
+    "harness_aggregate_pct": 90.7,
+    "exact_pct": 82.0,
+    "false_ready": [
+     "case_00011",
+     "case_00029",
+     "case_00033",
+     "case_00039",
+     "case_00044"
+    ]
+   },
+   "perturbation": {
+    "n": 170,
+    "unavailable": 0,
+    "decision_acc_pct": 96.5,
+    "categories_acc_pct": 92.9,
+    "harness_aggregate_pct": 96.5,
+    "exact_pct": 92.9,
+    "false_ready": [
+     "missing_risk/risk_null@case_00037",
+     "missing_risk/risk_null@case_00012",
+     "missing_risk/risk_null@case_00030",
+     "missing_risk/risk_null@case_00034",
+     "missing_risk/risk_null@case_00045",
+     "missing_risk/risk_null@case_00025"
+    ]
+   }
+  },
+  "neither": {
+   "flags": "no_verify,no_failsafe",
+   "sample": {
+    "n": 50,
+    "unavailable": 0,
+    "decision_acc_pct": 90.0,
+    "categories_acc_pct": 82.0,
+    "harness_aggregate_pct": 90.7,
+    "exact_pct": 82.0,
+    "false_ready": [
+     "case_00011",
+     "case_00029",
+     "case_00033",
+     "case_00039",
+     "case_00044"
+    ]
+   },
+   "perturbation": {
+    "n": 170,
+    "unavailable": 0,
+    "decision_acc_pct": 96.5,
+    "categories_acc_pct": 92.9,
+    "harness_aggregate_pct": 96.5,
+    "exact_pct": 92.9,
+    "false_ready": [
+     "missing_risk/risk_null@case_00037",
+     "missing_risk/risk_null@case_00012",
+     "missing_risk/risk_null@case_00030",
+     "missing_risk/risk_null@case_00034",
+     "missing_risk/risk_null@case_00045",
+     "missing_risk/risk_null@case_00025"
+    ]
+   }
+  }
+ }
+}

@@ -5,7 +5,8 @@
 - **Approach:** the LLM only *reads*. Two per-document extractors return strict-schema facts with verbatim quotes; code verifies every quote against the document, then a pure rule engine applies the four policy rules and emits a decision plus an auditable evidence packet.
 - **Headline results (50 labelled cases, gpt-4.1-mini):** naive single-call baseline 73.3% on the harness (decision 70%, categories 52%, 1 false READY). Final pipeline 100% on all three metrics, 0 false READYs, deterministic 10/10 replays.
 - **Key design choice:** an unverifiable or missing fact can only move a check toward UNKNOWN, never toward PASS, so every failure mode of the model degrades to NEEDS_FOLLOW_UP instead of a false READY.
-- **Honesty:** the 100% is in-sample. Labels were visible while iterating; the first full run scored 98.0% and two prompts were revised after error analysis. No label disagreements were found.
+- **Depth:** a seeded perturbation suite of 170 mutations whose answers follow from the policy by construction (window edges, vital thresholds in °F and °C, rechecks, brand/generic swaps, pending consents, deferred plans, missing dates and risk) passes 170/170; an ablation shows the fail-safe is what prevents false READYs (5 on the sample, 6 on the perturbations without it).
+- **Honesty:** the 100% on the labelled set is in-sample. Labels were visible while iterating; the first full run scored 98.0% and two prompts were revised after error analysis. No label disagreements were found.
 - **Everything replays from a committed cache**, so tests, the full run, the local scorer and the determinism check run from a clean clone without an API key in a few seconds.
 
 ## 1. Problem and data
@@ -106,6 +107,48 @@ verifier hardening below) and leaves 2 unverified quotes in 50 cases, both corre
 **Cost and latency:** ~6.5 calls per case; a cold run of 50 cases is roughly 15–25 minutes and about
 $0.40 at list prices; the cached replay takes 2 seconds.
 
+### 4.1 Perturbation suite ([results/perturbation.md](results/perturbation.md), `make perturb`)
+
+`eval/perturb.py` takes sample cases that satisfy a precondition and applies a seeded mutation whose
+effect on the decision and categories is known from the policy alone, so the suite measures the
+pipeline rather than the labeler. Structured mutations leave document text untouched and replay the
+cache; three families rewrite a document and run through the LLM (their responses are cached too).
+
+| family | mutation | n | pass |
+|---|---|---|---|
+| hp_window | H&P at day 30 vs 31 (procedure date, labs and vitals shifted together) | 12 | 12 |
+| cbc_window, cmp_window | single CBC at 30/31 or 14/15; risk forced HIGH with CMP at 14/15 | 24 | 24 |
+| lab_entered_in_error, risk_upgrade | newer entered-in-error CBC must be skipped; LOW→HIGH pushes a day-15–30 CBC out of window | 18 | 18 |
+| bp_threshold, temp_threshold_f, temp_threshold_c | 179/180, 109/110, 100.4/100.5 °F, 38.0/38.1 °C as structured vitals | 48 | 48 |
+| bp_recheck | 185/95 then 128/78 (READY) and the reverse (NOT_CLEARED), list order varied | 18 | 18 |
+| anticoag_brand_generic, anticoag_wrong_drug | Xarelto↔rivaroxaban etc. must not change the outcome; list drug the plan does not name must fail | 10 | 10 |
+| plan_no_postop, consent_pending, temp_threshold_c_text (LLM) | post-op line replaced by a deferral; signature line set to pending; "Temp 38.0/38.1 °C" addendum appended | 22 | 22 |
+| null_procedure_date, missing_risk | date only in note text (A4 fallback → READY); risk null with and without any CBC (A5) | 18 | 18 |
+| **total** | | **170** | **170 (100%), 0 false READYs** |
+
+Building the suite found one real bug: the provided input schema had no `value_c` on temperature
+vitals, so a structured Celsius temperature was silently dropped before the pipeline (which already
+handled it) saw it. Fixed in `core.py`; `temp_threshold_c` now covers it.
+
+### 4.2 Ablation ([results/ablation.md](results/ablation.md), `make ablation`)
+
+`TRIAGE_ABLATE` turns off quote verification (`no_verify`: every quote accepted, no repair retry) and
+the fail-safe (`no_failsafe`: UNKNOWN checks neither block clearance nor raise MISSING_REQUIRED_DATA).
+Accuracy is the harness aggregate.
+
+| variant | sample accuracy | sample false READYs | perturbation accuracy | perturbation false READYs |
+|---|---|---|---|---|
+| full pipeline | 100.0% | 0 | 100.0% | 0 |
+| no quote verification | 100.0% | 0 | 100.0% | 0 |
+| no fail-safe | 90.7% | **5** | 96.5% | **6** |
+| neither | 90.7% | 5 | 96.5% | 6 |
+
+The fail-safe is load-bearing: without it, every case whose temperature, risk, procedure date or
+anticoagulant status is unknown is cleared. Quote verification changed no decision on this data: all
+70 quotes it rejected across the three runs were correct rejections of facts that had no decision
+impact, which says the extractor did not hallucinate a decision-relevant fact here, not that it never
+will. Its value is as a guard against a failure mode this synthetic data does not contain.
+
 ## 5. Error analysis
 
 Full detail in [notes/error_analysis.md](notes/error_analysis.md). Fixes were always to the general
@@ -134,13 +177,16 @@ cause; no case IDs appear in the code.
 
 ## 6. Depth and validation
 
-- **84 tests, none touching the network** (`make test`, ~2 s). 50 rule-engine tests at the boundaries
+- **90 tests, none touching the network** (`make test`, ~2 s). 50 rule-engine tests at the boundaries
   (179/180, 109/110, 100.4/100.5, day 30/31, 14/15), precedence, tie-breaks, entered-in-error labs,
   missing date/risk, plan completeness. 25 normalization/verifier tests, including mojibake and
   altered-digit rejection. 3 extraction-fixture tests run the real extractors against a committed cache
   and assert that every reading driving the decision was verified, and that a dead provider yields
   NEEDS_FOLLOW_UP, never READY. 3 tests keep the assumption list, the code and `notes/assumptions.md`
-  in sync.
+  in sync; 6 cover the ablation switches and the perturbation generator (seeded, well-formed, structured
+  mutations never touch documents).
+- **Perturbation and ablation** (§4.1–4.2): 170 constructed mutations pass; removing the fail-safe produces
+  false READYs on both sets.
 - **Determinism:** `make determinism` replays record 0 ten times through `triage_submission`: 100%
   decision, JSON and exact-output stability (temperature 0 plus the cache make this structural).
 - **Reproducibility:** the clean-clone replay reproduces every committed packet byte for byte apart from
@@ -164,16 +210,16 @@ cause; no case IDs appear in the code.
 - **Staleness is not enforced** (the policy sets no maximum vital age, A6), and the conservative
   same-day tie-break (A8) can hold a patient on an older abnormal reading when a recheck has no time.
 - **One provider.** Only OpenAI is implemented behind the `Provider` protocol.
-- **No ablation or perturbation study.** The contribution of each component (verification, repair
-  retry, text vitals) and robustness to date shifts, unit flips and renamed document types are argued,
-  not measured. This is the first item below.
+- **Perturbations cover structured fields far better than prose.** 148 of the 170 mutations change
+  structured fields; only three families rewrite document text. Renamed document types, conflicting notes
+  and moved facts (structured → text) are not yet exercised, and the ablation shows verification is
+  untested against a real hallucination.
 
 ## 8. What I would do next
 
-1. **A perturbation suite.** Mutate the 50 cases systematically (shift dates across each boundary, flip
-   units, move facts between structured fields and text, rename document types, inject conflicting
-   notes) and measure extractor recall per fact type; ablate verification and the repair retry to
-   quantify what each buys.
+1. **Extend the perturbation suite to prose.** Move facts between structured fields and text, rename
+   document types, inject conflicting notes, and inject hallucinated quotes through a fake provider so
+   the verification ablation measures something; report extractor recall per fact type.
 2. **Confidence-based routing.** Score each check (unverified quotes, repair retries, disagreement
    between the two extractors or between med list and notes) and route low-confidence READYs to the
    nurse sample instead of sampling uniformly.

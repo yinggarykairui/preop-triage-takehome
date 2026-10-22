@@ -9,13 +9,14 @@ DETERMINISM_REPORT ?= data/determinism_report.json
 MODEL ?= gpt-4.1-mini
 CASE ?= case_00016
 SUMMARY ?= results/final_summary.md
+SEED ?= 0
 
-.PHONY: help test run baseline eval evals summary determinism score report baseline-naive profile assumptions lint format check all clean
+.PHONY: help test run baseline eval evals summary determinism score report perturb ablation baseline-naive profile assumptions lint format check all clean
 
 help: ## list targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F ':.*## ' '{printf "  %-14s %s\n", $$1, $$2}'
 
-test: ## pytest (84 tests; no network, no API key)
+test: ## pytest (no network, no API key)
 	uv run --group dev python -m pytest tests -q
 
 run: ## triage one case: make run CASE=case_00037
@@ -41,6 +42,12 @@ score: ## print the primary score from $(REPORT)
 report: ## interactive TUI over $(REPORT) (checks, evidence, assumptions)
 	uv run --group dev view_report.py --report $(REPORT)
 
+perturb: ## perturbation suite (seeded mutations, expected by construction) -> results/perturbation.{md,json}
+	uv run eval/perturb.py --seed $(SEED)
+
+ablation: ## no-verification / no-fail-safe variants on the sample + perturbation sets -> results/ablation.{md,json}
+	uv run eval/ablation.py --seed $(SEED)
+
 baseline-naive: ## the original single-call baseline (needs a key unless unchanged) -> results/baseline_*
 	uv run run_baseline.py --implementation naive --input $(INPUT) --output results/baseline_outputs.jsonl --model $(MODEL)
 	uv run run_evals.py --input $(INPUT) --outputs results/baseline_outputs.jsonl --report results/baseline_eval_report.json
@@ -59,8 +66,8 @@ format: ## ruff format + autofix
 	uv run --group dev ruff check --fix .
 	uv run --group dev ruff format .
 
-check: lint test ## everything a reviewer can run without a key, fast
-	$(MAKE) baseline summary determinism score
+check: lint test ## everything a reviewer can run without a key
+	$(MAKE) baseline summary determinism score perturb ablation
 
 all: check
 

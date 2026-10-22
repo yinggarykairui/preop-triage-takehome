@@ -21,10 +21,12 @@ Requires Python ≥ 3.11 and [`uv`](https://docs.astral.sh/uv/) (`brew install u
 `uv run` creates `.venv` and installs the pinned dependencies from `uv.lock`.
 
 ```bash
-make test             # 84 tests, no network                              ~2 s (first run adds ~5 s of installs)
+make test             # 90 tests, no network                              ~2 s (first run adds ~5 s of installs)
 make baseline summary # pipeline over the 50 cases from the committed cache, then score it     ~2 s
 make determinism      # 10x replay of record 0: 100 / 100 / 100           ~2 s
 make run CASE=case_00037   # one case, compact evidence packet            <1 s
+make perturb          # 170 constructed mutations -> results/perturbation.md  ~4 s
+make ablation         # no-verify / no-fail-safe variants -> results/ablation.md  ~20 s
 make report           # TUI over the final harness report (q to quit)
 make lint             # ruff check + format check
 ```
@@ -40,6 +42,8 @@ the cache has not seen.
 | `make run CASE=…` | <1 s | 5–30 s | <$0.01 |
 | `make baseline` (50 cases) | ~2 s | ~15–25 min, ~340 calls | ~$0.40 |
 | `make determinism` | ~2 s | ~1–2 min | <$0.05 |
+| `make perturb` (170 mutations) | ~4 s | ~2 min for the 22 text mutations (28 calls); the rest never call the API | ~$0.03 |
+| `make ablation` (4 variants × 220 cases) | ~20 s | n/a (replays the same cache) | $0 |
 | `make evals` | n/a | ~30–60 s (remote scoring only) | ~$0 (no model calls) |
 | `make baseline-naive` | n/a (uncached) | ~3 min, 50 calls | ~$0.10 |
 
@@ -60,9 +64,11 @@ Cost figures are estimates from prompt and response sizes at list prices.
 | `baseline.py` | the original naive single-call baseline, kept for comparison |
 | `run_baseline.py`, `run_evals.py`, `view_report.py` | the provided harness (interface unchanged; viewer extended to show checks and evidence) |
 | `scripts/` | `run_case.py`, `score_local.py`, `profile_data.py`, `export_assumptions.py` |
+| `eval/` | `perturb.py` (seeded perturbation suite) and `ablation.py` (verification / fail-safe switched off) |
+| `preop_triage/config.py` | `TRIAGE_ABLATE` switches used only by the ablation |
 | `tests/` | pytest suite (rule engine, normalization, verifier, extraction fixtures, assumption sync) |
-| `cache/llm/` | committed LLM response cache (760 files, 3 MB) so reruns are free and reproducible |
-| `results/` | baseline, run-1 and final harness reports, outputs and local summaries |
+| `cache/llm/` | committed LLM response cache (788 files, 3 MB) so reruns are free and reproducible |
+| `results/` | baseline, run-1 and final harness reports, outputs and local summaries; `perturbation.*`, `ablation.*` |
 | `notes/` | assumptions, error analysis, data profile, handoff, submission checklist |
 
 ## Setup
@@ -80,6 +86,7 @@ export OPENAI_API_KEY="sk-..."     # only for uncached LLM calls and for make ev
 | `LLM_DISABLE_CACHE` | unset | set to `1` to force live calls |
 | `LLM_TIMEOUT_S` | `60` | per-call timeout; a timeout degrades the document to UNKNOWN |
 | `LLM_MAX_WORKERS` | `6` | parallel document extractions per case |
+| `TRIAGE_ABLATE` | unset | ablation only: `no_verify`, `no_failsafe` (comma-separated) |
 
 ## Run a single case
 
@@ -108,6 +115,8 @@ make score       # print the primary score (uses data/eval_report.json if presen
 make report      # TUI over the same report
 make determinism # 10x replay of record 0 through triage_submission
 make baseline-naive  # the original single-call baseline -> results/baseline_*.json(l) (needs a key)
+make perturb     # eval/perturb.py: seeded mutations with answers known by construction -> results/perturbation.{md,json}
+make ablation    # eval/ablation.py: TRIAGE_ABLATE variants on the sample + perturbation sets -> results/ablation.{md,json}
 ```
 
 ## Tests
@@ -122,6 +131,7 @@ make test
 | `tests/test_normalize_verify.py` | 25 | lab/drug canonicalization, unit conversion, date parsing, quote verifier (incl. mojibake and dropped punctuation) |
 | `tests/test_extraction_fixtures.py` | 3 | extraction layer end to end against a committed fixture cache; a dead provider yields NEEDS_FOLLOW_UP, never READY |
 | `tests/test_assumptions.py` | 3 | every assumption names code that exists; `notes/assumptions.md` is current |
+| `tests/test_perturb_ablation.py` | 6 | ablation switches; perturbation generator is seeded, well-formed, and structured mutations never touch documents |
 | `tests/test_baseline_naive.py` | 3 | the naive baseline's call shape (mocked client) |
 
 None of the tests call the network. The fixture test fails loudly on a cache miss instead of

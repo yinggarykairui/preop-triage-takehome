@@ -1,0 +1,4861 @@
+{
+ "seed": 0,
+ "model": "gpt-4.1-mini",
+ "rows": [
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00041",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "H&P 2026-03-22 is 30 days before the shifted procedure date; labs/vitals shifted by +10 days",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00041",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "H&P 2026-03-22 is 31 days before the shifted procedure date; labs/vitals shifted by +11 days",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "H&P 2026-03-09 is 30 days before the shifted procedure date; labs/vitals shifted by +8 days",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "H&P 2026-03-09 is 31 days before the shifted procedure date; labs/vitals shifted by +9 days",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00001",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "H&P 2026-02-10 is 30 days before the shifted procedure date; labs/vitals shifted by +10 days",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00001",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "H&P 2026-02-10 is 31 days before the shifted procedure date; labs/vitals shifted by +11 days",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "H&P 2026-02-17 is 30 days before the shifted procedure date; labs/vitals shifted by +14 days",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "H&P 2026-02-17 is 31 days before the shifted procedure date; labs/vitals shifted by +15 days",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "H&P 2026-02-23 is 30 days before the shifted procedure date; labs/vitals shifted by +5 days",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "H&P 2026-02-23 is 31 days before the shifted procedure date; labs/vitals shifted by +6 days",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "H&P 2026-02-12 is 30 days before the shifted procedure date; labs/vitals shifted by +6 days",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "H&P 2026-02-12 is 31 days before the shifted procedure date; labs/vitals shifted by +7 days",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_moderate",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "only CBC is 30 days before the procedure (limit 30)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_moderate",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "only CBC is 31 days before the procedure (limit 30)",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_14_high",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "only CBC is 14 days before the procedure (limit 14)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_15_high",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "only CBC is 15 days before the procedure (limit 14)",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00041",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "only CBC is 30 days before the procedure (limit 30)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00041",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "only CBC is 31 days before the procedure (limit 30)",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00015",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "only CBC is 30 days before the procedure (limit 30)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00015",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "only CBC is 31 days before the procedure (limit 30)",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "only CBC is 30 days before the procedure (limit 30)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "only CBC is 31 days before the procedure (limit 30)",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "only CBC is 30 days before the procedure (limit 30)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "only CBC is 31 days before the procedure (limit 30)",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 14 days before the procedure (limit 14)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 15 days before the procedure (limit 14)",
+   "actual_rationale": "Not ready because of: RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 14 days before the procedure (limit 14)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 15 days before the procedure (limit 14)",
+   "actual_rationale": "Not ready because of: RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 11 days out, only CMP is 14 days before the procedure (limit 14)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 11 days out, only CMP is 15 days before the procedure (limit 14)",
+   "actual_rationale": "Not ready because of: RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00003",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 14 days before the procedure (limit 14)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00003",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 15 days before the procedure (limit 14)",
+   "actual_rationale": "Not ready because of: RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 4 days out, only CMP is 14 days before the procedure (limit 14)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 4 days out, only CMP is 15 days before the procedure (limit 14)",
+   "actual_rationale": "Not ready because of: RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 14 days before the procedure (limit 14)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 15 days before the procedure (limit 14)",
+   "actual_rationale": "Not ready because of: RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00016",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00016",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00025",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00025",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "CBC 30 days out passes at 30 but not at 14",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00016",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "CBC 15 days out passes at 30 but not at 14",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00000",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "CBC 18 days out passes at 30 but not at 14",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00001",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "CBC 22 days out passes at 30 but not at 14",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00015",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "CBC 17 days out passes at 30 but not at 14",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "CBC 16 days out passes at 30 but not at 14",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; RULE_2 CMP within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 179/100 at 2026-03-05 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 180/100 at 2026-03-05 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 180/100 on 2026-03-05 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 150/109 at 2026-03-05 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 150/110 at 2026-03-05 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 150/110 on 2026-03-05 meets the exclusion (DBP >= 110)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 179/100 at 2026-04-07 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 180/100 at 2026-04-07 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 180/100 on 2026-04-07 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 150/109 at 2026-04-07 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 150/110 at 2026-04-07 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 150/110 on 2026-04-07 meets the exclusion (DBP >= 110)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 179/100 at 2026-04-13 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 180/100 at 2026-04-13 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 180/100 on 2026-04-13 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 150/109 at 2026-04-13 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 150/110 at 2026-04-13 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 150/110 on 2026-04-13 meets the exclusion (DBP >= 110)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 179/100 at 2026-03-31 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 180/100 at 2026-03-31 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 180/100 on 2026-03-31 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 150/109 at 2026-03-31 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 150/110 at 2026-03-31 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 150/110 on 2026-03-31 meets the exclusion (DBP >= 110)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00001",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 179/100 at 2026-03-02 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00001",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 180/100 at 2026-03-02 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 180/100 on 2026-03-02 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00001",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 150/109 at 2026-03-02 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00001",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 150/110 at 2026-03-02 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 150/110 on 2026-03-02 meets the exclusion (DBP >= 110)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 179/100 at 2026-03-20 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 180/100 at 2026-03-20 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 180/100 on 2026-03-20 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent BP 150/109 at 2026-03-20 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent BP 150/110 at 2026-03-20 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 150/110 on 2026-03-20 meets the exclusion (DBP >= 110)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.4 F",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.5 F",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.5 F on 2026-03-20 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.4 F",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.5 F",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.5 F on 2026-04-07 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.4 F",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.5 F",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.5 F on 2026-03-08 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00041",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.4 F",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00041",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.5 F",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.5 F on 2026-04-11 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.4 F",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.5 F",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.5 F on 2026-04-13 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00025",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.4 F",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00025",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 100.5 F",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.5 F on 2026-03-26 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.0 C (structured value_c)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.1 C (structured value_c)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-05 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.0 C (structured value_c)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00043",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.1 C (structured value_c)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-04-13 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 1
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.0 C (structured value_c)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.1 C (structured value_c)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-31 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.0 C (structured value_c)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.1 C (structured value_c)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-01 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.0 C (structured value_c)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00007",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.1 C (structured value_c)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-08 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.0 C (structured value_c)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "new most recent temperature 38.1 C (structured value_c)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-04-07 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "same readings, later one listed first",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 185/95 on 2026-03-13 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "same readings, later one listed first",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 185/95 on 2026-03-01 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "same readings, later one listed first",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 185/95 on 2026-03-05 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "same readings, later one listed first",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 185/95 on 2026-03-05 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "same readings, later one listed first",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 185/95 on 2026-03-20 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00000",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00000",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "same readings, later one listed first",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00000",
+   "needs_llm": false,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 185/95 on 2026-03-01 meets the exclusion (SBP >= 180)..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00023",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "'dabigatran (Pradaxa) 150 mg PO BID' -> 'Pradaxa 150 mg PO BID' (outcome must equal the base label)",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for dabigatran.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00048",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "'edoxaban (Savaysa) 60 mg PO daily' -> 'Savaysa 60 mg PO daily' (outcome must equal the base label)",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days; RULE_3 Plan for edoxaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00020",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "'Coumadin 5 mg PO daily (INR goal 2-3)' -> 'warfarin 5 mg PO daily (INR goal 2-3)' (outcome must equal the base label)",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for warfarin.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00018",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "'apixaban 5 mg PO BID' -> 'Eliquis 5 mg PO BID' (outcome must equal the base label)",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for apixaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00003",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "'Eliquis 5 mg PO BID' -> 'apixaban 5 mg PO BID' (outcome must equal the base label)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00026",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "'dabigatran 150 mg PO BID' -> 'Pradaxa 150 mg PO BID' (outcome must equal the base label)",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_apixaban",
+   "base_case": "case_00000",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "active anticoagulant on the list is now apixaban, which no plan names",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for apixaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_rivaroxaban",
+   "base_case": "case_00003",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "active anticoagulant on the list is now rivaroxaban, which no plan names",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for rivaroxaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_apixaban",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "active anticoagulant on the list is now apixaban, which no plan names",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for apixaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_apixaban",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "active anticoagulant on the list is now apixaban, which no plan names",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for apixaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00000",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "post-op instruction 'Resume Xarelto 24-48 hours after surgery once hemostasis is secure, per surgical team' replaced by a deferral",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for rivaroxaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00003",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "post-op instruction 'Resume Eliquis 48 hours post-op if surgical hemostasis is adequate' replaced by a deferral",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for apixaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00004",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "post-op instruction 'Resume warfarin at the usual home dose the evening of surgery if hemostasis is adequate, with enoxaparin bridging restarted 48-72 hours post-op until INR is therapeutic.' replaced by a deferral",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for warfarin.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00037",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "status": "pass",
+   "rationale": "post-op instruction 'Resume Xarelto 24-48 hours after surgery once hemostasis is secure, per surgical team' replaced by a deferral",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for rivaroxaban.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00030",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "signature line 'Patient signature on file - signed in clinic 03/26/2026 14:14 (scanned copy attached).' replaced by a pending statement",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00045",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "signature line 'Patient signature: /s/ Maya Okafor (electronically signed 02/16/2026 08:32)' replaced by a pending statement",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00041",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "signature line 'Patient signature: /s/ Lucas Simmons (electronically signed 04/06/2026 15:12)' replaced by a pending statement",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00025",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "signature line 'Patient signature: /s/ Lucas Haddad (electronically signed 03/21/2026 11:36)' replaced by a pending statement",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00037",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "signature line 'Signed by patient: Nora Okafor, 03/31/2026 09:14.' replaced by a pending statement",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00003",
+   "needs_llm": true,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "status": "pass",
+   "rationale": "signature line 'Signed by patient: Danielle Nguyen, 02/19/2026 15:14.' replaced by a pending statement",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00012",
+   "needs_llm": true,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-10)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00012",
+   "needs_llm": true,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-10)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-10 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00007",
+   "needs_llm": true,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-06)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00007",
+   "needs_llm": true,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-06)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-06 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00001",
+   "needs_llm": true,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-02-28)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00001",
+   "needs_llm": true,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-02-28)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-02-28 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00025",
+   "needs_llm": true,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-23)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00025",
+   "needs_llm": true,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-23)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-23 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00019",
+   "needs_llm": true,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-18)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00019",
+   "needs_llm": true,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-18)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-03-18 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00043",
+   "needs_llm": true,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-04-11)",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00043",
+   "needs_llm": true,
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_decision": "NOT_CLEARED",
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "status": "pass",
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-04-11)",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 100.58 F on 2026-04-11 is above 100.4 F..",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "structured date removed; documents agree on 2026-03-01",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "structured date removed; documents agree on 2026-03-13",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00019",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "structured date removed; documents agree on 2026-03-20",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00004",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "structured date removed; documents agree on 2026-03-05",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00003",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "structured date removed; documents agree on 2026-03-04",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00049",
+   "needs_llm": false,
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "actual_decision": "READY",
+   "actual_categories": [],
+   "status": "pass",
+   "rationale": "structured date removed; documents agree on 2026-03-05",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown; labs pass or are undecidable under some risk",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00037",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown and no CBC at all: fails under every risk",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown; labs pass or are undecidable under some risk",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00012",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown and no CBC at all: fails under every risk",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown; labs pass or are undecidable under some risk",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00030",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown and no CBC at all: fails under every risk",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown; labs pass or are undecidable under some risk",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00034",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown and no CBC at all: fails under every risk",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown; labs pass or are undecidable under some risk",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00045",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown and no CBC at all: fails under every risk",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00025",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown; labs pass or are undecidable under some risk",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00025",
+   "needs_llm": false,
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "status": "pass",
+   "rationale": "risk unknown and no CBC at all: fails under every risk",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (procedure_risk).",
+   "llm_calls": 0,
+   "llm_failures": 0,
+   "unverified_quotes": 0
+  }
+ ],
+ "mutations": [
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00041",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "H&P 2026-03-22 is 30 days before the shifted procedure date; labs/vitals shifted by +10 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00041",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": false,
+   "rationale": "H&P 2026-03-22 is 31 days before the shifted procedure date; labs/vitals shifted by +11 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00030",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "H&P 2026-03-09 is 30 days before the shifted procedure date; labs/vitals shifted by +8 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00030",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": false,
+   "rationale": "H&P 2026-03-09 is 31 days before the shifted procedure date; labs/vitals shifted by +9 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00001",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-10 is 30 days before the shifted procedure date; labs/vitals shifted by +10 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00001",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-10 is 31 days before the shifted procedure date; labs/vitals shifted by +11 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00049",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-17 is 30 days before the shifted procedure date; labs/vitals shifted by +14 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00049",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-17 is 31 days before the shifted procedure date; labs/vitals shifted by +15 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-23 is 30 days before the shifted procedure date; labs/vitals shifted by +5 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00019",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-23 is 31 days before the shifted procedure date; labs/vitals shifted by +6 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_30",
+   "base_case": "case_00007",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-12 is 30 days before the shifted procedure date; labs/vitals shifted by +6 days"
+  },
+  {
+   "family": "hp_window",
+   "name": "hp_day_31",
+   "base_case": "case_00007",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": false,
+   "rationale": "H&P 2026-02-12 is 31 days before the shifted procedure date; labs/vitals shifted by +7 days"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_moderate",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "only CBC is 30 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_moderate",
+   "base_case": "case_00019",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "only CBC is 31 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_14_high",
+   "base_case": "case_00007",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "only CBC is 14 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_15_high",
+   "base_case": "case_00007",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "only CBC is 15 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00041",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "only CBC is 30 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00041",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "only CBC is 31 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00015",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "only CBC is 30 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00015",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "only CBC is 31 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00012",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "only CBC is 30 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00012",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "only CBC is 31 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_30_low",
+   "base_case": "case_00034",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "only CBC is 30 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cbc_window",
+   "name": "cbc_day_31_low",
+   "base_case": "case_00034",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "only CBC is 31 days before the procedure (limit 30)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00049",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 14 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00049",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 15 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 14 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00019",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 15 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00034",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 11 days out, only CMP is 14 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00034",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 11 days out, only CMP is 15 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00003",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 14 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00003",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 8 days out, only CMP is 15 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00007",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 4 days out, only CMP is 14 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00007",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 4 days out, only CMP is 15 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_14_high",
+   "base_case": "case_00037",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 14 days before the procedure (limit 14)"
+  },
+  {
+   "family": "cmp_window",
+   "name": "cmp_day_15_high",
+   "base_case": "case_00037",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk HIGH, CBC 9 days out, only CMP is 15 days before the procedure (limit 14)"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00037",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00037",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00045",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00045",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00034",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00034",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00016",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00016",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00025",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00025",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_ready",
+   "base_case": "case_00030",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 is skipped; the older final CBC still passes"
+  },
+  {
+   "family": "lab_entered_in_error",
+   "name": "newer_eie_cbc_still_fails",
+   "base_case": "case_00030",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "entered-in-error CBC at day 1 must not rescue a final CBC at day 40"
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00012",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "CBC 30 days out passes at 30 but not at 14"
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00016",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "CBC 15 days out passes at 30 but not at 14"
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00000",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "CBC 18 days out passes at 30 but not at 14"
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00001",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "CBC 22 days out passes at 30 but not at 14"
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00015",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "CBC 17 days out passes at 30 but not at 14"
+  },
+  {
+   "family": "risk_upgrade",
+   "name": "low_to_high_cbc_out_of_14",
+   "base_case": "case_00043",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "CBC 16 days out passes at 30 but not at 14"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00004",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 179/100 at 2026-03-05 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00004",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 180/100 at 2026-03-05 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00004",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/109 at 2026-03-05 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00004",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/110 at 2026-03-05 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00037",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 179/100 at 2026-04-07 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00037",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 180/100 at 2026-04-07 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00037",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/109 at 2026-04-07 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00037",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/110 at 2026-04-07 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00043",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 179/100 at 2026-04-13 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00043",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 180/100 at 2026-04-13 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00043",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/109 at 2026-04-13 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00043",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/110 at 2026-04-13 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00030",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 179/100 at 2026-03-31 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00030",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 180/100 at 2026-03-31 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00030",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/109 at 2026-03-31 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00030",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/110 at 2026-03-31 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00001",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 179/100 at 2026-03-02 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00001",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 180/100 at 2026-03-02 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00001",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/109 at 2026-03-02 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00001",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/110 at 2026-03-02 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_179_100",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 179/100 at 2026-03-20 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_180_100",
+   "base_case": "case_00019",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 180/100 at 2026-03-20 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_109",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/109 at 2026-03-20 23:50"
+  },
+  {
+   "family": "bp_threshold",
+   "name": "bp_150_110",
+   "base_case": "case_00019",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent BP 150/110 at 2026-03-20 23:50"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.4 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00019",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.5 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00037",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.4 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00037",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.5 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00007",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.4 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00007",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.5 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00041",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.4 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00041",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.5 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00043",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.4 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00043",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.5 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.4_f",
+   "base_case": "case_00025",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.4 F"
+  },
+  {
+   "family": "temp_threshold_f",
+   "name": "temp_100.5_f",
+   "base_case": "case_00025",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 100.5 F"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00004",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.0 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00004",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.1 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00043",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.0 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00043",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.1 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00030",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.0 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00030",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.1 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00045",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.0 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00045",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.1 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00007",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.0 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00007",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.1 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.0_c",
+   "base_case": "case_00037",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.0 C (structured value_c)"
+  },
+  {
+   "family": "temp_threshold_c",
+   "name": "temp_38.1_c",
+   "base_case": "case_00037",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "new most recent temperature 38.1 C (structured value_c)"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00012",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00012",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "same readings, later one listed first"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00012",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00045",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00045",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "same readings, later one listed first"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00045",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00004",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00004",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "same readings, later one listed first"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00004",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00049",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00049",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "same readings, later one listed first"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00049",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "same readings, later one listed first"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00019",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok",
+   "base_case": "case_00000",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "185/95 at 23:40 then 128/78 at 23:50"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "abnormal_then_recheck_ok_reversed_list",
+   "base_case": "case_00000",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "same readings, later one listed first"
+  },
+  {
+   "family": "bp_recheck",
+   "name": "ok_then_abnormal",
+   "base_case": "case_00000",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": false,
+   "rationale": "128/78 at 23:40 then 185/95 at 23:50"
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00023",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": false,
+   "rationale": "'dabigatran (Pradaxa) 150 mg PO BID' -> 'Pradaxa 150 mg PO BID' (outcome must equal the base label)"
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00048",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": false,
+   "rationale": "'edoxaban (Savaysa) 60 mg PO daily' -> 'Savaysa 60 mg PO daily' (outcome must equal the base label)"
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00020",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": false,
+   "rationale": "'Coumadin 5 mg PO daily (INR goal 2-3)' -> 'warfarin 5 mg PO daily (INR goal 2-3)' (outcome must equal the base label)"
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00018",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": false,
+   "rationale": "'apixaban 5 mg PO BID' -> 'Eliquis 5 mg PO BID' (outcome must equal the base label)"
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00003",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "'Eliquis 5 mg PO BID' -> 'apixaban 5 mg PO BID' (outcome must equal the base label)"
+  },
+  {
+   "family": "anticoag_brand_generic",
+   "name": "swap_name",
+   "base_case": "case_00026",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "'dabigatran 150 mg PO BID' -> 'Pradaxa 150 mg PO BID' (outcome must equal the base label)"
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_apixaban",
+   "base_case": "case_00000",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": false,
+   "rationale": "active anticoagulant on the list is now apixaban, which no plan names"
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_rivaroxaban",
+   "base_case": "case_00003",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": false,
+   "rationale": "active anticoagulant on the list is now rivaroxaban, which no plan names"
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_apixaban",
+   "base_case": "case_00004",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": false,
+   "rationale": "active anticoagulant on the list is now apixaban, which no plan names"
+  },
+  {
+   "family": "anticoag_wrong_drug",
+   "name": "list_says_apixaban",
+   "base_case": "case_00037",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": false,
+   "rationale": "active anticoagulant on the list is now apixaban, which no plan names"
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00000",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": true,
+   "rationale": "post-op instruction 'Resume Xarelto 24-48 hours after surgery once hemostasis is secure, per surgical team' replaced by a deferral"
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00003",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": true,
+   "rationale": "post-op instruction 'Resume Eliquis 48 hours post-op if surgical hemostasis is adequate' replaced by a deferral"
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00004",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": true,
+   "rationale": "post-op instruction 'Resume warfarin at the usual home dose the evening of surgery if hemostasis is adequate, with enoxaparin bridging restarted 48-72 hours post-op until INR is therapeutic.' replaced by a deferral"
+  },
+  {
+   "family": "plan_no_postop",
+   "name": "postop_deferred",
+   "base_case": "case_00037",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "needs_llm": true,
+   "rationale": "post-op instruction 'Resume Xarelto 24-48 hours after surgery once hemostasis is secure, per surgical team' replaced by a deferral"
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00030",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": true,
+   "rationale": "signature line 'Patient signature on file - signed in clinic 03/26/2026 14:14 (scanned copy attached).' replaced by a pending statement"
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00045",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": true,
+   "rationale": "signature line 'Patient signature: /s/ Maya Okafor (electronically signed 02/16/2026 08:32)' replaced by a pending statement"
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00041",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": true,
+   "rationale": "signature line 'Patient signature: /s/ Lucas Simmons (electronically signed 04/06/2026 15:12)' replaced by a pending statement"
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00025",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": true,
+   "rationale": "signature line 'Patient signature: /s/ Lucas Haddad (electronically signed 03/21/2026 11:36)' replaced by a pending statement"
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00037",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": true,
+   "rationale": "signature line 'Signed by patient: Nora Okafor, 03/31/2026 09:14.' replaced by a pending statement"
+  },
+  {
+   "family": "consent_pending",
+   "name": "signature_line_pending",
+   "base_case": "case_00003",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "needs_llm": true,
+   "rationale": "signature line 'Signed by patient: Danielle Nguyen, 02/19/2026 15:14.' replaced by a pending statement"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00012",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-10)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00012",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-10)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00007",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-06)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00007",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-06)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00001",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-02-28)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00001",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-02-28)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00025",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-23)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00025",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-23)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-03-18)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00019",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-03-18)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.0_c",
+   "base_case": "case_00043",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.0 \u00b0C' at 23:55 appended to the latest document (2026-04-11)"
+  },
+  {
+   "family": "temp_threshold_c_text",
+   "name": "text_temp_38.1_c",
+   "base_case": "case_00043",
+   "expected_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "needs_llm": true,
+   "rationale": "addendum 'Temp 38.1 \u00b0C' at 23:55 appended to the latest document (2026-04-11)"
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00045",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "structured date removed; documents agree on 2026-03-01"
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00012",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "structured date removed; documents agree on 2026-03-13"
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00019",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "structured date removed; documents agree on 2026-03-20"
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00004",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "structured date removed; documents agree on 2026-03-05"
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00003",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "structured date removed; documents agree on 2026-03-04"
+  },
+  {
+   "family": "null_procedure_date",
+   "name": "date_only_in_text",
+   "base_case": "case_00049",
+   "expected_decision": "READY",
+   "expected_categories": [],
+   "needs_llm": false,
+   "rationale": "structured date removed; documents agree on 2026-03-05"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00037",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown; labs pass or are undecidable under some risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00037",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown and no CBC at all: fails under every risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00012",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown; labs pass or are undecidable under some risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00012",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown and no CBC at all: fails under every risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00030",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown; labs pass or are undecidable under some risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00030",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown and no CBC at all: fails under every risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00034",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown; labs pass or are undecidable under some risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00034",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown and no CBC at all: fails under every risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00045",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown; labs pass or are undecidable under some risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00045",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown and no CBC at all: fails under every risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null",
+   "base_case": "case_00025",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown; labs pass or are undecidable under some risk"
+  },
+  {
+   "family": "missing_risk",
+   "name": "risk_null_no_cbc",
+   "base_case": "case_00025",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "needs_llm": false,
+   "rationale": "risk unknown and no CBC at all: fails under every risk"
+  }
+ ]
+}
