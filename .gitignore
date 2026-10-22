@@ -6,7 +6,7 @@ __pycache__/
 venv/
 env/
 .env/
-.env 
+.env
 
 # Python tooling
 .pytest_cache/
@@ -31,3 +31,6 @@ dist/
 data/baseline_outputs.jsonl
 data/eval_report.json
 data/determinism_report.json
+
+# LLM response cache is committed on purpose (reproducible reruns); scratch outputs are not
+results/*.log
