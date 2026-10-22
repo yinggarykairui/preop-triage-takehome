@@ -1,4 +1,4 @@
-# Final pipeline (gpt-4.1-mini): local score on `patients_sample_50.jsonl`
+# Pipeline: local score on `patients_sample_50.jsonl`
 
 Records: 50
 
