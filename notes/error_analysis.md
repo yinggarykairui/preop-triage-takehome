@@ -37,7 +37,29 @@ fact can only move a check toward UNKNOWN.
 
 ## Pipeline run 2 (final prompts) — see `results/final_summary.md`
 
-RUN2_PLACEHOLDER
+After the two prompt fixes and the verifier hardening, a full fresh run (342 live calls, 0 provider
+failures) scores **100% on all three harness metrics** (`results/final_eval_report.json`, primary
+score 100.0; `make determinism` 100/100/100). Confusion matrix is diagonal (17 READY, 25
+NEEDS_FOLLOW_UP, 8 NOT_CLEARED); per-category precision and recall are 100% for all five
+categories; false READYs: 0.
+
+Verification telemetry: 11 unverified quotes before the mojibake fix, all temperatures written as
+`98.8 \x176F` for `98.8 °F`. The verifier now treats a control character as a garbled multi-byte
+symbol and drops it with the character it swallowed, keeping every digit exact; re-scoring from the
+cache leaves **2 unverified quotes in 50 cases**, both correct rejections:
+
+| case | quote | why rejected | impact |
+|---|---|---|---|
+| case_00005 | `09:05  Temp 36.7 °C` | spliced: the note reads `09:05  BP 157/117, Temp 36.7 °C` and the model skipped the BP | reading dropped; the case is NOT_CLEARED on the 157/117 from the same line, and the structured temps still exist |
+| case_00043 | `Temp 98.6 \x176 5 min later.` | the unit was dropped as well as garbled | reading dropped; an earlier verified temperature keeps Rule 4 evaluable, decision READY unchanged |
+
+A dropped reading can only remove evidence of a *pass*, never of a failure, so neither could create
+a false READY; a case whose only temperature were dropped would go UNKNOWN → NEEDS_FOLLOW_UP.
+
+Honest caveat on the 100%: the labels were visible during development and two prompts were
+revised after seeing two misses. The revisions are general (what a procedure date is; what a plan
+is) and would be needed on any realistic dataset, but the number is an in-sample figure; see
+WRITEUP §7–8 for how I would measure out-of-sample.
 
 ## Where the labels and the policy could be read differently
 

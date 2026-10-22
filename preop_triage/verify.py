@@ -18,11 +18,15 @@ import unicodedata
 _WS = re.compile(r"\s+")
 _DEGREE = re.compile("[°º˚⁰]")
 _PUNCT = re.compile(r"[^0-9A-Za-z.%/]+")
+_MOJIBAKE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]\S?")
 
 
 def normalize_text(s: str) -> str:
     s = unicodedata.normalize("NFKC", s or "")
     s = s.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
+    # A control character in an LLM quote is mojibake for a multi-byte symbol (seen: "\x176F" for "°F");
+    # drop it together with the one character it garbled, then any remaining control characters.
+    s = _MOJIBAKE.sub("", s)
     s = "".join(ch for ch in s if unicodedata.category(ch) not in ("Cc", "Cf"))
     s = _DEGREE.sub("", s)
     return _WS.sub(" ", s).strip()

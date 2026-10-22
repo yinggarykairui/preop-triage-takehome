@@ -1,0 +1,34 @@
+{
+ "latency_s": 6.438,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "consent": {
+   "is_consent_document": true,
+   "matches_planned_procedure": true,
+   "patient_signed": "SIGNED",
+   "procedure_named": "coronary artery bypass grafting",
+   "quote": "Patient signature: /s/ Mia Patel (electronically signed 03/01/2026 11:33)",
+   "references_consent_missing": false,
+   "references_consent_missing_quote": null,
+   "signed_date": "2026-03-01"
+  },
+  "document_kind": "SURGICAL_CONSENT",
+  "hp": {
+   "date_of_service": null,
+   "is_completed_hp": false,
+   "is_preop_evaluation_for_planned_procedure": false,
+   "quote": null,
+   "references_hp_missing": false,
+   "references_hp_missing_quote": null
+  },
+  "procedure_date": {
+   "date": null,
+   "quote": null,
+   "status": "NOT_MENTIONED"
+  },
+  "vitals": [],
+  "vitals_deferred_or_not_recorded": false,
+  "vitals_deferred_quote": null
+ },
+ "schema_name": "doc_facts"
+}

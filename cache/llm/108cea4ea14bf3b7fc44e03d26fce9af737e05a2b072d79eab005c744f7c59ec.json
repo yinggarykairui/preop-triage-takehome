@@ -1,0 +1,32 @@
+{
+ "latency_s": 36.574,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "Coumadin",
+    "quote": "patient unable to confirm whether still taking",
+    "status": "UNCERTAIN"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": null,
+   "deferred_to_another_team": false,
+   "drug_named": null,
+   "is_perioperative_plan": false,
+   "post_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   },
+   "pre_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

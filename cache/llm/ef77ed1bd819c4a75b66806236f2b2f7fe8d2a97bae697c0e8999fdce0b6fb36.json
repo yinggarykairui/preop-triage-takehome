@@ -1,0 +1,34 @@
+{
+ "latency_s": 2.709,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "consent": {
+   "is_consent_document": false,
+   "matches_planned_procedure": null,
+   "patient_signed": "NOT_A_CONSENT",
+   "procedure_named": null,
+   "quote": null,
+   "references_consent_missing": false,
+   "references_consent_missing_quote": null,
+   "signed_date": null
+  },
+  "document_kind": "HISTORY_AND_PHYSICAL",
+  "hp": {
+   "date_of_service": "2025-10-27",
+   "is_completed_hp": true,
+   "is_preop_evaluation_for_planned_procedure": false,
+   "quote": "HISTORY AND PHYSICAL",
+   "references_hp_missing": false,
+   "references_hp_missing_quote": null
+  },
+  "procedure_date": {
+   "date": null,
+   "quote": null,
+   "status": "NOT_MENTIONED"
+  },
+  "vitals": [],
+  "vitals_deferred_or_not_recorded": false,
+  "vitals_deferred_quote": null
+ },
+ "schema_name": "doc_facts"
+}

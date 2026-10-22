@@ -1,0 +1,32 @@
+{
+ "latency_s": 1.511,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "edoxaban (Savaysa)",
+    "quote": "edoxaban (Savaysa) 60 mg PO daily - taking as prescribed",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": null,
+   "deferred_to_another_team": false,
+   "drug_named": null,
+   "is_perioperative_plan": false,
+   "post_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   },
+   "pre_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

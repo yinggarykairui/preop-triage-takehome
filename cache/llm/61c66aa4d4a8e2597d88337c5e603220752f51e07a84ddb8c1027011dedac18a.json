@@ -1,0 +1,32 @@
+{
+ "latency_s": 1.688,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "rivaroxaban",
+    "quote": "maintained on rivaroxaban 20 mg PO daily with evening meal",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": "Periprocedural management of rivaroxaban to be determined by the surgical team",
+   "deferred_to_another_team": true,
+   "drug_named": "rivaroxaban",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   },
+   "pre_op": {
+    "explicit": false,
+    "present": true,
+    "quote": "Periprocedural management of rivaroxaban to be determined by the surgical team"
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

@@ -121,11 +121,78 @@ check list with PASS/FAIL/UNKNOWN colouring, reference dates, assumptions, meta)
 
 ## 5. Results
 
-RESULTS_PLACEHOLDER
+All numbers from `scripts/score_local.py`, which reproduces the harness metrics locally; the
+official `run_evals.py` reports are in `results/baseline_eval_report.json` (73.33) and
+`results/final_eval_report.json` (100.0). Model: `gpt-4.1-mini` in both.
+
+| metric | naive baseline | final pipeline |
+|---|---|---|
+| json_schema_valid | 98.0% | 100.0% |
+| decision_match_oracle | 70.0% | 100.0% |
+| issue_categories_match_oracle | 52.0% | 100.0% |
+| **aggregate (harness primary score)** | **73.33%** | **100.0%** |
+| false READYs | 1 (case_00026) | 0 |
+| determinism (10× replay, record 0) | not stable | 100% decision / JSON / exact output |
+| LLM calls per full run | 50 | 342 cold, 0 from cache |
+
+**Confusion matrices** (rows = label, columns = predicted):
+
+Baseline:
+
+| label \ predicted | READY | NEEDS_FOLLOW_UP | NOT_CLEARED | INVALID |
+|---|---|---|---|---|
+| READY (17) | 6 | 11 | 0 | 0 |
+| NEEDS_FOLLOW_UP (25) | 1 | 24 | 0 | 0 |
+| NOT_CLEARED (8) | 0 | 2 | 5 | 1 |
+
+Final:
+
+| label \ predicted | READY | NEEDS_FOLLOW_UP | NOT_CLEARED | INVALID |
+|---|---|---|---|---|
+| READY (17) | 17 | 0 | 0 | 0 |
+| NEEDS_FOLLOW_UP (25) | 0 | 25 | 0 | 0 |
+| NOT_CLEARED (8) | 0 | 0 | 8 | 0 |
+
+**Per-category issue precision / recall (final):** 100% / 100% for all five categories
+(REQUIRED_DOCUMENTATION 12, REQUIRED_TESTING 7, ANTICOAGULATION_MANAGEMENT 7,
+ACUTE_SAFETY_EXCLUSION 8, MISSING_REQUIRED_DATA 9 labelled occurrences). Baseline per-category
+numbers are in `results/baseline_summary.md`.
+
+**Verification telemetry (final):** 0 provider failures, 2 unverified quotes in 50 cases (both correct
+rejections of a spliced or unit-less quote; neither affected a decision).
+
+The first full pipeline run scored 98.0% (2 misses); the final number follows one iteration of error
+analysis. Because the labels were visible while iterating, 100% is an in-sample figure.
 
 ## 6. Error analysis
 
-ERROR_ANALYSIS_PLACEHOLDER
+Full detail in `notes/error_analysis.md`. Grouped by root cause:
+
+- **Extraction (2 misses in run 1, both fixed generally).**
+  (i) The document extractor reported a consent *signature* date as the procedure date when the
+  structured date was null, so a fake date made the CBC window run and fail. Fix: a procedure date
+  must be an explicit scheduled/target date; signature, visit, service and lab dates are excluded;
+  code rejects a stated date earlier than its own document and treats any "TBD" statement as a
+  conflict → unknown (A4).
+  (ii) The anticoagulation extractor took an H&P line ("continue home medications except as directed
+  by perioperative instructions") as a perioperative plan; being newer, it shadowed the real plan.
+  Fix: a plan must give recommendations for a *named* anticoagulant; the generic pattern is called
+  out as not-a-plan; when a later note supersedes an earlier complete plan, both are cited.
+- **Normalization (0 misses, but 68 → 2 unverified quotes).** Degree-sign mojibake and dropped
+  parentheses in model quotes were rejected by the verifier and the facts dropped. Fixes: the verifier
+  removes control characters (with the character they garbled) and degree signs, and has a
+  punctuation-insensitive tier that keeps every digit exact. A paraphrased "vitals not recorded" quote
+  (52 occurrences, no decision impact) was removed by requiring a quoted phrase for that flag.
+- **Rule interpretation (0 misses).** The boundary cases in the data (H&P at day 30 and 31, CBC at
+  day 15 for HIGH risk, DBP exactly 110, 37.9 °C = 100.2 °F) all resolve under A2/A10 as the labels
+  expect.
+- **Label disagreement (0).** I found no label that contradicts the policy. Places where a different
+  reading was possible (missing temperature, note-reported anticoagulants, establish-care H&Ps,
+  null procedure date not cascading into documentation/testing issues) are listed in the notes.
+
+What the baseline got wrong, for contrast: invented criteria (A1c, CMP for low risk, "old" H&Ps), wrong
+most-recent selection, categories reported per observation instead of per failed rule, one invalid
+JSON, one false READY on a missing CBC, and no run-to-run stability.
 
 ## 7. Known limitations
 

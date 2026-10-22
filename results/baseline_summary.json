@@ -1,0 +1,1088 @@
+{
+ "summary": {
+  "json_schema_valid": 98.0,
+  "decision_match_oracle": 70.0,
+  "issue_categories_match_oracle": 52.0,
+  "aggregate_local_score_pct": 73.33
+ },
+ "confusion": {
+  "READY->NEEDS_FOLLOW_UP": 11,
+  "READY->READY": 6,
+  "NOT_CLEARED->NEEDS_FOLLOW_UP": 2,
+  "NOT_CLEARED->INVALID": 1,
+  "NEEDS_FOLLOW_UP->NEEDS_FOLLOW_UP": 24,
+  "NEEDS_FOLLOW_UP->READY": 1,
+  "NOT_CLEARED->NOT_CLEARED": 5
+ },
+ "false_ready": [
+  "case_00026"
+ ],
+ "rows": [
+  {
+   "record_index": 0,
+   "case_id": "case_00000",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "Xarelto 20 mg isn't on the med list, but the 02/26 pre-admission nursing note says she's taking it, so I treated her as anticoagulated. The 02/20 cardiology consult covers it: hold Xarelto for the 2 days before surgery (last dose 02/26) and resume 24-48 hours after. Pre-op H&P from 02/21 (8 days out), consent for carpal tunnel release signed by the patient 02/27, CBC 02/11 (18 days) and latest vitals of 119/73 and 97.9 F are all fine.",
+   "actual_rationale": "The patient is on the anticoagulant Xarelto, but the active medication list does not include this anticoagulant, and there is no clearly documented perioperative anticoagulation management plan in the provided documentation. While the cardiology consultation discusses perioperative hold instructions, there is no explicit clear perioperative anticoagulation plan documented in a surgical or pre-op note. Additionally, the required CBC was done within 30 days for a low risk procedure, required documentation (H&P within 30 days and signed surgical consent) are present, and no acute safety exclusions are noted.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 1,
+   "case_id": "case_00001",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The H&P that's actually titled correctly is the 01/19 establish-care visit, which is 42 days out and isn't a real pre-op workup anyway. The one that counts is the 02/10 pre-op H&P filed as \"History and Pyhsical\" (typo in the title). It's 20 days out, so we're good. Consent signed 02/25, CBC 02/08 (22 days) covers a low-risk cataract case, and the 02/28 intake vitals are normal (127/80, 36.6 C = 97.9 F).",
+   "actual_rationale": "All required documentation (a recent H&P within 30 days dated 02/10/2026 and signed surgical consent from 02/25/2026) is present. The procedure is LOW risk, and a CBC was completed on 02/08/2026, within 30 days of the procedure date 03/02/2026. There are no anticoagulants listed in current medications, so no anticoagulation plan is required. No acute safety exclusions are present: the most recent systolic BP is 122, diastolic BP 70, and temperature 98.9 F, all within safe limits. Therefore, the patient is READY for pre-op scheduling.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 2,
+   "case_id": "case_00002",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "Two separate problems here. At the 03/01 nursing intake he was running 38.6 C (101.5 F) and reported chills and malaise since the day before, so that's over the fever threshold and he's not cleared. The consent is also incomplete: the portal e-signature request went out 02/24 and still shows NOT COMPLETED. The daily aspirin is an antiplatelet, so there's no anticoagulation plan needed.",
+   "actual_rationale": "The patient has a valid H&P completed within 30 days and vitals do not show acute safety exclusions. CBC testing within 30 days exists for the low risk procedure. However, the signed surgical consent is not completed by the patient as of the latest note, which is required for clearance. Additionally, the patient is on ASA 81 mg daily (an anticoagulant in this context) but there is no documented perioperative anticoagulation management plan. These missing items require follow-up before clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 3,
+   "case_id": "case_00003",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "She's on Eliquis plus baby aspirin; the aspirin doesn't need a plan, and the 02/23 hematology consult handles the Eliquis by brand name (hold for 2 days before surgery, resume 48 hours post-op). H&P dated 02/16 is 16 days out, consent was signed by the patient 02/19, and the CBC from 02/24 is well within 30 days for a low-risk hernia repair. Most recent vitals are from the 03/02 nursing intake: BP 116/76 and T 37.0 C (98.6 F).",
+   "actual_rationale": "The pre-op package includes a history and physical completed on 2026-02-16 and a signed surgical consent on 2026-02-19, both within 30 days of the procedure date (2026-03-04), satisfying documentation requirements. The procedure is LOW risk and requires a CBC within 30 days. The most recent CBC is dated 2026-02-24, which is within 30 days, meeting the testing requirement. However, the patient is taking the anticoagulant Eliquis, and while a perioperative anticoagulation plan is documented on 2026-02-23, the last dose timing (planned last dose 03/01/2026 before 03/04/2026 surgery) needs confirmation of adherence and clarity on perioperative management timing regarding the procedure date. Furthermore, there is no CBC result timestamp confirming it is final and timely relative to the surgery date, and mild uncertainty remains about the antifactor Xa management plan documentation specificity. Vital signs show no acute safety exclusions. Due to the need for confirmation and possible clarification around the anticoagulation management plan, the patient requires follow-up before clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 4,
+   "case_id": "case_00004",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "The newest CBC (02/10) is marked entered-in-error, so I went back to the 02/09 CBC, which is 24 days out and fine for a moderate-risk thyroidectomy. Warfarin is covered by the 02/24 hematology consult: stop 5 days before with enoxaparin bridging, resume the evening of surgery. H&P from 02/24, consent signed by the patient 03/03, and the 03/02 intake vitals (98.1 F, repeat BP 140/78) all check out.",
+   "actual_rationale": "The patient is scheduled for a moderate risk procedure (thyroidectomy), requiring a CBC within 30 days of the procedure date (03/05/2026). The most recent valid CBC is from 02/09/2026, within the 30-day window, so CBC requirement is met. CMP is not required for moderate risk procedures. H&P exists, dated 02/24/2026, within 30 days, and surgical consent was signed on 03/03/2026, meeting documentation requirements. No acute safety exclusions present: recent BP readings (133/84, 138/76) and temperature (98.6 F) are normal. The patient is on warfarin; a perioperative anticoagulation plan is required and documented clearly in the hematology consultation dated 02/24/2026 with detailed management plan. However, the hematology consultation notes to stop warfarin 5 days before surgery and last dose on 02/27/2026 for a surgery on 03/05/2026, but the last warfarin dose is notably before the H&P (02/24/2026) and consent (03/03/2026), patient status on 03/05/2026 is uncertain regarding adherence to the plan and INR check. The policy requires the anticoagulation plan to be documented and clear, but there is no confirmation that the INR was checked the day before surgery with goal <1.5 and that bridging was done as recommended. This missing verification of the implementation of the anticoagulation plan just prior to the surgery date leads to uncertainty. Therefore, follow-up is needed to confirm appropriate perioperative anticoagulation management implementation immediately prior to surgery.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 5,
+   "case_id": "case_00005",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "INVALID",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": false,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 0.0,
+   "label_rationale": "Structured vitals look fine (119/78 on 03/01), but the 03/03 nursing pre-procedure note is more recent and has BP 157/117. A diastolic of 117 is over the 110 cutoff, so this one's held. Paperwork and labs are otherwise complete: H&P 02/14, signed consent 02/22, and CBC 02/22 and CMP 02/23 are both within 14 days of the 03/06 colectomy.",
+   "actual_rationale": null,
+   "error": "1 validation error for TriageOutput\nissues\n  Field required [type=missing, input_value={'decision': 'NEEDS_FOLLO... BP 117 on 2026-03-03.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/missing",
+   "meta": null
+  },
+  {
+   "record_index": 6,
+   "case_id": "case_00006",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "There's a CBC from 03/04, but it was entered in error, so it doesn't count. That leaves the 01/22 CBC, 44 days before the 03/07 bypass, well past the 30-day window for a moderate-risk case, so a repeat CBC is needed. Everything else is in place: pre-op H&P from 02/14, consent signed 02/24, and normal vitals at the 03/04 intake.",
+   "actual_rationale": "The most recent CBC is from 2026-01-22, which is outside the required 30-day window before the procedure date 2026-03-07. No CBC within 30 days is available, so required testing criteria are not met. All other required documentation and vitals are acceptable, and no anticoagulation medications or acute exclusions are present.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 7,
+   "case_id": "case_00007",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "At first glance the consent looks like a problem, since the 02/18 form says the patient signature is pending (she wanted to review it with family). But she signed a new consent for the hepatic lobectomy on 03/03, and that one supersedes it. For a high-risk case the labs are tight and they pass: CBC 03/04 and CMP 03/06 are both within 14 days. The pre-op H&P from 02/12 is 24 days out. Vitals at the 03/06 nursing visit were 37.2 C (99.0 F) and 121/80.",
+   "actual_rationale": "The patient has a valid History and Physical within 30 days and a signed surgical consent form dated 03/03/2026. The procedure is high risk, requiring CBC and CMP within 14 days. The most recent CMPs are on 2026-02-15 and 2026-03-06 (both valid). The most recent CBC is from 2026-03-04, which is within 14 days. No anticoagulants are listed, so no anticoagulation plan is required. Vital signs do not reveal any acute safety exclusions (BP and temperature well within limits). However, the CBC test result on 2026-02-05 is outside the 14-day window, but there is a valid CBC on 2026-03-04 which is acceptable. The issue is the signed surgical consent form: there are two consents, but only one is signed and dated 03/03/2026, which is valid. The other consent is unsigned and pending. Since a signed surgical consent exists, this criterion is met. There is however no documentation explicitly confirming whether the perioperative anticoagulation management plan is documented. Because the patient is not on anticoagulants, the policy does not require a plan. All criteria are met based on provided information, but there is no explicit mention of a perioperative anticoagulation plan documented. Since the patient is not on anticoagulants, that does not cause a failure. Overall, all criteria met for readiness except the CBC dated 02/05/2026 is outside the required window, but the 03/04/2026 CBC is within window and valid. Therefore, the patient is READY for surgery.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 8,
+   "case_id": "case_00008",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "There's no surgical consent anywhere in the package. The 02/25 H&P even says consent is still to be obtained by the surgical team and hasn't been done yet. Everything else is fine for a high-risk case: H&P 12 days out, CBC 03/04, CMP 02/27, and normal vitals. He takes aspirin only, so no anticoagulation plan is needed.",
+   "actual_rationale": "The patient is scheduled for a high-risk procedure (hepatic lobectomy), which requires a CBC and CMP within 14 days prior to the procedure date. Both labs are present and recent enough (CBC on 2026-03-04, CMP on 2026-02-27). The History & Physical (H&P) was completed within 30 days (dated 2026-02-25). However, the signed surgical consent is missing as per the H&P note stating it has not yet been completed. The patient is taking aspirin, which is an anticoagulant requiring a perioperative anticoagulation plan but no such plan is documented. Vital signs show no acute safety exclusions (BP and temperature within acceptable limits). Therefore, follow-up is needed for missing signed surgical consent and documented perioperative anticoagulation plan.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 9,
+   "case_id": "case_00009",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "The CBC is from 02/23, which is 15 days before the 03/10 CABG. For a high-risk case the limit is 14, so it's one day too old. The CMP from 03/04 is fine. Temperature is also missing everywhere: the structured vitals, the 02/26 H&P and the 03/08 nursing intake all have BP but no temp.",
+   "actual_rationale": "The patient requires a History and Physical (H&P) completed within 30 days before the procedure date 03/10/2026. The latest H&P document is dated 02/26/2026, which is within 30 days, so this criterion is met. Signed Surgical Consent form is present, signed on 03/01/2026, meeting the requirement. For a HIGH risk procedure, both CBC and CMP must be done within 14 days before the procedure date. The CBC was performed on 02/23/2026, which is 16 days before the procedure date, thus outside the 14-day window, and the CMP was done on 03/04/2026, within 14 days. Vitals do not show acute exclusions (most recent BP 131/78, below exclusion thresholds). There is no anticoagulant medication active, so anticoagulation management does not apply. Since the CBC is outside the required time window, the patient needs follow-up testing before proceeding.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 10,
+   "case_id": "case_00010",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Consent is the only hold-up here. Dr. Goldberg's 03/08 consent discussion note has a blank patient signature line and says the form was printed for her to review but not yet signed, so there's no patient-signed consent for the 03/11 gastric bypass. H&P from 03/03, CBC from 03/06 and vitals (121/70, 98.4 F) are all fine.",
+   "actual_rationale": "The surgical consent form is present as a discussion note dated 03/08/2026 but lacks a patient signature, which is required per policy. The H&P is completed within 30 days of the procedure (dated 03/03/2026) and CBC testing is done within 30 days (most recent 03/06/2026) appropriate for moderate risk procedure. No acute safety exclusions are present. Patient is not on anticoagulants, so no anticoagulation plan is needed. Therefore, the missing signed surgical consent form requires follow-up.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 11,
+   "case_id": "case_00011",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Procedure date is blank; the H&P just says the laminectomy date is pending OR availability, so I couldn't run any of the window checks. There's also no temperature anywhere in the chart: the structured vitals are BP only, the 02/18 H&P lists just a BP of 117/71, and the 03/09 nursing visit says 'see flowsheet.' The daily aspirin is an antiplatelet, so no anticoagulation plan is needed.",
+   "actual_rationale": "The scheduled procedure date has not been provided, so it is not possible to verify if documentation and testing meet the required timing windows for pre-operative readiness.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 12,
+   "case_id": "case_00012",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two things land right on the edge. The pre-op H&P and the CBC are both from 02/11, exactly 30 days before the 03/13 carpal tunnel release, which still counts for a low-risk case (the 06/2025 establish-care H&P is too old but doesn't matter). Consent was e-signed 03/08, and the 03/10 nursing intake has the latest vitals at 97.5 F and 125/73 on recheck, so it's ready.",
+   "actual_rationale": "All required documentation is present and within the required time frame: H&P completed on 2026-02-11 (within 30 days of surgery on 2026-03-13) and signed surgical consent on 2026-03-08. Procedure risk is LOW, CBC obtained on 2026-02-11 (within 30 days), satisfying testing requirements. No anticoagulants listed, so no anticoagulation plan needed. Most recent vital signs show no acute safety exclusions (BP 116/77 mmHg, Temperature 97.7F).",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 13,
+   "case_id": "case_00013",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "High-risk esophagectomy on 03/14 with no H&P anywhere in the chart. The 03/07 anesthesia note even says it isn't on file yet and that primary care was contacted. No temperature was recorded either: structured vitals are BP only and the 03/12 pre-admission visit just says 'see flowsheet.' Signed consent plus the 03/11 CBC and 03/07 CMP (7 days out) are all fine.",
+   "actual_rationale": "The patient has a signed surgical consent and a recent CBC (2026-03-11) and CMP (2026-03-07), meeting test requirements for a HIGH risk procedure. Blood pressure and temperature measurements show no acute safety exclusions. However, the History and Physical (H&P) documentation is missing; the anesthesia note specifically states 'H&P: not yet on file for this surgical episode; primary care office contacted to complete.' This missing required documentation causes the pre-op package to require follow-up before clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 14,
+   "case_id": "case_00014",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "The only H&P is Dr. Carter's from 02/12, which is 31 days before the 03/15 tonsillectomy, one day past the 30-day limit. Everything else checks out: consent e-signed 03/11, CBC 02/18 (25 days, fine for low risk), and latest vitals 128/72 and 98.5 F on 03/10.",
+   "actual_rationale": "Required CBC test is slightly out of the 30-day window, being done on 2026-02-18 while surgery is on 2026-03-15, which is 25 days difference and acceptable. CMP not required for LOW risk procedure. History and Physical (H&P) is completed within 30 days. Signed surgical consent is present. No anticoagulants reported, so no anticoagulation plan needed. No acute safety exclusions in vital signs. However, CMP is not required for LOW risk procedures, so missing CMP is not an issue. All required criteria are met except that the CBC was done 25 days prior which is within 30-day window. However, upon rechecking dates, CBC on 02/18/2026 to surgery date 03/15/2026 is exactly 25 days difference, which is within required window. Therefore all criteria are met and no exclusions present. Thus, patient is READY.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 15,
+   "case_id": "case_00015",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "There's a 184/112 from the 03/04 primary care visit, which would have held this, but it isn't the latest reading. The 03/11 cardiology BP was 123/70 with a temp of 97.8 F, so it doesn't block. The 02/23 pre-op H&P is 21 days out (the 06/2025 one is just old), the CBC from 02/27 is 17 days out, and the consent was signed 03/06.",
+   "actual_rationale": "The patient has an H&P completed within 30 days of the procedure date and a signed surgical consent on file. The procedure is LOW risk, requiring a CBC within 30 days, and a CBC from 2026-02-27 is available and within the window. There is no record of CMP, but CMP is required only for HIGH risk procedures, so not needed here. The most recent blood pressure reading within the review period (2026-03-11) is 123/70, which is below acute safety exclusion thresholds. The patient is not taking any anticoagulants; therefore, no anticoagulation plan is required. However, there is a blood pressure reading on 2026-03-04 with systolic 184 and diastolic 112, both exceeding acute safety exclusion thresholds. Since acute safety exclusions are based on the most recent vital signs, and there is a more recent BP reading on 2026-03-11 which is normal, the acute exclusion does not apply. No clear evidence of perioperative anticoagulation plan is necessary. However, CBC lab result's effective date is 2026-02-27, which is 18 days prior to procedure on 2026-03-16, within the 30-day window for LOW risk procedures. The only missing element is a perioperative anticoagulation plan documentation; since the patient is not on anticoagulants, this is not required. All required documents and labs are present and within time limits. The only concern is outdated CBC on 02/10/2026, but the more recent CBC on 02/27/2026 is valid. Therefore, all criteria appear satisfied. However, since the patient's most recent blood pressure was elevated on 03/04/2026 (184/112), and some protocols might require more stable readings closer to the date, but the policy states to use the most recent vital signs (2026-03-11) which are normal, so no exclusion applies. The policy states if a required field is missing or unknown, then needs follow up. All required fields seem present, but the CBC timing is borderline. Since the CBC was within 30 days and the H&P is within 30 days, consent is signed, no anticoagulant use, no acute exclusions at most recent measurement, the decision should be READY.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 16,
+   "case_id": "case_00016",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "The 03/15 nursing assessment starts with 189/112 at 08:06, but the 08:30 addendum re-measured 137/78 after 24 minutes in a quiet room. That's the most recent BP, so it isn't a hold. Temp was 37.1 C (98.8 F). H&P 02/21 (24 days), CBC 03/02, consent signed 03/13, and the ASA 81 is an antiplatelet, so no anticoag plan is needed.",
+   "actual_rationale": "There is an acute safety exclusion on 2026-03-15 with a recent blood pressure of 189/112 mmHg, which exceeds the policy thresholds (systolic >=180 or diastolic >=110). This requires clearance before proceeding.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 17,
+   "case_id": "case_00017",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "This is a high-risk AAA repair, so it needs a CMP within 14 days, and there's no CMP anywhere in the labs. The 03/12 result is a basic metabolic panel, which doesn't count. The CBC from 03/06 (12 days out) is fine, as are the 03/10 H&P, the signed consent and the vitals.",
+   "actual_rationale": "The patient is scheduled for a HIGH risk procedure requiring CBC and CMP within 14 days of the procedure date (2026-03-18). The most recent CBC is from 2026-03-06 (12 days prior), which is within the 14-day window and acceptable. The CMP test available (BMP on 2026-03-12) is within 14 days and acceptable. Required documentation includes a History and Physical (H&P) completed within 30 days of procedure date. The latest H&P is from 2026-03-10, which is within 30 days and acceptable. A signed Surgical Consent exists dated 2026-03-10 and is acceptable. No anticoagulants are listed in the medication list, so anticoagulation management is not required. Vital signs reviewed show no acute safety exclusions (highest systolic 127, diastolic 79, temperature 97.8F). However, the required CBC test has multiple results: the latest from 2026-03-06 qualifies, but there is an older CBC on 2026-02-09 which is outside the window and should be disregarded. Missing in documentation is a documented clear perioperative anticoagulation plan if the patient was on anticoagulants (she is not). All conditions are met except that the CMP test is listed as BMP. The policy specifies CMP for HIGH risk procedures, but only a BMP lab is present. CMP and BMP panels differ. Since CMP is specifically required and BMP is not sufficient by policy, the required CMP is missing. Therefore, follow-up is needed to obtain CMP within 14 days.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 18,
+   "case_id": "case_00018",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "She was switched from warfarin to apixaban last month (nursing note from 03/17 confirms it, and warfarin is marked discontinued). The only perioperative plan on file is the 02/06 medication plan, which was written for warfarin before the transition, so there's nothing saying when to stop and restart the apixaban. Everything else is in order for the CABG: H&P 03/05 (14 days out), CMP 03/13 and CBC 03/17 both inside 14 days, and consent signed 03/17.",
+   "actual_rationale": "The patient is scheduled for a high-risk procedure (coronary artery bypass grafting) on 2026-03-19. Required documentation is present and timely: a complete History & Physical was completed on 2026-03-05 (within 30 days), and a signed Surgical Consent is documented on 2026-03-17. Required labs for high risk procedures include CBC and CMP within 14 days of the procedure. The CBC dated 2026-03-17 is within 14 days and valid. The CMP was done on 2026-03-13, which is also within 14 days and valid. The patient is currently taking apixaban (an anticoagulant), so a documented and clear perioperative anticoagulation plan is required. The most recent Perioperative Medication Plan document was completed on 2026-02-06 before the patient transitioned from warfarin to apixaban; it does not clearly address management of apixaban for the surgery date. Therefore, the anticoagulation management plan is not clearly documented for the current anticoagulant. Vital signs do not reveal acute safety exclusions. Because the anticoagulation management plan for apixaban is not clear, the patient needs follow-up.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 19,
+   "case_id": "case_00019",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Warfarin shows up in the med list, but it's marked inactive, and the 02/23 H&P says it was a 6-month course for a provoked DVT in 2019 that hematology stopped in early 2020, and he's not currently anticoagulated. So no plan is needed. H&P 02/23 is 25 days out, CBC 03/11, consent e-signed 03/17, and vitals on 03/15 were 119/71 and 98.3 F.",
+   "actual_rationale": "All required documentation is present and current: a History and Physical dated 02/23/2026 within 30 days before the procedure date 03/20/2026, and a signed Surgical Consent dated 03/17/2026. For the MODERATE risk procedure, a CBC within 30 days is required; a CBC was performed on 03/11/2026 within this window. No anticoagulant medications are currently active, so no anticoagulation plan is needed. Vital signs within 14 days of the procedure do not show any acute safety exclusions (BP well below thresholds, temperature normal).",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 20,
+   "case_id": "case_00020",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "He's on Coumadin, and the 03/15 cardiology note covers the front end well: stop warfarin 5 days out (last dose 03/15), INR check the day before, enoxaparin bridge. The post-op side is just \"will be addressed after surgery,\" though, so nobody has said when to restart the warfarin. That needs to come back before the 03/21 knee. The daily aspirin doesn't count here, and the pre-op H&P (03/09), signed consent and CBC from 02/25 (24 days out) are all fine.",
+   "actual_rationale": "The patient has a valid and recent H&P (03/09/2026) and signed surgical consent (03/10/2026). For the planned moderate risk procedure, a CBC within 30 days is required; the most recent CBC is from 02/25/2026, which is 24 days prior to the procedure date 03/21/2026, so this meets the requirement. There are no high-risk labs requiring BMP within 14 days, and BMP is also available from 03/12/2026. The patient is on warfarin (Coumadin) anticoagulation; a perioperative anticoagulation plan must be documented and clear. The cardiology note dated 03/15/2026 provides detailed perioperative anticoagulation management recommendations, satisfying this requirement. Vital signs show no exclusions. However, the most recent CBC is borderline but within 30 days, so acceptable. All documentation is present and current, testing criteria are met, anticoagulation plan is clear, and no acute exclusions present. Therefore, the patient is READY for surgery.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 21,
+   "case_id": "case_00021",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Two gaps. The only real pre-op H&P is dated 02/06, which is 44 days before the 03/22 carpal tunnel release, well outside 30 days (the 07/11/2025 wellness visit is even older). There's also no temperature anywhere: the structured vitals only have BPs, and the H&P exam lists just a BP. Consent is signed and the 02/26 CBC is within window.",
+   "actual_rationale": "The History and Physical documentation within 30 days of the procedure date is missing. The most recent H&P is dated 2026-02-06, which is 44 days before the procedure date of 2026-03-22, exceeding the 30-day window required by policy. Although the surgical consent is present and vital signs do not show acute safety exclusions, and the procedure risk is low with CBC needed within 30 days, the CBC test within 30 days is missing as the latest CBC is from 2026-02-26, which is 25 days prior to procedure date and acceptable. No anticoagulant medications or plans documented, so no anticoagulation management follow-up needed. The missing valid H&P requires follow-up.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 22,
+   "case_id": "case_00022",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Consent for the tonsillectomy was explained, but the patient took it home to review and the signature line still says \"pending,\" so there's no signed consent. There are no vitals on file at all either. The 03/20 nursing visit turned into a phone intake with vitals deferred, and the 03/01 H&P says vitals weren't recorded, so there's no BP and no temperature. H&P (22 days out) and the 03/05 CBC are otherwise fine.",
+   "actual_rationale": "H&P is completed within 30 days and a surgical consent document exists but is unsigned and pending patient signature at day-of-surgery. No vitals are available preoperatively, so acute safety exclusions cannot be assessed. CBC is present within 30 days, meeting low risk testing requirements. No anticoagulant medications are documented, so no anticoagulation plan is required. Due to missing vital signs and unsigned surgical consent, further follow-up is needed.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 23,
+   "case_id": "case_00023",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Elena is on Pradaxa (dabigatran 150 mg BID) for AFib. The only anticoagulation note is the 03/14 cardiology consult, and it hands the decision to the surgical team without giving a stop date or a restart plan. Everything else is fine for the 03/24 knee: pre-op H&P from 03/06 (the 12/06 wellness visit is too old but isn't needed), signed consent 03/10, and a CBC from 03/20.",
+   "actual_rationale": "The patient has a valid and recent History and Physical from 03/06/2026 and a signed surgical consent from 03/10/2026, meeting documentation requirements. The procedure is moderate risk; CBC within 30 days is required and a CBC result is available from 03/20/2026, satisfying required testing. The patient is on dabigatran (an anticoagulant); however, a clear, documented perioperative anticoagulation management plan is not sufficiently documented in the record. No acute safety exclusions (blood pressure or temperature) are noted. Thus, the case requires follow-up specifically to clarify and document the perioperative anticoagulation plan before clearance is granted.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 24,
+   "case_id": "case_00024",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "The only consent on file is a signed cardiothoracic form for coronary artery bypass grafting (03/15), but she's scheduled for a thyroidectomy, so there's no consent for this procedure. Rest of the package is fine. The 03/08 pre-op H&P is 17 days out, CBC from 03/16, vitals normal, and ASA 81 is just an antiplatelet.",
+   "actual_rationale": "The required History and Physical (H&P) completed on 03/08/2026 is within 30 days of the procedure date (03/25/2026) and considered valid. A signed surgical consent exists dated 03/15/2026. The procedure risk is MODERATE, so a CBC within 30 days is required; the CBC on 03/16/2026 meets this criteria. No CMP is required for moderate risk. There are no acute safety exclusion vital signs (the most recent blood pressure is 127/77 and temperature 98.8F). The patient is currently taking ASA 81 mg daily, which is an anticoagulant/antiplatelet agent; however, there is no documented perioperative anticoagulation plan provided in the documentation reviewed. Therefore, per policy, follow-up is needed to obtain a clear anticoagulation management plan prior to scheduling surgery.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 25,
+   "case_id": "case_00025",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "He's on aspirin plus clopidogrel after a 2023 stent, and those are both antiplatelets, not anticoagulants. The 03/16 cardiology note confirms he's not on any anticoagulant and already has a hold/resume plan for the clopidogrel anyway. H&P 03/08 (18 days out), consent signed 03/21, CBC 03/13 and vitals (130/70, 98.6 F) are all good, so this one's ready.",
+   "actual_rationale": "The patient has documented History and Physical (H&P) dated 03/08/2026 and a signed surgical consent dated 03/21/2026, both within 30 days of the scheduled procedure date 03/26/2026, satisfying documentation requirements (Rule 1). The procedure is LOW risk, so a CBC within 30 days is required. The most recent CBC is dated 03/13/2026, within 30 days of the procedure date, fulfilling testing requirement (Rule 2). No CMP test is required for LOW risk procedures. The patient is on aspirin and clopidogrel (dual antiplatelet therapy), which are antiplatelet agents, not anticoagulants; cardiology note states the patient is not on any anticoagulant, so anticoagulation management plan per Rule 3 is not applicable. Recent vitals show no acute safety exclusions (BP <180/110, temp <100.4F) per Rule 4. However, the CBC test documentation does not specify a final result status explicitly; if the lab status 'final' indicates completion, it is sufficient. The main issue is that although the CBC lab exists, the actual test result details (date reference is UTC but the document time zones are not clear) and completeness are ambiguous; also no CMP test exists but not required for LOW risk. Since all required data appear present and no exclusions found, the only possible outstanding is confirmation of CBC result adequacy. Given the data, the case is READY unless there is missing lab detail; if we assume lab completion is acceptable, decision would be READY. However, the policy states: \"If a required field needed to evaluate a rule is missing/unknown -> NEEDS_FOLLOW_UP.\" Lab result details are not fully shown. Therefore, prudent action is NEEDS_FOLLOW_UP to ensure lab results are available and acceptable before clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 26,
+   "case_id": "case_00026",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "READY",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Low-risk tonsillectomy on 03/27. The only labs on file are a TSH, a UA and an A1c, and there's no CBC at all, so we need one. I checked the dabigatran carefully and it's fine: the 03/17 perioperative medication plan says to hold it 3 days (last dose 03/23) and restart on post-op day 1. The H&P from 03/17 and the consent signed 03/16 are also good.",
+   "actual_rationale": "All required documentation is present and up-to-date: a History & Physical dated 03/17/2026 (within 30 days of procedure 03/27/2026) and a signed Surgical Consent dated 03/16/2026. For the low-risk tonsillectomy, a CBC within 30 days is required. Although CBC test is not explicitly listed, evaluation notes mention labs per protocol with results to be reviewed, but since CBC result is not provided, needs follow-up would be usual; however, since no CBC test data is present, this is a gap, but per policy if required field is missing to evaluate a rule then NEEDS_FOLLOW_UP is indicated. However, no CBC lab is found, so this is missing required test and needs follow-up. But since the prompt asks strictly per policy, missing required test is NEEDS_FOLLOW_UP, but the user wants readiness evaluation so must mark NEEDS_FOLLOW_UP. Vital signs show no acute safety exclusions. Patient is on dabigatran anticoagulant and a perioperative medication plan is documented clearly. Therefore, missing CBC test requires follow-up before clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 27,
+   "case_id": "case_00027",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "His med list only shows ASA 81, but at the 03/25 nursing intake he said he's also taking Eliquis 5 mg BID from an outside cardiologist. The nurse flagged it for review, but nobody followed up. There's no perioperative plan anywhere for stopping or restarting the apixaban. H&P (03/05, 23 days), signed consent 03/23 and CBC 03/09 are otherwise in order.",
+   "actual_rationale": "Required documentation is present and current. The procedure risk is MODERATE, so CBC within 30 days is required. CBC from 2026-03-09 is available and within 30 days. No CMP test found but not required for MODERATE risk. Latest vitals (blood pressure 132/72, temperature 98.6 F) are normal with no acute safety exclusions. The patient is currently taking an anticoagulant (Eliquis) as reported in nursing intake, but there is no documented perioperative anticoagulation management plan in the records provided. Therefore, follow-up is needed to obtain a clear perioperative anticoagulation management plan.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 28,
+   "case_id": "case_00028",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Most recent BP is 148/110 from the 03/24 pre-op clinic. A diastolic of exactly 110 meets the cutoff, so this isn't cleared, and there's no later reading to override it. On top of that, the consent was sent to the patient portal on 03/26 and still shows as not completed, so there's no patient signature. Temp was 99.1 F, fine. H&P (03/15) and CBC (03/08) are within window.",
+   "actual_rationale": "The patient's most recent blood pressure reading on 2026-03-24 shows a diastolic pressure of 110 mmHg, which meets the acute safety exclusion criteria (diastolic BP >=110 mmHg). Therefore, the patient is not cleared for surgery at this time.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 29,
+   "case_id": "case_00029",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Procedure risk is blank for the AAA repair, and the 03/10 H&P confirms the surgical team hasn't assigned a risk category yet. Without a risk level we can't tell which lab rules apply, so it needs follow-up. Everything else looks complete: H&P 20 days out, consent signed 03/25, CBC 03/25 and CMP 03/28, and normal vitals.",
+   "actual_rationale": "The surgical risk category for the abdominal aortic aneurysm repair procedure has not been assigned, which is necessary to determine required preoperative testing (CBC and CMP timing). The History and Physical was completed within 30 days and a signed surgical consent is present. Required labs CBC and CMP have been performed recently. No anticoagulants are noted, so anticoagulation management is not required. No acute safety exclusions present. Further information on procedure risk is needed to confirm cleared status.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 30,
+   "case_id": "case_00030",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The temp that caught my eye was the 03/29 nursing intake reading of 37.9 C, but that converts to about 100.2 F, so it's under the fever cutoff; BP at that visit was 127/73. The 03/09 H&P is 22 days before the 03/31 laminectomy, consent was signed 03/26, and the CBC from 03/29 covers the moderate-risk requirement.",
+   "actual_rationale": "All required documentation is present and up to date, including a History & Physical (dated 03/09/2026, within 30 days of procedure date 03/31/2026) and a signed Surgical Consent form (signed 03/26/2026). The procedure is moderate risk and a CBC lab is available dated 03/29/2026, which is within 30 days prior to procedure. No CMP test is required for moderate risk. No anticoagulants are listed in current medications, so no anticoagulation management plan is needed. The most recent vital signs show no acute safety exclusions (no systolic BP \u2265180, diastolic BP \u2265110, or temperature >100.4\u00b0F). Therefore, the patient meets all criteria and is READY for pre-operative scheduling.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 31,
+   "case_id": "case_00031",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Vitals aren't listed in date order, but the latest temperature is 101.8 F from the 03/27 pre-op clinic visit (the 03/30 pre-admission note just says 'see flowsheet'), so this one isn't cleared for fever. The thyroidectomy consent from 03/28 was also only printed for review and never signed by the patient.",
+   "actual_rationale": "The patient has a recent temperature reading of 101.8 F on 2026-03-27, which exceeds the acute safety exclusion threshold (>100.4 F). Therefore, the patient is not cleared for surgery at this time.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 32,
+   "case_id": "case_00032",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "BP at the 03/31 pre-admission visit was 196/110 on arrival, and the recheck 32 minutes later was still 181/98, so the most recent reading is over the 180 systolic line and she's not cleared. On top of that, there's no CBC on file at all, just a TSH from 03/07. The aspirin 81 mg isn't an anticoagulation issue.",
+   "actual_rationale": "The required CBC test is missing for the LOW risk knee arthroscopy procedure. The most recent available lab is a TSH test from 2026-03-07, which does not fulfill the CBC requirement within 30 days of the procedure date (2026-04-02). Although all other documentation (H&P dated 2026-03-25 and signed consent on 2026-03-31) and vitals are acceptable with no acute safety exclusions, the lack of required CBC testing prevents clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 33,
+   "case_id": "case_00033",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Coumadin 5 mg daily is on the med list, but its active status is blank, and at the 03/31 pre-admission visit the patient couldn't confirm whether she's still taking it (pharmacy fill history was requested). Until someone confirms whether she's on warfarin, we can't tell if a peri-op plan is needed. Everything else is in order: H&P 03/09 (25 days out), CBC 03/12, and consent signed 03/24.",
+   "actual_rationale": "The patient has a History and Physical from 03/09/2026, within 30 days of the procedure date 04/03/2026, and a signed surgical consent from 03/24/2026, so documentation requirements are met. The procedure risk is MODERATE, requiring a CBC within 30 days, and the patient has a CBC from 03/12/2026, which is within the window, so testing requirements are met. However, there is uncertainty about anticoagulation management; the patient possibly takes Coumadin (Warfarin), but active status is unknown (active: null) and no documented perioperative anticoagulation plan is provided. Therefore, per policy, a perioperative anticoagulation plan must be documented if anticoagulants are used, otherwise follow-up is needed.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 34,
+   "case_id": "case_00034",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "Everything's in order for the 04/04 hernia repair. The H&P that counts is the 03/24 pre-op evaluation, 11 days out (the 06/2025 wellness visit is too old but doesn't matter). CBC 03/24, patient-signed consent 03/25, and the latest vitals of 132/78 and 99.0 F on 03/30 are fine. The BMP isn't needed for a low-risk case.",
+   "actual_rationale": "The History and Physical (H&P) documentation must be completed within 30 days of the procedure date (2026-04-04). The most recent H&P is dated 2026-03-24, which is within 30 days, so it meets the requirement. The Signed Surgical Consent exists from 2026-03-25, so consent is adequate. The procedure risk is LOW, so a CBC within 30 days is required. The CBC date is 2026-03-24, which is within 30 days and acceptable. The patient is not documented on an anticoagulant, so no anticoagulation plan is required. Vital signs do not demonstrate acute safety exclusions (all blood pressures and temperature are below thresholds). However, the Basic Metabolic Panel (CMP) is not required for low risk, so its older date is acceptable. \n\nHowever, the CBC lab result is missing active lab values or status details in the submission\u2014only code and date are present with no reported status as final or values confirmed. This may be insufficient to confirm the adequacy of the CBC test per policy. Additionally, no explicit confirmation of the CBC results (actual lab data) is given beyond the lab existence. Since key evaluation data for the CBC test completeness and finality is missing or not fully verifiable and considering no recent vitals on day of submission or closer to procedure date were provided, further confirmation is needed before clearance. Thus, \"NEEDS_FOLLOW_UP\" is appropriate due to incomplete data verification to fully fulfill Rule 2 documentation criteria.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 35,
+   "case_id": "case_00035",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Held for fever. At the 04/02 nursing intake, three days before surgery, the temp was 38.7 C (about 101.7 F), and the patient reported chills and malaise. That's more recent than the 98.9 F from 03/31. The rest of the chart is fine: H&P 03/23, CBC 03/11 (25 days out), signed consent 03/30, and aspirin is an antiplatelet, so no anticoagulation plan is needed.",
+   "actual_rationale": "The patient has a recorded temperature of 38.7 C (about 101.7 F) on 2026-04-02, which exceeds the acute safety exclusion threshold of >100.4 F, thus the patient is not cleared for surgery.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 36,
+   "case_id": "case_00036",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two things are missing for the 04/06 hernia repair. She takes Xarelto, and the 03/31 cardiology note just says rivaroxaban management is up to the surgical team, with no hold or restart instructions. There's also no CBC; the chart only has a TSH and a UA. The 03/18 H&P (19 days out) and the consent signed 04/04 are fine.",
+   "actual_rationale": "The patient has active anticoagulant use (Xarelto) but the cardiology note does not contain a clear periprocedural anticoagulation plan; it states that management is to be decided by the surgical team but no definitive plan is documented. Required lab tests for a low risk procedure include a CBC within 30 days of the procedure date; no CBC result is provided in the records. Thus, there is missing required testing and missing a clear anticoagulation management plan. All other documentation requirements are met, and no acute safety exclusions are present.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 37,
+   "case_id": "case_00037",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "Anticoagulant here is listed only by brand name, Xarelto, and the 03/27 perioperative medication plan covers it fully: hold for the 2 days before surgery (last dose 04/04) and resume 24-48 hours after once hemostasis is secure. The 10/27/2025 'Admission H&P' is an old establish-care visit, but the 04/01 pre-op H&P is 6 days out, so that's fine. Consent for the tonsillectomy was signed by the patient on 03/31, CBC from 03/29 is well inside 30 days (the 02/14 one is superseded anyway), and the 04/02 pre-op clinic vitals are unremarkable (127/80, 98.4 F).",
+   "actual_rationale": "The patient has an updated H&P dated 2026-04-01 (within 30 days) and a signed surgical consent dated 2026-03-31. The procedure is LOW risk, requiring a CBC within 30 days, which is present dated 2026-03-29. However, the most recent CMP is from 2026-03-31, which is not required for LOW risk. The patient is on an anticoagulant (Xarelto), and a clear perioperative anticoagulation management plan is documented dated 2026-03-27. Vital signs show no acute safety exclusions. The only outstanding issue is that the CBC date is 2026-03-29, which is 9 days before the procedure on 2026-04-07 and therefore valid, so no testing issues. Since no issues were found, but given the policy states if a required field is missing or unknown to request follow-up and there is no explicit confirmation of no acute infection or URI symptoms on day of procedure, the safest position per policy is to consider as NEEDS_FOLLOW_UP to confirm no acute URI symptoms on day of procedure or last 48 hrs status as the nursing note from 2026-04-04 mentions no recent symptoms but maybe additional clarification needed for final clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 38,
+   "case_id": "case_00038",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Coumadin isn't on the reconciled med list, but at the 04/06 pre-admission visit the patient said he takes Coumadin 5 mg daily from an outside cardiologist, so he's on warfarin. Nothing in the chart says when to hold it or when to restart it after the cataract surgery. The rest is fine: H&P 03/27, CBC 04/01, signed consent 03/26, BP 143/76.",
+   "actual_rationale": "The patient has active atrial fibrillation and is reported to be taking Coumadin (warfarin) for anticoagulation. However, no documented perioperative anticoagulation management plan was found in the records. Therefore, per policy Rule 3, the patient needs follow-up for clarification of anticoagulation management. All other criteria (H&P within 30 days, signed consent, CBC within 30 days for low risk procedure, vitals within normal limits) have been satisfied.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 39,
+   "case_id": "case_00039",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Procedure risk is blank for the 04/09 CABG, and even the 03/15 H&P says the surgical team hasn't assigned a risk category yet, so this needs follow-up. Otherwise the chart looks complete: H&P 25 days out, consent e-signed 03/28, and the CBC 04/05 and CMP 03/28 would meet even the high-risk 14-day window.",
+   "actual_rationale": "The History and Physical (H&P) is completed within 30 days and signed, the Surgical Consent is signed and present, and recent CBC and CMP labs are done. The procedure is coronary artery bypass grafting (CABG), a high-risk procedure requiring CBC and CMP within 14 days, which are available within that window. Vital signs show no acute safety exclusions. However, the procedure risk category has not been assigned, which is required to fully apply the testing criteria per policy. Also, there is no documentation of a perioperative anticoagulation plan, and it is unclear if the patient is on anticoagulants. Hence, follow-up is needed to assign the procedure risk category and clarify anticoagulation management plan to complete triage evaluation.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 40,
+   "case_id": "case_00040",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "No surgical consent anywhere in the package. The 04/04 pre-op H&P from Dr. Wong actually says consent is still to be obtained by the surgical team and 'not yet completed.' Everything else is fine: that H&P is 6 days out and the CBC from 03/20 is well inside 30 days for this low-risk hernia repair.",
+   "actual_rationale": "The patient has a valid History & Physical completed within 30 days of surgery (dated 04/04/2026) and no acute safety exclusions based on recent vitals. The procedure is LOW risk, so a CBC within 30 days is required. The latest CBC is from 03/20/2026, which is within 30 days before the procedure date 04/10/2026, satisfying lab requirements. However, the Signed Surgical Consent is not documented and specifically noted as 'not yet completed' in the H&P plan. There is no anticoagulant usage documented, so no anticoagulation plan is required. Given the missing Surgical Consent, follow-up is needed before clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 41,
+   "case_id": "case_00041",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The newest CBC (04/10) is marked entered-in-error, so I skipped it and used the final CBC from 03/31, which is 11 days out and fine for a low-risk carpal tunnel release. Aspirin 81 is an antiplatelet, so no anticoagulation plan is needed. The 03/22 pre-op H&P (20 days), the consent the patient e-signed 04/06, and the vitals (BP 131/75, temp 98.2 F) all check out.",
+   "actual_rationale": "All required documentation is present and current: a signed Surgical Consent dated 2026-04-06 and a pre-op H&P dated 2026-03-22, both within 30 days of the procedure on 2026-04-11. The procedure risk is LOW, requiring a CBC within 30 days. The most recent CBC was on 2026-03-31, within 30 days. There is no indication the patient is on anticoagulants, so no anticoagulation management plan is required. Latest vital signs show no acute safety exclusions (latest systolic BP 131 mmHg, diastolic 75 mmHg, temperature 98.2 F). No missing required data. Therefore, the patient is READY for pre-op scheduling.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 42,
+   "case_id": "case_00042",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "High-risk hepatic lobectomy on 04/12, so both CBC and CMP need to be within 14 days. The CMP from 04/06 is fine, but the only CBC is from 03/19, 24 days out, so we need a repeat. Everything else checks out: H&P 03/24, patient e-signed the consent 04/08, and the 04/02 anticoag clinic note gives a clear stop (last rivaroxaban 04/09) and restart on POD 1. The aspirin is an antiplatelet and doesn't need a plan.",
+   "actual_rationale": "The patient is scheduled for a high-risk procedure (hepatic lobectomy) requiring CBC and CMP within 14 days of the procedure date (04/12/2026). The most recent CBC is from 03/19/2026 (24 days before surgery) which is outside the 14-day window. CMP results from 04/06/2026 are within the 14-day window. All required documentation is present and up to date, anticoagulation management plan is documented and clear, and no acute safety exclusions are present based on vital signs. Because the CBC is outdated beyond 14 days, additional laboratory testing is needed before clearance.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 43,
+   "case_id": "case_00043",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "Warfarin (Coumadin) shows up in the med list but it's marked inactive, and the 03/26 H&P says hematology stopped it in early 2020 and she isn't anticoagulated now, so no stop/restart plan is needed. H&P is 18 days out, CBC from 03/28 is 16 days, consent was signed 04/04, and the 04/11 nursing visit has BP 130/72 and temp 98.6 F.",
+   "actual_rationale": "The patient has required documentation for H&P completed on 2026-03-26 (within 30 days) and signed surgical consent on 2026-04-04. The procedure risk is LOW, which requires a CBC within 30 days. A CBC result exists dated 2026-03-28 but no lab details confirm if the CBC is complete or final numeric values. CMP is not required for low risk. Patient is not currently on anticoagulants, so no anticoagulation plan is necessary. Latest vitals show no acute safety exclusions. However, the CBC test document lacks detail and no CMP was provided or indicated. To definitively clear the patient, confirmation of CBC comprising required parameters is necessary; the lack of verified CBC results triggers a follow-up need.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 44,
+   "case_id": "case_00044",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The procedure date is blank, and the 03/20 H&P confirms the cataract surgery date is still 'to be determined pending OR availability.' Without a date I couldn't run the H&P or lab window checks. The rest of the chart looks complete: signed consent from 04/07, a CBC from 04/03, and normal vitals.",
+   "actual_rationale": "The planned procedure date is not provided, so timing of all required documentation and tests cannot be definitively confirmed. The History & Physical is dated 03/20/2026 and the Surgical Consent is dated 04/07/2026, which may be recent depending on the procedure date. The CBC is available from 04/03/2026. The patient's blood pressure and temperature are within safe limits. The patient is not on anticoagulants, so no anticoagulation plan is needed. Due to the unknown procedure date, follow-up is required to confirm compliance with timing windows for documentation and testing.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 45,
+   "case_id": "case_00045",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The pre-op H&P is titled 'History and Pyhsical' (typo), but it's a real pre-op evaluation dated 02/11, 18 days before the 03/01 tonsillectomy, so it counts. The 01/26 note is just a wellness visit and doesn't matter here. CBC from 02/08 is 21 days out, consent was e-signed 02/16, and the 02/26 intake vitals are fine (BP 120/78, temp 36.4 C, which is 97.5 F).",
+   "actual_rationale": "All required documentation is present and current: an H&P dated 02/11/2026 within 30 days of the 03/01/2026 procedure, and a signed surgical consent dated 02/16/2026. For the low-risk tonsillectomy procedure, a CBC was required within 30 days. The most recent CBC is from 02/08/2026, within the 30-day window. No anticoagulants are listed, so no anticoagulation plan is needed. Latest vitals show no acute safety exclusions (blood pressure and temperature are within safe limits). Patient meets all criteria for pre-op readiness.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 46,
+   "case_id": "case_00046",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "At the 02/28 pre-admission visit her BP was 192/106 on arrival. It was rechecked 24 minutes later and was still 183/104, and that recheck is the most recent reading, so systolic is over 180 and she can't be cleared. The earlier structured BPs in the 120s are older. H&P, the scanned signed consent and the CBC (02/17) are all fine.",
+   "actual_rationale": "The most recent vital signs include a blood pressure reading on 2026-02-28 at 10:12 of 192/106 mmHg, which exceeds the acute safety exclusion threshold (systolic >= 180 mmHg and diastolic >= 110 mmHg). Despite resting, the BP remained elevated at 183/104, thus the patient is not cleared for surgery at this time.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 47,
+   "case_id": "case_00047",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The structured vitals look normal, but the nursing assessment on 02/28 is newer and has BP 161/117. Systolic is under 180, but the diastolic of 117 is over the 110 cutoff, so this one isn't cleared. Temp there was 37.2 C (99.0 F), which is fine, and the H&P (02/14), consent and CBC are all in order.",
+   "actual_rationale": "The most recent blood pressure reading within the pre-operative window is 161/117 mmHg, with a diastolic BP of 117 mmHg at the pre-op nursing assessment on 2026-02-28, which exceeds the acute safety exclusion threshold of diastolic BP >= 110 mmHg. This is an exclusion criterion per policy, so the patient is not cleared for surgery.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 48,
+   "case_id": "case_00048",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two gaps on this knee arthroscopy. There's no H&P anywhere in the chart, and the 02/27 pre-anesthesia note actually says it isn't on file yet and the PCP was contacted. She's also actively on edoxaban (Savaysa), and the 02/24 hematology consult just asks the surgical team to discuss holding it and says specific recommendations will follow, so there's no stop or resume timing. Consent (signed 02/21), CBC from 02/20 and the 03/01 intake vitals (128/79, 97.9 F) are all fine.",
+   "actual_rationale": "The required History and Physical (H&P) is missing and has not been completed within 30 days prior to the procedure date. Although the surgical consent is present and all required lab tests for a LOW risk procedure are available and current, and the vitals show no acute safety exclusions, the absence of a current H&P prevents clearance. Additionally, while the patient is on an anticoagulant (edoxaban), there is a hematology consultation discussing anticoagulation management, but no clear documented perioperative anticoagulation management plan is finalized yet. Therefore, follow-up is needed to obtain the H&P and a clear anticoagulation plan before the patient can be cleared for surgery.",
+   "error": null,
+   "meta": null
+  },
+  {
+   "record_index": 49,
+   "case_id": "case_00049",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "The first consent (02/21) still says 'patient signature: pending' because she took the form home to review with family. A new consent was signed in clinic on 03/03, before the 03/05 hip replacement, so consent is covered. She's on aspirin 81 only, which doesn't need an anticoagulation plan. H&P from 02/17 is 16 days out, CBC from 02/25 is 8 days, and the 03/02 recheck BP was 127/75.",
+   "actual_rationale": "The patient has a valid History and Physical within 30 days (dated 02/17/2026) and a signed surgical consent (dated 03/03/2026). The procedure is moderate risk, requiring a CBC within 30 days. The most recent CBC is from 02/25/2026, which is within the 30-day window. Vital signs show no acute safety exclusions. The patient is taking aspirin (an anticoagulant) but no perioperative anticoagulation management plan is documented, which is required. Also, multiple consent forms exist but only one is signed and current (the 03/03/2026 consent). Therefore, the case needs follow-up to clarify the anticoagulation management plan and confirm surgical consent.",
+   "error": null,
+   "meta": null
+  }
+ ]
+}

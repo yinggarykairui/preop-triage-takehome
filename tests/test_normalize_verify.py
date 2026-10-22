@@ -67,8 +67,10 @@ def test_quote_verifier():
 
 def test_quote_verifier_tolerates_encoding_noise_but_not_numbers():
     text = "08:44  BP 127/80, Temperature 36.6 \u00b0C (oral)\nPlanned procedure: lumbar laminectomy (date to be determined pending OR availability)"
-    assert quote_in_text("08:44 BP 127/80, Temperature 36.6 \x17C (oral)", text)      # garbled degree sign
+    assert quote_in_text("08:44 BP 127/80, Temperature 36.6 \x176C (oral)", text)     # garbled degree sign
     assert quote_in_text("Temperature 36.6 C", text)
+    assert quote_in_text("Temp 98.8 \x176F", "Vitals 10:05  Temp 98.8 \u00b0F temporal")   # model mojibake for the degree sign
+    assert not quote_in_text("Temp 98.9 \x176F", "Vitals 10:05  Temp 98.8 \u00b0F temporal")
     assert quote_in_text("lumbar laminectomy date to be determined pending OR availability", text)  # dropped parentheses
     assert not quote_in_text("Temperature 36.8 C", text)
     assert not quote_in_text("BP 127/90", text)

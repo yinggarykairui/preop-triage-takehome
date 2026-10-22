@@ -1,0 +1,32 @@
+{
+ "latency_s": 1.742,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "rivaroxaban",
+    "quote": "maintained on rivaroxaban 20 mg PO daily with evening meal",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": null,
+   "deferred_to_another_team": false,
+   "drug_named": "rivaroxaban",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": true,
+    "present": true,
+    "quote": "Restart rivaroxaban on postoperative day 1 at the full dose if there are no bleeding concerns"
+   },
+   "pre_op": {
+    "explicit": true,
+    "present": true,
+    "quote": "Hold rivaroxaban for the 2 days before surgery (last dose 04/09/2026; no doses in the 48 hours prior)"
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

@@ -1,0 +1,32 @@
+{
+ "latency_s": 2.129,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "dabigatran",
+    "quote": "maintained on dabigatran 150 mg PO BID",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": "Periprocedural management of dabigatran to be determined by the surgical team",
+   "deferred_to_another_team": true,
+   "drug_named": "dabigatran",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   },
+   "pre_op": {
+    "explicit": false,
+    "present": true,
+    "quote": "Periprocedural management of dabigatran to be determined by the surgical team"
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

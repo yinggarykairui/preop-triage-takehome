@@ -1,0 +1,32 @@
+{
+ "latency_s": 1.735,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "Savaysa",
+    "quote": "maintained on Savaysa 60 mg PO daily",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": "Recommend the surgical team discuss interruption of Savaysa with the patient; we will follow up with specific recommendations.",
+   "deferred_to_another_team": true,
+   "drug_named": "Savaysa",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   },
+   "pre_op": {
+    "explicit": false,
+    "present": true,
+    "quote": "Recommend the surgical team discuss interruption of Savaysa with the patient; we will follow up with specific recommendations."
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

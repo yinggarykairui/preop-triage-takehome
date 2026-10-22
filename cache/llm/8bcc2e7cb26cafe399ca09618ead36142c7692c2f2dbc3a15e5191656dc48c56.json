@@ -1,0 +1,32 @@
+{
+ "latency_s": 2.442,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "dabigatran",
+    "quote": "maintained on dabigatran 150 mg PO BID",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": null,
+   "deferred_to_another_team": false,
+   "drug_named": "dabigatran",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": true,
+    "present": true,
+    "quote": "Restart dabigatran on postoperative day 1 at the full dose if there are no bleeding concerns"
+   },
+   "pre_op": {
+    "explicit": true,
+    "present": true,
+    "quote": "Hold dabigatran for the 3 days before surgery (last dose 03/23/2026; no doses in the 72 hours prior)"
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

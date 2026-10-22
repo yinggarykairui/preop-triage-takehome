@@ -1,0 +1,68 @@
+{
+ "latency_s": 37.82,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "consent": {
+   "is_consent_document": false,
+   "matches_planned_procedure": null,
+   "patient_signed": "NOT_A_CONSENT",
+   "procedure_named": null,
+   "quote": null,
+   "references_consent_missing": false,
+   "references_consent_missing_quote": null,
+   "signed_date": null
+  },
+  "document_kind": "NURSING_OR_PREADMISSION",
+  "hp": {
+   "date_of_service": null,
+   "is_completed_hp": false,
+   "is_preop_evaluation_for_planned_procedure": false,
+   "quote": null,
+   "references_hp_missing": false,
+   "references_hp_missing_quote": null
+  },
+  "procedure_date": {
+   "date": null,
+   "quote": null,
+   "status": "NOT_MENTIONED"
+  },
+  "vitals": [
+   {
+    "date": "2026-02-28",
+    "diastolic": 106,
+    "kind": "BP",
+    "measured_at_this_encounter": true,
+    "quote": "NIBP 192/106",
+    "systolic": 192,
+    "temperature_unit": null,
+    "temperature_value": null,
+    "time": "10:12"
+   },
+   {
+    "date": "2026-02-28",
+    "diastolic": null,
+    "kind": "TEMP",
+    "measured_at_this_encounter": true,
+    "quote": "T 99.1 F",
+    "systolic": null,
+    "temperature_unit": "F",
+    "temperature_value": 99.1,
+    "time": "10:12"
+   },
+   {
+    "date": "2026-02-28",
+    "diastolic": 104,
+    "kind": "BP",
+    "measured_at_this_encounter": true,
+    "quote": "BP 183/104",
+    "systolic": 183,
+    "temperature_unit": null,
+    "temperature_value": null,
+    "time": "10:36"
+   }
+  ],
+  "vitals_deferred_or_not_recorded": false,
+  "vitals_deferred_quote": null
+ },
+ "schema_name": "doc_facts"
+}

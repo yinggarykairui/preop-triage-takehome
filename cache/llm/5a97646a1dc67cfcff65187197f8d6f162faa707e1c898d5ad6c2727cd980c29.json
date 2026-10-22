@@ -1,0 +1,32 @@
+{
+ "latency_s": 1.733,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "mentions": [
+   {
+    "drug_as_written": "dabigatran",
+    "quote": "dabigatran 150 mg PO BID",
+    "status": "CURRENTLY_TAKING"
+   }
+  ],
+  "not_on_anticoagulant_quote": null,
+  "plan": {
+   "deferral_quote": "Continue home medications except as directed by perioperative instructions.",
+   "deferred_to_another_team": true,
+   "drug_named": "dabigatran",
+   "is_perioperative_plan": true,
+   "post_op": {
+    "explicit": false,
+    "present": false,
+    "quote": null
+   },
+   "pre_op": {
+    "explicit": false,
+    "present": true,
+    "quote": "Continue home medications except as directed by perioperative instructions."
+   }
+  },
+  "states_patient_not_on_anticoagulant": false
+ },
+ "schema_name": "anticoag_facts"
+}

@@ -1,0 +1,57 @@
+{
+ "latency_s": 2.8,
+ "model": "gpt-4.1-mini",
+ "response": {
+  "consent": {
+   "is_consent_document": false,
+   "matches_planned_procedure": null,
+   "patient_signed": "NOT_A_CONSENT",
+   "procedure_named": null,
+   "quote": null,
+   "references_consent_missing": true,
+   "references_consent_missing_quote": "formal consent per surgical team",
+   "signed_date": null
+  },
+  "document_kind": "HISTORY_AND_PHYSICAL",
+  "hp": {
+   "date_of_service": "2026-03-10",
+   "is_completed_hp": true,
+   "is_preop_evaluation_for_planned_procedure": true,
+   "quote": "PREOPERATIVE HISTORY AND PHYSICAL",
+   "references_hp_missing": false,
+   "references_hp_missing_quote": null
+  },
+  "procedure_date": {
+   "date": "2026-03-18",
+   "quote": "abdominal aortic aneurysm repair scheduled for 03/18/2026",
+   "status": "DATE_STATED"
+  },
+  "vitals": [
+   {
+    "date": "2026-03-10",
+    "diastolic": 76,
+    "kind": "BP",
+    "measured_at_this_encounter": true,
+    "quote": "Blood pressure 116/76 mmHg",
+    "systolic": 116,
+    "temperature_unit": null,
+    "temperature_value": null,
+    "time": "10:05"
+   },
+   {
+    "date": "2026-03-10",
+    "diastolic": null,
+    "kind": "TEMP",
+    "measured_at_this_encounter": true,
+    "quote": "Temp 98.3 \u00176F",
+    "systolic": null,
+    "temperature_unit": "F",
+    "temperature_value": 98.3,
+    "time": "10:05"
+   }
+  ],
+  "vitals_deferred_or_not_recorded": false,
+  "vitals_deferred_quote": null
+ },
+ "schema_name": "doc_facts"
+}
