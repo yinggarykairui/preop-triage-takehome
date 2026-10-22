@@ -63,3 +63,12 @@ def test_quote_verifier():
     assert not quote_in_text("Re-measured 137/79 mmHg", text)   # altered number
     assert not quote_in_text("", text) and not quote_in_text(None, text) and not quote_in_text("x", None)
     assert not quote_in_text("No vitals recorded in the note", text)  # paraphrase/hallucination
+
+
+def test_quote_verifier_tolerates_encoding_noise_but_not_numbers():
+    text = "08:44  BP 127/80, Temperature 36.6 \u00b0C (oral)\nPlanned procedure: lumbar laminectomy (date to be determined pending OR availability)"
+    assert quote_in_text("08:44 BP 127/80, Temperature 36.6 \x17C (oral)", text)      # garbled degree sign
+    assert quote_in_text("Temperature 36.6 C", text)
+    assert quote_in_text("lumbar laminectomy date to be determined pending OR availability", text)  # dropped parentheses
+    assert not quote_in_text("Temperature 36.8 C", text)
+    assert not quote_in_text("BP 127/90", text)

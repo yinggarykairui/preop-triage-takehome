@@ -325,6 +325,11 @@ def check_anticoagulation(facts: CaseFacts) -> list[Check]:
             gaps.append("post-op instruction quote could not be verified")
         if plan.deferred:
             gaps.append("management deferred to another team")
+        older_complete = [p for p in plans if p is not plan and p.pre_op.present and p.pre_op.explicit and p.pre_op.verified
+                          and p.post_op.present and p.post_op.explicit and p.post_op.verified and not p.deferred]
+        if older_complete:
+            gaps.append(f"an earlier plan ({max(older_complete, key=lambda p: p.day or date.min).day}) was complete; the later note supersedes it")
+            ev += [e for p in older_complete for e in (p.doc_evidence, p.pre_op.evidence, p.post_op.evidence) if e]
         unverified_only = all("verified" in g for g in gaps)
         status = "UNKNOWN" if unverified_only else "FAIL"
         checks.append(Check(**{**base, "name": name}, status=status, evidence=ev, inputs=inputs,

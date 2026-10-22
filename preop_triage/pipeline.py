@@ -48,11 +48,14 @@ def _procedure_date(sub: dict, exs: list[DocExtraction]):
         ev = _doc_ev(ex, pd.quote)
         if pd.status == "DATE_STATED" and ev.verified:
             d = parse_date(pd.date)
-            if d:
+            doc_day = parse_date(ex.doc_date)
+            # A document cannot schedule a procedure in its own past: such a "date" is a misread.
+            if d and not (doc_day and d < doc_day):
                 stated.setdefault(d, ev)
-        elif pd.status == "UNSCHEDULED_OR_TBD":
+        elif pd.status == "UNSCHEDULED_OR_TBD" and ev.verified:
             tbd.append(ev)
-    if len(stated) == 1:
+    # A4: one agreed date and no document saying the date is still TBD.
+    if len(stated) == 1 and not tbd:
         d, ev = next(iter(stated.items()))
         return d, ProcedureDateSource(source="document", doc_id=ev.doc_id, quote=ev.quote), evidence + [ev]
     return None, None, evidence + list(stated.values()) + tbd

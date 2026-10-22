@@ -2,6 +2,12 @@
 
 This is the anti-hallucination guard (A17). A quote that cannot be found makes the
 fact unverified; unverified facts can only ever weaken a decision.
+
+Matching tiers (each strictly about formatting, never about content):
+  1. exact substring
+  2. normalized: NFKC, straight quotes, control chars and degree signs removed, whitespace collapsed
+  3. punctuation-insensitive: only letters, digits, '.', '%' and '/' are compared, so numbers,
+     units and ratios like 189/112 must still match exactly
 """
 
 from __future__ import annotations
@@ -10,18 +16,30 @@ import re
 import unicodedata
 
 _WS = re.compile(r"\s+")
+_DEGREE = re.compile("[°º˚⁰]")
+_PUNCT = re.compile(r"[^0-9A-Za-z.%/]+")
 
 
 def normalize_text(s: str) -> str:
     s = unicodedata.normalize("NFKC", s or "")
     s = s.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
+    s = "".join(ch for ch in s if unicodedata.category(ch) not in ("Cc", "Cf"))
+    s = _DEGREE.sub("", s)
     return _WS.sub(" ", s).strip()
 
 
+def _loose(s: str) -> str:
+    return _WS.sub(" ", _PUNCT.sub(" ", normalize_text(s))).strip()
+
+
 def quote_in_text(quote: str | None, text: str | None) -> bool:
-    """Exact or whitespace/unicode-normalized substring match. Empty quotes never verify."""
+    """Exact, normalized, or punctuation-insensitive substring match. Empty quotes never verify."""
     if not quote or not text:
         return False
     if quote in text:
         return True
-    return normalize_text(quote) in normalize_text(text)
+    nq, nt = normalize_text(quote), normalize_text(text)
+    if nq and nq in nt:
+        return True
+    lq = _loose(quote)
+    return bool(lq) and lq in _loose(text)

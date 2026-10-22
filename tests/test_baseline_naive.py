@@ -8,12 +8,13 @@ from unittest.mock import Mock
 import pytest
 from pydantic import ValidationError
 
+"""Tests for the original naive single-call baseline (baseline.py), kept for comparison."""
+
+from baseline import BASELINE_SYSTEM_PROMPT, triage_submission_naive as triage_submission
 from core import (
-    BASELINE_SYSTEM_PROMPT,
     PatientSubmission,
     TriageOutput,
     triage_output_json_schema,
-    triage_submission,
 )
 
 

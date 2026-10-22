@@ -1,0 +1,1728 @@
+{
+ "summary": {
+  "json_schema_valid": 100.0,
+  "decision_match_oracle": 98.0,
+  "issue_categories_match_oracle": 96.0,
+  "aggregate_local_score_pct": 98.0
+ },
+ "confusion": {
+  "READY->READY": 16,
+  "NOT_CLEARED->NOT_CLEARED": 8,
+  "NEEDS_FOLLOW_UP->NEEDS_FOLLOW_UP": 25,
+  "READY->NEEDS_FOLLOW_UP": 1
+ },
+ "false_ready": [],
+ "rows": [
+  {
+   "record_index": 0,
+   "case_id": "case_00000",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Xarelto 20 mg isn't on the med list, but the 02/26 pre-admission nursing note says she's taking it, so I treated her as anticoagulated. The 02/20 cardiology consult covers it: hold Xarelto for the 2 days before surgery (last dose 02/26) and resume 24-48 hours after. Pre-op H&P from 02/21 (8 days out), consent for carpal tunnel release signed by the patient 02/27, CBC 02/11 (18 days) and latest vitals of 119/73 and 97.9 F are all fine.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 13,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 3,
+    "unverified_quote_details": [
+     "ffd06a2d-6fc3-5243-9189-6054e87f1c86: doc_facts.vitals_deferred_quote: 'No vitals recorded in this consultation note.'",
+     "73f7bbbc-b6c0-563e-997f-327cf0c76302: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note.'",
+     "517b3a8f-e994-558a-95fb-b093a650077d: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 8,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 1,
+   "case_id": "case_00001",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The H&P that's actually titled correctly is the 01/19 establish-care visit, which is 42 days out and isn't a real pre-op workup anyway. The one that counts is the 02/10 pre-op H&P filed as \"History and Pyhsical\" (typo in the title). It's 20 days out, so we're good. Consent signed 02/25, CBC 02/08 (22 days) covers a low-risk cataract case, and the 02/28 intake vitals are normal (127/80, 36.6 C = 97.9 F).",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 8,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 3,
+    "unverified_quote_details": [
+     "64856c30-0162-5b84-87ab-47b1b4ffa750: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "331ea689-3b48-5494-ad55-9be91db2d2dc: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note.'",
+     "71fc916f-d0a6-5945-ab4b-52b1b6f52b8e: doc_facts.vitals[0].quote: '08:44  BP 127/80, Temperature 36.6 \\x176C (oral)'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 2,
+   "case_id": "case_00002",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two separate problems here. At the 03/01 nursing intake he was running 38.6 C (101.5 F) and reported chills and malaise since the day before, so that's over the fever threshold and he's not cleared. The consent is also incomplete: the portal e-signature request went out 02/24 and still shows NOT COMPLETED. The daily aspirin is an antiplatelet, so there's no anticoagulation plan needed.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 101.48 F on 2026-03-01 is above 100.4 F.; also 1 follow-up item(s).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 6,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "bbe02f7e-a904-5c9c-b359-921920e5efb1: doc_facts.vitals_deferred_quote: None"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 3,
+   "case_id": "case_00003",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "She's on Eliquis plus baby aspirin; the aspirin doesn't need a plan, and the 02/23 hematology consult handles the Eliquis by brand name (hold for 2 days before surgery, resume 48 hours post-op). H&P dated 02/16 is 16 days out, consent was signed by the patient 02/19, and the CBC from 02/24 is well within 30 days for a low-risk hernia repair. Most recent vitals are from the 03/02 nursing intake: BP 116/76 and T 37.0 C (98.6 F).",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 14,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 3,
+    "unverified_quote_details": [
+     "6fbd7cac-37ea-5458-96c0-292dc11d6284: doc_facts.vitals_deferred_quote: 'No vitals recorded in this radiology report.'",
+     "d9499cc6-2dc1-5a54-90a3-06ac28fbb710: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "2ce5b1ae-bf18-59ce-be4b-b782d6646978: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 4,
+   "case_id": "case_00004",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The newest CBC (02/10) is marked entered-in-error, so I went back to the 02/09 CBC, which is 24 days out and fine for a moderate-risk thyroidectomy. Warfarin is covered by the 02/24 hematology consult: stop 5 days before with enoxaparin bridging, resume the evening of surgery. H&P from 02/24, consent signed by the patient 03/03, and the 03/02 intake vitals (98.1 F, repeat BP 140/78) all check out.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 11,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "39d3585a-4921-5911-bf8a-758787d2038e: doc_facts.vitals_deferred_quote: 'No vitals recorded in this consultation note.'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 5,
+   "case_id": "case_00005",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Structured vitals look fine (119/78 on 03/01), but the 03/03 nursing pre-procedure note is more recent and has BP 157/117. A diastolic of 117 is over the 110 cutoff, so this one's held. Paperwork and labs are otherwise complete: H&P 02/14, signed consent 02/22, and CBC 02/22 and CMP 02/23 are both within 14 days of the 03/06 colectomy.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 157/117 on 2026-03-03 meets the exclusion (DBP >= 110)..",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 5,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 4,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 6,
+   "case_id": "case_00006",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "There's a CBC from 03/04, but it was entered in error, so it doesn't count. That leaves the 01/22 CBC, 44 days before the 03/07 bypass, well past the 30-day window for a moderate-risk case, so a repeat CBC is needed. Everything else is in place: pre-op H&P from 02/14, consent signed 02/24, and normal vitals at the 03/04 intake.",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 9,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "5c6db4b7-3a97-5b99-8368-387d436e11bc: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "09a9e635-d8e2-5fc4-a0dd-37d798d207e5: doc_facts.vitals_deferred_quote: None"
+    ],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 7,
+   "case_id": "case_00007",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "At first glance the consent looks like a problem, since the 02/18 form says the patient signature is pending (she wanted to review it with family). But she signed a new consent for the hepatic lobectomy on 03/03, and that one supersedes it. For a high-risk case the labs are tight and they pass: CBC 03/04 and CMP 03/06 are both within 14 days. The pre-op H&P from 02/12 is 24 days out. Vitals at the 03/06 nursing visit were 37.2 C (99.0 F) and 121/80.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "e6a5d9c9-b502-58f9-8179-78f75d4d2899: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 8,
+   "case_id": "case_00008",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "There's no surgical consent anywhere in the package. The 02/25 H&P even says consent is still to be obtained by the surgical team and hasn't been done yet. Everything else is fine for a high-risk case: H&P 12 days out, CBC 03/04, CMP 02/27, and normal vitals. He takes aspirin only, so no anticoagulation plan is needed.",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 3,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 3,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 9,
+   "case_id": "case_00009",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The CBC is from 02/23, which is 15 days before the 03/10 CABG. For a high-risk case the limit is 14, so it's one day too old. The CMP from 03/04 is fine. Temperature is also missing everywhere: the structured vitals, the 02/26 H&P and the 03/08 nursing intake all have BP but no temp.",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (temperature).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 8,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 10,
+   "case_id": "case_00010",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Consent is the only hold-up here. Dr. Goldberg's 03/08 consent discussion note has a blank patient signature line and says the form was printed for her to review but not yet signed, so there's no patient-signed consent for the 03/11 gastric bypass. H&P from 03/03, CBC from 03/06 and vitals (121/70, 98.4 F) are all fine.",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "65f7f08d-32d2-58de-ab47-86a5319484af: doc_facts.vitals_deferred_quote: None",
+     "077cf182-cea5-57fa-b586-2a82708af5a1: doc_facts.vitals[1].quote: 'Temperature 97.7 \\x176F'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 11,
+   "case_id": "case_00011",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 66.66666666666667,
+   "label_rationale": "Procedure date is blank; the H&P just says the laminectomy date is pending OR availability, so I couldn't run any of the window checks. There's also no temperature anywhere in the chart: the structured vitals are BP only, the 02/18 H&P lists just a BP of 117/71, and the 03/09 nursing visit says 'see flowsheet.' The daily aspirin is an antiplatelet, so no anticoagulation plan is needed.",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; missing data (temperature).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "8e3e65c9-48f3-5a95-bb47-d609b772313f: doc_facts.procedure_date.quote: 'lumbar laminectomy date to be determined pending OR availability'",
+     "2088fd7c-9303-5284-a729-4ffa98651c31: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note; no mention of vitals values.'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 12,
+   "case_id": "case_00012",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two things land right on the edge. The pre-op H&P and the CBC are both from 02/11, exactly 30 days before the 03/13 carpal tunnel release, which still counts for a low-risk case (the 06/2025 establish-care H&P is too old but doesn't matter). Consent was e-signed 03/08, and the 03/10 nursing intake has the latest vitals at 97.5 F and 125/73 on recheck, so it's ready.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 11,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "d368ffa1-5181-5701-9f52-ef3eb87eba0d: doc_facts.procedure_date.quote: 'carpal tunnel release scheduled for 03/13/2026'",
+     "f9d36806-4072-532d-9308-46f05a86dae2: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 13,
+   "case_id": "case_00013",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "High-risk esophagectomy on 03/14 with no H&P anywhere in the chart. The 03/07 anesthesia note even says it isn't on file yet and that primary care was contacted. No temperature was recorded either: structured vitals are BP only and the 03/12 pre-admission visit just says 'see flowsheet.' Signed consent plus the 03/11 CBC and 03/07 CMP (7 days out) are all fine.",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days; missing data (temperature).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 6,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 14,
+   "case_id": "case_00014",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The only H&P is Dr. Carter's from 02/12, which is 31 days before the 03/15 tonsillectomy, one day past the 30-day limit. Everything else checks out: consent e-signed 03/11, CBC 02/18 (25 days, fine for low risk), and latest vitals 128/72 and 98.5 F on 03/10.",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 5,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 15,
+   "case_id": "case_00015",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "There's a 184/112 from the 03/04 primary care visit, which would have held this, but it isn't the latest reading. The 03/11 cardiology BP was 123/70 with a temp of 97.8 F, so it doesn't block. The 02/23 pre-op H&P is 21 days out (the 06/2025 one is just old), the CBC from 02/27 is 17 days out, and the consent was signed 03/06.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 10,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 4,
+    "unverified_quote_details": [
+     "f30a909c-d26b-5879-a62d-341ee2ffe554: doc_facts.vitals_deferred_quote: None",
+     "11a57159-c8f6-5f27-a1ea-b9cb4651e7d2: doc_facts.vitals[1].quote: 'Temp 98.8 \\x176F'",
+     "176c0e85-5b96-5595-ade9-9fdf88498749: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "cbfa10fd-b8e3-5971-b6f7-0b3807cb1aae: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 16,
+   "case_id": "case_00016",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The 03/15 nursing assessment starts with 189/112 at 08:06, but the 08:30 addendum re-measured 137/78 after 24 minutes in a quiet room. That's the most recent BP, so it isn't a hold. Temp was 37.1 C (98.8 F). H&P 02/21 (24 days), CBC 03/02, consent signed 03/13, and the ASA 81 is an antiplatelet, so no anticoag plan is needed.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 0,
+    "llm_cache_hits": 5,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "89fbc4a7-5a5e-5b71-85eb-d5b254e0ba55: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 4,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 17,
+   "case_id": "case_00017",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "This is a high-risk AAA repair, so it needs a CMP within 14 days, and there's no CMP anywhere in the labs. The 03/12 result is a basic metabolic panel, which doesn't count. The CBC from 03/06 (12 days out) is fine, as are the 03/10 H&P, the signed consent and the vitals.",
+   "actual_rationale": "Not ready because of: RULE_2 CMP within window.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 8,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 3,
+    "unverified_quote_details": [
+     "a360f382-325d-5835-8459-b0c70efa1278: doc_facts.procedure_date.quote: 'abdominal aortic aneurysm repair scheduled for 03/18/2026'",
+     "a360f382-325d-5835-8459-b0c70efa1278: doc_facts.vitals[1].quote: 'Temp 98.3 \\x176F'",
+     "d425a209-e2f5-5a3e-ba0a-39cf676be334: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 18,
+   "case_id": "case_00018",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "She was switched from warfarin to apixaban last month (nursing note from 03/17 confirms it, and warfarin is marked discontinued). The only perioperative plan on file is the 02/06 medication plan, which was written for warfarin before the transition, so there's nothing saying when to stop and restart the apixaban. Everything else is in order for the CABG: H&P 03/05 (14 days out), CMP 03/13 and CBC 03/17 both inside 14 days, and consent signed 03/17.",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for apixaban.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 11,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "ea245b1c-8588-5769-a975-b2407ed76230: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "ecc94df1-980b-57b1-b4ac-01dc67b0de9c: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note.'"
+    ],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 19,
+   "case_id": "case_00019",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Warfarin shows up in the med list, but it's marked inactive, and the 02/23 H&P says it was a 6-month course for a provoked DVT in 2019 that hematology stopped in early 2020, and he's not currently anticoagulated. So no plan is needed. H&P 02/23 is 25 days out, CBC 03/11, consent e-signed 03/17, and vitals on 03/15 were 119/71 and 98.3 F.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 11,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "98b7e014-fc98-580a-a2f0-9aea7fbea8d1: doc_facts.vitals[1].quote: 'Temperature 99.1 \\x176F'",
+     "f0db2b51-2c34-57c9-b304-75de71e7a16f: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 20,
+   "case_id": "case_00020",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "He's on Coumadin, and the 03/15 cardiology note covers the front end well: stop warfarin 5 days out (last dose 03/15), INR check the day before, enoxaparin bridge. The post-op side is just \"will be addressed after surgery,\" though, so nobody has said when to restart the warfarin. That needs to come back before the 03/21 knee. The daily aspirin doesn't count here, and the pre-op H&P (03/09), signed consent and CBC from 02/25 (24 days out) are all fine.",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for warfarin.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 13,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "0eb67951-00cf-5b04-81cb-85dc8a56b3c8: doc_facts.vitals_deferred_quote: 'No vitals recorded in this note'",
+     "bfea860b-565f-5d3d-8d2a-374360e56a45: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 21,
+   "case_id": "case_00021",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two gaps. The only real pre-op H&P is dated 02/06, which is 44 days before the 03/22 carpal tunnel release, well outside 30 days (the 07/11/2025 wellness visit is even older). There's also no temperature anywhere: the structured vitals only have BPs, and the H&P exam lists just a BP. Consent is signed and the 02/26 CBC is within window.",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days; missing data (temperature).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 5,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "2e0b5d03-a565-5f9b-9056-63726281ba2f: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 4,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 22,
+   "case_id": "case_00022",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Consent for the tonsillectomy was explained, but the patient took it home to review and the signature line still says \"pending,\" so there's no signed consent. There are no vitals on file at all either. The 03/20 nursing visit turned into a phone intake with vitals deferred, and the 03/01 H&P says vitals weren't recorded, so there's no BP and no temperature. H&P (22 days out) and the 03/05 CBC are otherwise fine.",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent; missing data (blood_pressure); missing data (temperature).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "2a2a3aca-c87d-50d1-af8c-5736eb9733b0: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 23,
+   "case_id": "case_00023",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Elena is on Pradaxa (dabigatran 150 mg BID) for AFib. The only anticoagulation note is the 03/14 cardiology consult, and it hands the decision to the surgical team without giving a stop date or a restart plan. Everything else is fine for the 03/24 knee: pre-op H&P from 03/06 (the 12/06 wellness visit is too old but isn't needed), signed consent 03/10, and a CBC from 03/20.",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for dabigatran.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 12,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "4328b9b5-1388-5fc7-9c0f-76d19a2ab7f1: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "289befe2-1d8a-5534-92d9-5695947b8fc9: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 24,
+   "case_id": "case_00024",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The only consent on file is a signed cardiothoracic form for coronary artery bypass grafting (03/15), but she's scheduled for a thyroidectomy, so there's no consent for this procedure. Rest of the package is fine. The 03/08 pre-op H&P is 17 days out, CBC from 03/16, vitals normal, and ASA 81 is just an antiplatelet.",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "33e0e7cd-b3b8-54e8-b660-ce29601565c6: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 25,
+   "case_id": "case_00025",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "He's on aspirin plus clopidogrel after a 2023 stent, and those are both antiplatelets, not anticoagulants. The 03/16 cardiology note confirms he's not on any anticoagulant and already has a hold/resume plan for the clopidogrel anyway. H&P 03/08 (18 days out), consent signed 03/21, CBC 03/13 and vitals (130/70, 98.6 F) are all good, so this one's ready.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 8,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "8c350036-6138-54db-a8f0-4a41e9b388a1: doc_facts.vitals_deferred_quote: None",
+     "fde7e07e-cc2a-539a-ba42-11a22ddc452c: doc_facts.vitals[1].quote: 'Temp 98.7 \\x176F'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 26,
+   "case_id": "case_00026",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Low-risk tonsillectomy on 03/27. The only labs on file are a TSH, a UA and an A1c, and there's no CBC at all, so we need one. I checked the dabigatran carefully and it's fine: the 03/17 perioperative medication plan says to hold it 3 days (last dose 03/23) and restart on post-op day 1. The H&P from 03/17 and the consent signed 03/16 are also good.",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 13,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "dc18294a-5aee-59ae-8e3b-cef23fe64ebd: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 8,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 27,
+   "case_id": "case_00027",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "His med list only shows ASA 81, but at the 03/25 nursing intake he said he's also taking Eliquis 5 mg BID from an outside cardiologist. The nurse flagged it for review, but nobody followed up. There's no perioperative plan anywhere for stopping or restarting the apixaban. H&P (03/05, 23 days), signed consent 03/23 and CBC 03/09 are otherwise in order.",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for apixaban.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 10,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 28,
+   "case_id": "case_00028",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Most recent BP is 148/110 from the 03/24 pre-op clinic. A diastolic of exactly 110 meets the cutoff, so this isn't cleared, and there's no later reading to override it. On top of that, the consent was sent to the patient portal on 03/26 and still shows as not completed, so there's no patient signature. Temp was 99.1 F, fine. H&P (03/15) and CBC (03/08) are within window.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 148/110 on 2026-03-24 meets the exclusion (DBP >= 110).; also 1 follow-up item(s).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 4,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 4,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 29,
+   "case_id": "case_00029",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Procedure risk is blank for the AAA repair, and the 03/10 H&P confirms the surgical team hasn't assigned a risk category yet. Without a risk level we can't tell which lab rules apply, so it needs follow-up. Everything else looks complete: H&P 20 days out, consent signed 03/25, CBC 03/25 and CMP 03/28, and normal vitals.",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 9,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "20fab676-c9c2-5e99-b8ca-c5ec02c5f340: doc_facts.vitals[1].quote: '99.1 \\x176F temporal'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 30,
+   "case_id": "case_00030",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The temp that caught my eye was the 03/29 nursing intake reading of 37.9 C, but that converts to about 100.2 F, so it's under the fever cutoff; BP at that visit was 127/73. The 03/09 H&P is 22 days before the 03/31 laminectomy, consent was signed 03/26, and the CBC from 03/29 covers the moderate-risk requirement.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "7371e949-d5d4-5186-8df2-7643f4743ed4: doc_facts.vitals_deferred_quote: None"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 31,
+   "case_id": "case_00031",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Vitals aren't listed in date order, but the latest temperature is 101.8 F from the 03/27 pre-op clinic visit (the 03/30 pre-admission note just says 'see flowsheet'), so this one isn't cleared for fever. The thyroidectomy consent from 03/28 was also only printed for review and never signed by the patient.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 101.8 F on 2026-03-27 is above 100.4 F.; also 1 follow-up item(s).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 10,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "98eb3922-47d5-5f3c-9820-26888936a47a: doc_facts.vitals_deferred_quote: None",
+     "8899560e-0878-5dd4-aee7-ec1acec33b60: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note.'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 32,
+   "case_id": "case_00032",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "BP at the 03/31 pre-admission visit was 196/110 on arrival, and the recheck 32 minutes later was still 181/98, so the most recent reading is over the 180 systolic line and she's not cleared. On top of that, there's no CBC on file at all, just a TSH from 03/07. The aspirin 81 mg isn't an anticoagulation issue.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 181/98 on 2026-03-31 meets the exclusion (SBP >= 180).; also 1 follow-up item(s).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 8,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "41ff2483-f4a7-5eea-b7fd-04e6b97e83cd: doc_facts.vitals[1].quote: 'Temperature 98.2 \\x176F (oral)'",
+     "fb88e9b9-b338-5942-97ec-b2622b1239b4: doc_facts.vitals_deferred_quote: 'No vitals recorded.'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 33,
+   "case_id": "case_00033",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Coumadin 5 mg daily is on the med list, but its active status is blank, and at the 03/31 pre-admission visit the patient couldn't confirm whether she's still taking it (pharmacy fill history was requested). Until someone confirms whether she's on warfarin, we can't tell if a peri-op plan is needed. Everything else is in order: H&P 03/09 (25 days out), CBC 03/12, and consent signed 03/24.",
+   "actual_rationale": "Not ready because of: missing data (anticoagulant_status:warfarin).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 6,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 34,
+   "case_id": "case_00034",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Everything's in order for the 04/04 hernia repair. The H&P that counts is the 03/24 pre-op evaluation, 11 days out (the 06/2025 wellness visit is too old but doesn't matter). CBC 03/24, patient-signed consent 03/25, and the latest vitals of 132/78 and 99.0 F on 03/30 are fine. The BMP isn't needed for a low-risk case.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "7193f6c5-8a1b-5419-9a97-3c0ff3c03527: doc_facts.vitals_deferred_quote: 'No vitals recorded.'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 35,
+   "case_id": "case_00035",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Held for fever. At the 04/02 nursing intake, three days before surgery, the temp was 38.7 C (about 101.7 F), and the patient reported chills and malaise. That's more recent than the 98.9 F from 03/31. The rest of the chart is fine: H&P 03/23, CBC 03/11 (25 days out), signed consent 03/30, and aspirin is an antiplatelet, so no anticoagulation plan is needed.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent temperature 101.66 F on 2026-04-02 is above 100.4 F..",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 4,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 4,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 36,
+   "case_id": "case_00036",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two things are missing for the 04/06 hernia repair. She takes Xarelto, and the 03/31 cardiology note just says rivaroxaban management is up to the surgical team, with no hold or restart instructions. There's also no CBC; the chart only has a TSH and a UA. The 03/18 H&P (19 days out) and the consent signed 04/04 are fine.",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window; RULE_3 Plan for rivaroxaban.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 11,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "03483ae0-9782-56a8-a1ff-f58c1502a10f: doc_facts.vitals_deferred_quote: 'No vitals recorded in this radiology report.'",
+     "4cda50ae-8375-5818-813b-05660c6e8b5d: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 37,
+   "case_id": "case_00037",
+   "expected_decision": "READY",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": false,
+    "issue_categories_match_oracle": false
+   },
+   "aggregate_local_score": 33.333333333333336,
+   "label_rationale": "Anticoagulant here is listed only by brand name, Xarelto, and the 03/27 perioperative medication plan covers it fully: hold for the 2 days before surgery (last dose 04/04) and resume 24-48 hours after once hemostasis is secure. The 10/27/2025 'Admission H&P' is an old establish-care visit, but the 04/01 pre-op H&P is 6 days out, so that's fine. Consent for the tonsillectomy was signed by the patient on 03/31, CBC from 03/29 is well inside 30 days (the 02/14 one is superseded anyway), and the 04/02 pre-op clinic vitals are unremarkable (127/80, 98.4 F).",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for rivaroxaban.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 12,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "58a08e2b-8b71-5b5f-969e-8586ba221656: doc_facts.vitals_deferred_quote: None",
+     "49d8b02a-5fcc-5949-b8e8-fa604633236b: doc_facts.vitals_deferred_quote: 'No vitals recorded in this document'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 38,
+   "case_id": "case_00038",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Coumadin isn't on the reconciled med list, but at the 04/06 pre-admission visit the patient said he takes Coumadin 5 mg daily from an outside cardiologist, so he's on warfarin. Nothing in the chart says when to hold it or when to restart it after the cataract surgery. The rest is fine: H&P 03/27, CBC 04/01, signed consent 03/26, BP 143/76.",
+   "actual_rationale": "Not ready because of: RULE_3 Plan for warfarin.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 9,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 3,
+    "unverified_quote_details": [
+     "6fa954e5-6cea-505e-92e1-07d7188d734d: doc_facts.vitals[1].quote: '08:45  Re-measured Temperature 99.0 \\x176F (oral)'",
+     "e7d2bbfd-b672-5e84-b8b2-2da55f37dc17: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "e3a8a2ad-7b3f-547c-97d3-fc6bf01ca091: doc_facts.procedure_date.quote: 'cataract extraction scheduled for 04/08/2026'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 39,
+   "case_id": "case_00039",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Procedure risk is blank for the 04/09 CABG, and even the 03/15 H&P says the surgical team hasn't assigned a risk category yet, so this needs follow-up. Otherwise the chart looks complete: H&P 25 days out, consent e-signed 03/28, and the CBC 04/05 and CMP 03/28 would meet even the high-risk 14-day window.",
+   "actual_rationale": "Not ready because of: missing data (procedure_risk).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 6,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 40,
+   "case_id": "case_00040",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "No surgical consent anywhere in the package. The 04/04 pre-op H&P from Dr. Wong actually says consent is still to be obtained by the surgical team and 'not yet completed.' Everything else is fine: that H&P is 6 days out and the CBC from 03/20 is well inside 30 days for this low-risk hernia repair.",
+   "actual_rationale": "Not ready because of: RULE_1 Signed surgical consent.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "d4783f1e-b314-5e01-96f5-aac87f80ab2d: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 41,
+   "case_id": "case_00041",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The newest CBC (04/10) is marked entered-in-error, so I skipped it and used the final CBC from 03/31, which is 11 days out and fine for a low-risk carpal tunnel release. Aspirin 81 is an antiplatelet, so no anticoagulation plan is needed. The 03/22 pre-op H&P (20 days), the consent the patient e-signed 04/06, and the vitals (BP 131/75, temp 98.2 F) all check out.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "9a8936fe-1125-50e6-9232-5bd863853ff7: doc_facts.procedure_date.quote: 'carpal tunnel release scheduled for 04/11/2026'"
+    ],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 42,
+   "case_id": "case_00042",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "actual_categories": [
+    "REQUIRED_TESTING"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "High-risk hepatic lobectomy on 04/12, so both CBC and CMP need to be within 14 days. The CMP from 04/06 is fine, but the only CBC is from 03/19, 24 days out, so we need a repeat. Everything else checks out: H&P 03/24, patient e-signed the consent 04/08, and the 04/02 anticoag clinic note gives a clear stop (last rivaroxaban 04/09) and restart on POD 1. The aspirin is an antiplatelet and doesn't need a plan.",
+   "actual_rationale": "Not ready because of: RULE_2 CBC within window.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 12,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "6be6a3e2-a5b9-55b2-b167-3f012624af5f: doc_facts.vitals_deferred_quote: 'No vitals recorded in this note.'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 43,
+   "case_id": "case_00043",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Warfarin (Coumadin) shows up in the med list but it's marked inactive, and the 03/26 H&P says hematology stopped it in early 2020 and she isn't anticoagulated now, so no stop/restart plan is needed. H&P is 18 days out, CBC from 03/28 is 16 days, consent was signed 04/04, and the 04/11 nursing visit has BP 130/72 and temp 98.6 F.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 9,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "db4869a7-8be8-55bd-b5ac-467559526033: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note.'"
+    ],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 44,
+   "case_id": "case_00044",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "actual_categories": [
+    "MISSING_REQUIRED_DATA"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The procedure date is blank, and the 03/20 H&P confirms the cataract surgery date is still 'to be determined pending OR availability.' Without a date I couldn't run the H&P or lab window checks. The rest of the chart looks complete: signed consent from 04/07, a CBC from 04/03, and normal vitals.",
+   "actual_rationale": "Not ready because of: missing data (procedure_date).",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 3,
+    "unverified_quote_details": [
+     "b63b60c2-127c-56fa-ad73-2a8c2ed20bc0: doc_facts.procedure_date.quote: 'cataract extraction date to be determined pending OR availability'",
+     "b63b60c2-127c-56fa-ad73-2a8c2ed20bc0: doc_facts.vitals[0].quote: 'Vitals 10:05  NIBP 116/80, HR 80, 98.1 \\x176F temporal'",
+     "b0b93102-5ed2-55ed-907a-39410285512f: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 45,
+   "case_id": "case_00045",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The pre-op H&P is titled 'History and Pyhsical' (typo), but it's a real pre-op evaluation dated 02/11, 18 days before the 03/01 tonsillectomy, so it counts. The 01/26 note is just a wellness visit and doesn't matter here. CBC from 02/08 is 21 days out, consent was e-signed 02/16, and the 02/26 intake vitals are fine (BP 120/78, temp 36.4 C, which is 97.5 F).",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 10,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "f033f25b-d0da-518b-8b6c-a8b2828a68c1: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "c6a22efe-478b-58ec-8d3d-1a388931cde6: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note.'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 46,
+   "case_id": "case_00046",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "At the 02/28 pre-admission visit her BP was 192/106 on arrival. It was rechecked 24 minutes later and was still 183/104, and that recheck is the most recent reading, so systolic is over 180 and she can't be cleared. The earlier structured BPs in the 120s are older. H&P, the scanned signed consent and the CBC (02/17) are all fine.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 183/104 on 2026-02-28 meets the exclusion (SBP >= 180)..",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 7,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 6,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 47,
+   "case_id": "case_00047",
+   "expected_decision": "NOT_CLEARED",
+   "actual_decision": "NOT_CLEARED",
+   "expected_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "actual_categories": [
+    "ACUTE_SAFETY_EXCLUSION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The structured vitals look normal, but the nursing assessment on 02/28 is newer and has BP 161/117. Systolic is under 180, but the diastolic of 117 is over the 110 cutoff, so this one isn't cleared. Temp there was 37.2 C (99.0 F), which is fine, and the H&P (02/14), consent and CBC are all in order.",
+   "actual_rationale": "Rule 4 acute safety exclusion: Most recent BP 161/117 on 2026-02-28 meets the exclusion (DBP >= 110)..",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 8,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 0,
+    "unverified_quote_details": [],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 48,
+   "case_id": "case_00048",
+   "expected_decision": "NEEDS_FOLLOW_UP",
+   "actual_decision": "NEEDS_FOLLOW_UP",
+   "expected_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "actual_categories": [
+    "ANTICOAGULATION_MANAGEMENT",
+    "REQUIRED_DOCUMENTATION"
+   ],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "Two gaps on this knee arthroscopy. There's no H&P anywhere in the chart, and the 02/27 pre-anesthesia note actually says it isn't on file yet and the PCP was contacted. She's also actively on edoxaban (Savaysa), and the 02/24 hematology consult just asks the surgical team to discuss holding it and says specific recommendations will follow, so there's no stop or resume timing. Consent (signed 02/21), CBC from 02/20 and the 03/01 intake vitals (128/79, 97.9 F) are all fine.",
+   "actual_rationale": "Not ready because of: RULE_1 H&P within 30 days; RULE_3 Plan for edoxaban.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 9,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 1,
+    "unverified_quote_details": [
+     "54f61c78-6d38-532a-a803-154689d052cc: doc_facts.vitals_deferred_quote: 'No vitals recorded in this consultation note.'"
+    ],
+    "documents_extracted": 5,
+    "documents_failed": []
+   }
+  },
+  {
+   "record_index": 49,
+   "case_id": "case_00049",
+   "expected_decision": "READY",
+   "actual_decision": "READY",
+   "expected_categories": [],
+   "actual_categories": [],
+   "metrics": {
+    "json_schema_valid": true,
+    "decision_match_oracle": true,
+    "issue_categories_match_oracle": true
+   },
+   "aggregate_local_score": 100.0,
+   "label_rationale": "The first consent (02/21) still says 'patient signature: pending' because she took the form home to review with family. A new consent was signed in clinic on 03/03, before the 03/05 hip replacement, so consent is covered. She's on aspirin 81 only, which doesn't need an anticoagulation plan. H&P from 02/17 is 16 days out, CBC from 02/25 is 8 days, and the 03/02 recheck BP was 127/75.",
+   "actual_rationale": "All rules pass: documentation current, required testing in window, anticoagulation plan complete or not applicable, no acute safety exclusion.",
+   "error": null,
+   "meta": {
+    "model": "gpt-4.1-mini",
+    "provider": "openai",
+    "pipeline_version": "1.0.0",
+    "llm_calls": 9,
+    "llm_cache_hits": 0,
+    "llm_failures": 0,
+    "unverified_quotes": 2,
+    "unverified_quote_details": [
+     "88aee908-9de5-519e-a153-7b3da9de7c03: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'",
+     "3497c20c-7b8f-5cda-9da1-141276504df6: doc_facts.vitals_deferred_quote: 'No vitals recorded in the note'"
+    ],
+    "documents_extracted": 7,
+    "documents_failed": []
+   }
+  }
+ ]
+}

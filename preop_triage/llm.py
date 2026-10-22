@@ -109,10 +109,9 @@ class CachedLLM:
 
     @property
     def provider_name(self) -> str:
-        try:
-            return self.provider.name
-        except LLMError:
-            return os.environ.get("LLM_PROVIDER", "openai")
+        if self._provider is not None:
+            return self._provider.name
+        return os.environ.get("LLM_PROVIDER", "openai")
 
     def _key(self, instructions: str, user_text: str, schema_model: type[BaseModel], schema_name: str) -> str:
         payload = {
