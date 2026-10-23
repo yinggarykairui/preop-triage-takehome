@@ -1,0 +1,1408 @@
+ ▐▛███▛█   Claude Code v2.1.308
+▝▜██████▀  Fable 5.1 · Claude Max
+ ▝▝   ▝▝   ~/Desktop/CadenceTakeHome
+
+
+❯ /clear                                                                        
+
+❯ Final pass: make the Cadence take-home submission-ready                       
+                                                                                
+  The work is done. Do not add features. Your job is to make sure a reviewer    
+  who clones this repo has a smooth, convincing experience, and that every      
+  claim is true. Read notes/handoff.md (if present), README.md, and WRITEUP.md  
+  first.                                                                        
+                                                                                
+  1. Clean-clone reproducibility                                                
+                                                                                
+  - Clone the repo into a temp directory and follow README.md literally, step   
+  by step, as a stranger would. Fix any step that fails, is missing, or assumes 
+  local state (cached files, env vars, installed packages, absolute paths).     
+  - Confirm these run from a clean checkout: the test suite, a single case, the 
+  full harness, the ablation study, the perturbation suite, and the review      
+  page generation. Document the cached vs. uncached runtime and rough API cost  
+  for each.                                                                     
+  - Make sure the tests that don't need the LLM pass with no API key set.       
+  - Pin dependency versions.                                                    
+                                                                                
+  2. Claims audit                                                               
+                                                                                
+  - For every number, table, and chart in WRITEUP.md and results/, trace it to  
+  the script and output that produced it. Re-run anything stale. If a claim     
+  can't be reproduced, fix it or remove it.                                     
+  - Check that the assumptions list matches what the code actually does: each   
+  numbered assumption should point to the function that implements it. Flag any 
+  that drifted.                                                                 
+  - Check that the output JSON matches the schema the write-up describes, on a  
+  real run.                                                                     
+                                                                                
+  3. Write-up quality                                                           
+                                                                                
+  Tighten WRITEUP.md for a busy reviewer:                                       
+  - a 5-line TL;DR at the top: approach, headline results (baseline vs. final,  
+  false READYs), and the key design choice                                      
+  - then the architecture diagram, assumptions, results, error analysis, depth  
+  and validation, limitations, and next steps                                   
+                                                                                
+  Cut repetition and hedging. Every section should earn its place. Aim for      
+  something readable in 10 minutes, and move detail to notes/ with links. Be    
+  honest about limitations and any gold-label disagreements.                    
+                                                                                
+  4. Code hygiene                                                               
+                                                                                
+  - Remove dead code, debug prints, commented-out blocks, and stray scratch     
+  files. Make sure .gitignore covers caches, .env, and large outputs (keep the  
+  small result files the write-up references).                                  
+  - Secrets scan: grep the entire git history (not only the working tree) for   
+  API keys and tokens. If any were ever committed, tell me immediately and      
+  explain how to rewrite history. Do not try to rewrite it yourself.            
+  - Consistent naming, docstrings on the rule engine and public entry points,   
+  and type hints on core modules. Run a formatter and linter, and fix what they 
+  report.                                                                       
+  - Check that no real-looking patient data exists outside the provided sample. 
+                                                                                
+  5. Reviewer's path                                                            
+                                                                                
+  - Make sure the repo root makes the entry points obvious, e.g. a make target  
+  for each run: test, run, eval, ablation, perturb, review.                     
+  - Open the review page and the report viewer on the final run, check that     
+  they render correctly, and fix any broken output.                             
+                                                                                
+  6. Final report to me                                                         
+                                                                                
+  Write notes/submission_checklist.md covering:                                 
+  - what you verified                                                           
+  - what you changed in this pass                                               
+  - any remaining risks or known issues                                         
+  - the exact command sequence a reviewer should run                            
+                                                                                
+  Then list the files I still need to add by hand: the session exports from     
+  every session, including this one.                                            
+
+⏺ I'll start by reading the handoff notes, README, and write-up, then survey the
+  repo layout.
+
+  Searched for 1 pattern, read 2 files, ran 3 shell commands (ctrl+o to expand)
+
+⏺ Finished reading the handoff, README, write-up, and harness. Now reading the
+  pipeline package, scripts, tests, and notes in one pass.
+
+  Read 3 files, ran 16 shell commands (ctrl+o to expand)
+
+⏺ Verification confirms the clean clone passes all 81 tests without a key,
+  replays 100% from cache byte-for-byte, has a clean secrets scan, and renders
+  correctly. Now applying hygiene edits: dependency pins, ruff config, dead code
+  removal, type hints/docstrings, assumption drift fixes, and Makefile targets.
+  · summary
+
+  Ran 6 shell commands (ctrl+o to expand)
+
+⏺ Two leftover renames in the profile script; fixing and re-running lint, tests,
+  and the cached replay check.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Write(README.md)
+  ⎿  Added 74 lines, removed 48 lines
+      12           ─► decision + evidence packet (JSON)
+      13  ```
+      14  
+      15 -See `WRITEUP.md` for the architecture, assumptions, results and
+         - error analysis.                                               
+      16 -`notes/data_profile.md` and `notes/error_analysis.md` hold the 
+         -supporting detail.                                             
+      15 +Start with `WRITEUP.md` (approach, results, error analysis; 10 
+         +minutes). Supporting detail                                    
+      16 +lives in `notes/`: `assumptions.md`, `error_analysis.md`, `data
+         +_profile.md`, `submission_checklist.md`.                       
+      17  
+      18 +## Reviewer's path (no API key needed)                         
+      19 +                                                               
+      20 +Requires Python ≥ 3.11 and [`uv`](https://docs.astral.sh/uv/) (
+         +`brew install uv`). The first                                  
+      21 +`uv run` creates `.venv` and installs the pinned dependencies f
+         +rom `uv.lock`.                                                 
+      22 +                                                               
+      23 +```bash                                                        
+      24 +make test             # 84 tests, no network                   
+         +           ~2 s (first run adds ~5 s of installs)              
+      25 +make baseline summary # pipeline over the 50 cases from the com
+         +mitted cache, then score it     ~2 s                           
+      26 +make determinism      # 10x replay of record 0: 100 / 100 / 100
+         +           ~2 s                                                
+      27 +make run CASE=case_00037   # one case, compact evidence packet 
+         +           <1 s                                                
+      28 +make report           # TUI over the final harness report (q to
+         + quit)                                                         
+      29 +make lint             # ruff check + format check              
+      30 +```                                                            
+      31 +                                                               
+      32 +`make help` lists every target. All of the above replay the com
+         +mitted LLM cache (`cache/llm/`),                               
+      33 +so they are free and byte-for-byte reproducible. Only two thing
+         +s need `OPENAI_API_KEY`:                                       
+      34 +`make evals` (the provided scorer creates a remote OpenAI Evals
+         + run) and any input or prompt                                  
+      35 +the cache has not seen.                                        
+      36 +                                                               
+      37 +| run | cached | uncached (gpt-4.1-mini) | API cost, uncached |
+      38 +|---|---|---|---|                                              
+      39 +| `make test` | ~2 s | n/a (never calls the network) | $0 |    
+      40 +| `make run CASE=…` | <1 s | 5–30 s | <$0.01 |                 
+      41 +| `make baseline` (50 cases) | ~2 s | ~15–25 min, ~340 calls | 
+         +~$0.40 |                                                       
+      42 +| `make determinism` | ~2 s | ~1–2 min | <$0.05 |              
+      43 +| `make evals` | n/a | ~30–60 s (remote scoring only) | ~$0 (no
+         + model calls) |                                                
+      44 +| `make baseline-naive` | n/a (uncached) | ~3 min, 50 calls | ~
+         +$0.10 |                                                        
+      45 +                                                               
+      46 +Cost figures are estimates from prompt and response sizes at li
+         +st prices.                                                     
+      47 +                                                               
+      48  ## Layout
+      49  
+      50  | path | what |
+      51  |---|---|
+      52  | `core.py` | harness entry point `triage_submission(submission
+          , model=...)` → `TriagePacket`; shared input schemas |
+      53  | `preop_triage/normalize.py` | dates (UTC, day granularity), °
+          C→°F, lab canonicalization (`CBC`/`CMP`/`BMP`), drug brand→gene
+          ric, most-recent-vital selection |
+      24 -| `preop_triage/extract.py` | two per-document LLM extractors (
+         -document facts; anticoagulation facts) with verbatim-quote veri
+         -fication |                                                     
+      25 -| `preop_triage/verify.py` | quote verifier (exact or whitespac
+         -e/unicode-normalized substring) |                              
+      54 +| `preop_triage/extract.py` | two per-document LLM extractors (
+         +document facts; anticoagulation facts) with verbatim-quote veri
+         +fication and one repair retry |                                
+      55 +| `preop_triage/verify.py` | quote verifier (exact, normalized,
+         + or punctuation-insensitive substring; digits always exact) |  
+      56  | `preop_triage/rules.py` | the rule engine: one pure function 
+          per rule, `decide()`, `build_issues()` |
+      57  | `preop_triage/pipeline.py` | orchestration and evidence-packe
+          t assembly |
+      58  | `preop_triage/llm.py` | provider abstraction, strict structur
+          ed outputs at temperature 0, disk cache, fail-safe errors |
+      29 -| `preop_triage/assumptions.py` | the numbered assumption list 
+         -(A1–A19) cited by checks and packets |                         
+      59 +| `preop_triage/assumptions.py` | the numbered assumptions (A1–
+         +A19) and the functions that enforce each |                     
+      60  | `baseline.py` | the original naive single-call baseline, kept
+           for comparison |
+      31 -| `run_baseline.py`, `run_evals.py`, `view_report.py` | the pro
+         -vided harness (unchanged interface) |                          
+      32 -| `scripts/` | `profile_data.py`, `run_case.py`, `score_local.p
+         -y` |                                                           
+      33 -| `tests/` | pytest suite (rule engine, normalization, verifier
+         -, extraction fixtures) |                                       
+      34 -| `cache/llm/` | committed LLM response cache so reruns are fre
+         -e and reproducible |                                           
+      35 -| `results/` | baseline and final harness reports and summaries
+         - |                                                             
+      61 +| `run_baseline.py`, `run_evals.py`, `view_report.py` | the pro
+         +vided harness (interface unchanged; viewer extended to show che
+         +cks and evidence) |                                            
+      62 +| `scripts/` | `run_case.py`, `score_local.py`, `profile_data.p
+         +y`, `export_assumptions.py` |                                  
+      63 +| `tests/` | pytest suite (rule engine, normalization, verifier
+         +, extraction fixtures, assumption sync) |                      
+      64 +| `cache/llm/` | committed LLM response cache (760 files, 3 MB)
+         + so reruns are free and reproducible |                         
+      65 +| `results/` | baseline, run-1 and final harness reports, outpu
+         +ts and local summaries |                                       
+      66 +| `notes/` | assumptions, error analysis, data profile, handoff
+         +, submission checklist |                                       
+      67  
+      68  ## Setup
+      69  
+      39 -Requires Python ≥ 3.11 and [`uv`](https://docs.astral.sh/uv/) (
+         -`brew install uv`).                                            
+      40 -`uv run` creates `.venv` and installs `openai` + `pydantic` on 
+         -first use.                                                     
+      41 -                                                               
+      70  ```bash
+      43 -export OPENAI_API_KEY="sk-..."     # only needed for uncached L
+         -LM calls and for run_evals.py                                  
+      71 +export OPENAI_API_KEY="sk-..."     # only for uncached LLM call
+         +s and for make evals                                           
+      72  ```
+      73  
+      46 -### Environment variables                                      
+      47 -                                                               
+      74  | variable | default | purpose |
+      75  |---|---|---|
+      76  | `OPENAI_API_KEY` | — | OpenAI credential (extraction + the ha
+          rness's Evals API call) |
+     ...
+      86  ```bash
+      87  uv run scripts/run_case.py --case-id case_00016 --compact   # d
+          ecision, issues, check statuses
+      88  uv run scripts/run_case.py --index 5                        # f
+          ull evidence packet (JSON)
+      63 -uv run scripts/run_case.py --file my_submission.json        # a
+         - bare submission package                                       
+      89 +uv run scripts/run_case.py --file my_submission.json        # a
+         + bare submission package (needs a key)                         
+      90  ```
+      91  
+      92  From Python:
+     ...
+      101  ## Run the full harness
+      102  
+      103  ```bash
+       78 -make eval        # = make baseline (pipeline over the 50 cases
+          -) + make evals (official scorer) + make summary               
+       79 -make report      # interactive TUI over data/eval_report.json 
+          -(shows checks, evidence, assumptions)                         
+       80 -make score       # print the primary score                    
+       81 -make determinism # 10x replay of record 0 through triage_submi
+          -ssion (cached → identical)                                    
+      104 +make baseline    # pipeline over the 50 cases -> data/baseline
+          +_outputs.jsonl                                                
+      105 +make summary     # scripts/score_local.py -> results/final_sum
+          +mary.{md,json}; same metrics as the harness, plus confusion ma
+          +trix                                                          
+      106 +make evals       # run_evals.py -> data/eval_report.json (need
+          +s OPENAI_API_KEY; creates a remote eval run)                  
+      107 +make score       # print the primary score (uses data/eval_rep
+          +ort.json if present, else results/final_eval_report.json)     
+      108 +make report      # TUI over the same report                   
+      109 +make determinism # 10x replay of record 0 through triage_submi
+          +ssion                                                         
+      110 +make baseline-naive  # the original single-call baseline -> re
+          +sults/baseline_*.json(l) (needs a key)                        
+      111  ```
+      112  
+       84 -Individual pieces:                                            
+       85 -                                                              
+       86 -```bash                                                       
+       87 -make baseline                         # writes data/baseline_o
+          -utputs.jsonl using core.triage_submission                     
+       88 -make evals                            # run_evals.py → data/ev
+          -al_report.json (needs OPENAI_API_KEY; uses the Evals API)     
+       89 -make summary                          # scripts/score_local.py
+          - → results/final_summary.md (+ .json), no API needed          
+       90 -make baseline-naive                   # the original single-ca
+          -ll baseline → results/baseline_*.json(l)                      
+       91 -make profile                          # regenerate notes/data_
+          -profile.md                                                    
+       92 -```                                                           
+       93 -                                                              
+       94 -With the committed cache, `make baseline` and `make summary` r
+          -un without any API                                            
+       95 -calls. `make evals` still needs a key because the provided har
+          -ness creates a remote                                         
+       96 -eval run; `make summary` reproduces the same metrics locally. 
+       97 -                                                              
+      113  ## Tests
+      114  
+      115  ```bash
+      101 -make test        # uv run --group dev python -m pytest tests -
+          -q                                                             
+      116 +make test                                                     
+      117  ```
+      118  
+      104 -- `tests/test_rules.py` – rule-engine boundaries (179/180, 109
+          -/110, 100.4/100.5, day 30/31 and 14/15),                      
+      105 -  most-recent selection, entered-in-error labs, missing date/r
+          -isk, anticoagulation plan completeness,                       
+      106 -  decision precedence. No LLM, no network.                    
+      107 -- `tests/test_normalize_verify.py` – lab/drug canonicalization
+          -, unit conversion, date parsing, quote verifier.              
+      108 -- `tests/test_extraction_fixtures.py` – the extraction layer e
+          -nd to end against cached responses                            
+      109 -  (fails loudly if the fixture is missing instead of calling t
+          -he API).                                                      
+      119 +| file | n | covers |                                         
+      120 +|---|---|---|                                                 
+      121 +| `tests/test_rules.py` | 50 | rule-engine boundaries (179/180
+          +, 109/110, 100.4/100.5, day 30/31 and 14/15), most-recent sele
+          +ction, entered-in-error labs, missing date/risk, plan complete
+          +ness, decision precedence |                                   
+      122 +| `tests/test_normalize_verify.py` | 25 | lab/drug canonicaliz
+          +ation, unit conversion, date parsing, quote verifier (incl. mo
+          +jibake and dropped punctuation) |                             
+      123 +| `tests/test_extraction_fixtures.py` | 3 | extraction layer e
+          +nd to end against a committed fixture cache; a dead provider y
+          +ields NEEDS_FOLLOW_UP, never READY |                          
+      124 +| `tests/test_assumptions.py` | 3 | every assumption names cod
+          +e that exists; `notes/assumptions.md` is current |            
+      125 +| `tests/test_baseline_naive.py` | 3 | the naive baseline's ca
+          +ll shape (mocked client) |                                    
+      126  
+      127 +None of the tests call the network. The fixture test fails lou
+          +dly on a cache miss instead of                                
+      128 +calling the API; regenerate with                              
+      129 +`LLM_CACHE_DIR=tests/fixtures/llm_cache uv run scripts/run_cas
+          +e.py --case-id case_00016 --compact`.                         
+      130 +                                                              
+      131  ## Output contract
+      132  
+      113 -`decision`, `issues[].category` and `explanation` are what the
+          - harness scores; everything                                   
+      133 +The harness scores `decision` and the set of `issues[].categor
+          +y`, and checks that the JSON                                  
+      134 +parses. `explanation` and `issues[].description` are kept so t
+          +he stock viewer works; everything                             
+      135  else is for the nurse reviewer:
+      136  
+      137  ```json
+     ...
+      139    "case_id": "...", "patient_id": "...",
+      140    "decision": "NEEDS_FOLLOW_UP",
+      141    "decision_rationale": "Not ready because of: RULE_3 Plan for
+            apixaban.",
+      142 +  "explanation": "(same as decision_rationale)",              
+      143    "reference_dates": {"procedure_date": "2026-03-01", "procedu
+           re_date_source": {"source": "procedure.procedure_date"}, "revi
+           ew_time": "...", "procedure_risk": "LOW"},
+      122 -  "issues": [{"category": "ANTICOAGULATION_MANAGEMENT", "rule"
+          -: "RULE_3", "summary": "...", "evidence": [{"source": "medicat
+          -ions[1]", "value": "apixaban (active=True)"}, {"source": "docu
+          -ment", "doc_id": "...", "doc_type": "...", "date": "...", "quo
+          -te": "Hold Xarelto for the 2 days before surgery", "verified":
+          - true}], "resolution": "..."}],                               
+      123 -  "checks": [{"rule": "RULE_2", "name": "CBC within window", "
+          -status": "PASS", "inputs": {"result_date": "2026-02-11", "days
+          -_before_procedure": 18, "window_days": {"LOW": 30}}, "evidence
+          -": [...]}],                                                   
+      144 +  "issues": [{"category": "ANTICOAGULATION_MANAGEMENT", "rule"
+          +: "RULE_3", "summary": "...", "resolution": "...",            
+      145 +              "evidence": [{"source": "medications[1]", "value
+          +": "apixaban (active=True)"},                                 
+      146 +                           {"source": "document", "doc_id": ".
+          +..", "doc_type": "...", "date": "...", "quote": "Hold Xarelto 
+          +for the 2 days before surgery", "verified": true}]}],         
+      147 +  "checks": [{"rule": "RULE_2", "name": "CBC within window", "
+          +status": "PASS", "category": "REQUIRED_TESTING", "summary": ".
+          +..",                                                          
+      148 +              "inputs": {"result_date": "2026-02-11", "days_be
+          +fore_procedure": 18, "window_days": {"LOW": 30}}, "evidence": 
+          +[...], "assumptions": ["A1", "A2", "A3", "A5", "A11"]}],      
+      149    "assumptions_applied": ["A1", "A2", "..."],
+      125 -  "meta": {"model": "gpt-4.1-mini", "pipeline_version": "1.0.0
+          -", "llm_failures": 0, "unverified_quotes": 0}                 
+      150 +  "meta": {"model": "gpt-4.1-mini", "provider": "openai", "pip
+          +eline_version": "1.0.0", "llm_calls": 0, "llm_cache_hits": 7, 
+          +"llm_failures": 0, "unverified_quotes": 0, "unverified_quote_d
+          +etails": [], "documents_extracted": 5, "documents_failed": []}
+      151  }
+      152  ```
+      153  
+      129 -Every issue carries at least one evidence pointer to a structu
+          -red field path or a                                           
+      130 -`doc_id` plus a verbatim quote that was verified against the d
+          -ocument text.                                                 
+      154 +The schema is `preop_triage/schemas.py::TriagePacket`; all 50 
+          +committed outputs validate against it.                        
+      155 +Every issue carries at least one evidence pointer to a structu
+          +red field path or a `doc_id` plus a                           
+      156 +verbatim quote that was verified against the document text.   
+
+⏺ Write(WRITEUP.md)
+  ⎿  Added 150 lines, removed 194 lines
+        1  # Pre-Op Scheduling Triage: approach and results
+        2  
+        3 -## 1. Problem framing                                         
+        3 +**TL;DR**                                                     
+        4  
+        5 -Each submission is a small FHIR-like bundle (structured proced
+          -ure/vitals/labs/meds plus 3–8                                 
+        6 -free-text documents of up to ~2,200 characters). The policy ha
+          -s four rules and three statuses.                              
+        7 -The data profile (`notes/data_profile.md`) showed where the di
+          -fficulty actually is:                                         
+        5 +- **Approach:** the LLM only *reads*. Two per-document extract
+          +ors return strict-schema facts with verbatim quotes; code veri
+          +fies every quote against the document, then a pure rule engine
+          + applies the four policy rules and emits a decision plus an au
+          +ditable evidence packet.                                      
+        6 +- **Headline results (50 labelled cases, gpt-4.1-mini):** naiv
+          +e single-call baseline 73.3% on the harness (decision 70%, cat
+          +egories 52%, 1 false READY). Final pipeline 100% on all three 
+          +metrics, 0 false READYs, deterministic 10/10 replays.         
+        7 +- **Key design choice:** an unverifiable or missing fact can o
+          +nly move a check toward UNKNOWN, never toward PASS, so every f
+          +ailure mode of the model degrades to NEEDS_FOLLOW_UP instead o
+          +f a false READY.                                              
+        8 +- **Honesty:** the 100% is in-sample. Labels were visible whil
+          +e iterating; the first full run scored 98.0% and two prompts w
+          +ere revised after error analysis. No label disagreements were 
+          +found.                                                        
+        9 +- **Everything replays from a committed cache**, so tests, the
+          + full run, the local scorer and the determinism check run from
+          + a clean clone without an API key in a few seconds.           
+       10  
+        9 -- The structured fields are not the truth. 48/50 cases carry b
+          -lood pressures in note text, 10 carry                         
+       10 -  temperatures in °C, 28 notes say "see flowsheet", 39 distinc
+          -t `documents[].type` strings cover                            
+       11 -  the same handful of real document kinds, and the H&P title i
+          -s sometimes misspelled.                                       
+       12 -- Deciding facts live only in text: pending signatures, consen
+          -ts for a different operation, "H&P not                        
+       11 +## 1. Problem and data                                        
+       12 +                                                              
+       13 +Each submission is a small FHIR-like bundle (structured proced
+          +ure, vitals, labs, meds, plus 3–8                             
+       14 +free-text documents of up to 2,200 characters). The policy has
+          + four rules and three statuses.                               
+       15 +Profiling the sample ([notes/data_profile.md](notes/data_profi
+          +le.md)) showed where the difficulty is:                       
+       16 +                                                              
+       17 +- **The structured fields are not the truth.** 48/50 cases car
+          +ry blood pressures in note text, 10 carry                     
+       18 +  temperatures in °C, 28 notes say "see flowsheet", and 39 dis
+          +tinct `documents[].type` strings label                        
+       19 +  the same handful of real document kinds (the H&P title is so
+          +metimes misspelled).                                          
+       20 +- **The deciding facts live in prose:** pending signatures, co
+          +nsents for a different operation, "H&P not                    
+       21    on file", anticoagulants reported at intake but absent from 
+           the med list, perioperative plans that
+       22    defer the post-op side, procedure dates that are "pending OR
+            availability".
+       15 -- The asymmetry of errors is extreme: a false READY sends an u
+          -nreviewed patient to the OR, while a                          
+       16 -  false NEEDS_FOLLOW_UP costs a nurse a minute. The design has
+          - to make the safe direction the                               
+       17 -  default whenever the system is unsure.                      
+       23 +- **Errors are asymmetric.** A false READY sends an unreviewed
+          + patient to the OR; a false                                   
+       24 +  NEEDS_FOLLOW_UP costs a nurse a minute. The safe direction h
+          +as to be the default whenever the                             
+       25 +  system is unsure.                                           
+       26  
+       19 -The baseline (one prompt, one model call that both reads and d
+          -ecides) scored 73.3% on the harness                           
+       20 -with 70% decision accuracy, 52% category accuracy, and one fal
+          -se READY (case_00026, a missing CBC).                         
+       21 -Its failure mode is the expected one: a single call has to be 
+          -right about everything at once, cannot                        
+       22 -show its work, and is not deterministic.                      
+       27 +The naive baseline (one prompt, one call that reads and decide
+          +s) fails the way one would expect: it                         
+       28 +invents criteria (A1c, CMP for low risk), reports a category p
+          +er observation instead of per failed                          
+       29 +rule, produced one invalid JSON, one false READY on a missing 
+          +CBC, and is not stable run to run.                            
+       30  
+       24 -## 2. Architecture: the LLM extracts, code decides            
+       31 +## 2. Architecture                                            
+       32  
+       33  ```
+       27 -raw JSON ─► normalize (code) ─► extract facts (LLM, structured
+          -, per document, 2 extractors)                                 
+       34 +raw JSON ─► normalize (code) ─► extract facts (LLM, strict sch
+          +ema, per document, 2 extractors)                              
+       35           ─► verify quotes (code) ─► rule engine (pure function
+           s) ─► decision + evidence packet
+       36  ```
+       37  
+       31 -**Normalize (code, `normalize.py`).** Dates to UTC calendar da
+          -ys; °C→°F; lab canonicalization from                          
+       32 -`code` *and* `display` ("Hemogram/CBC", "LAB-CMP … w/ Magnesiu
+          -m" count; "BMP" never equals "CMP");                          
+       33 -drug brand→generic with an explicit antiplatelet exclusion lis
+          -t; the most-recent-reading selector                           
+       34 -with a conservative tie-break.                                
+       38 +| stage | module | what it does |                             
+       39 +|---|---|---|                                                 
+       40 +| Normalize | `normalize.py` | dates → UTC calendar days; °C→°
+          +F; lab canonicalization from `code` *and* `display` ("Hemogram
+          +/CBC", "LAB-CMP … w/ Magnesium"; BMP ≠ CMP); drug brand→generi
+          +c with an explicit antiplatelet exclusion; most-recent-reading
+          + selector with a conservative tie-break |                     
+       41 +| Extract | `extract.py`, `schemas.py` | **Document facts** (w
+          +hat the text really is, H&P date, consent signature status and
+          + the procedure it names, a stated procedure date, every measur
+          +ed BP/temperature with clock time) and **anticoagulation facts
+          +** (per-drug "currently taking" status; the plan's pre-op and 
+          +post-op parts with `explicit` and `deferred` flags). The secon
+          +d extractor runs only on documents matching an anticoagulation
+          + regex. Each call sees one document plus the planned procedure
+          + name; it never sees the policy and is never asked for a decis
+          +ion. Temperature 0, strict JSON schema. |                     
+       42 +| Verify | `verify.py` | every positive claim must quote the d
+          +ocument; the quote must be an exact, whitespace/unicode-normal
+          +ized, or punctuation-insensitive substring with every digit in
+          +tact. One repair call lists failed quotes; what still fails st
+          +ays *unverified* and can only weaken a decision |             
+       43 +| Rules | `rules.py` | one pure function per sub-rule (H&P win
+          +dow, signed consent, CBC, CMP, plan per current anticoagulant,
+          + BP, temperature, plus procedure-date and risk reference check
+          +s). Each returns a `Check` with `PASS / FAIL / UNKNOWN / NOT_A
+          +PPLICABLE`, the inputs it used, evidence, and the assumption I
+          +Ds it relied on. Precedence: any safety FAIL → NOT_CLEARED; el
+          +se any FAIL or UNKNOWN → NEEDS_FOLLOW_UP; else READY |        
+       44 +| Fail-safe | `llm.py`, `rules.check_extraction` | provider er
+          +ror, timeout or schema failure marks the document unreadable, 
+          +which is itself an UNKNOWN check → NEEDS_FOLLOW_UP + MISSING_R
+          +EQUIRED_DATA naming the document |                            
+       45 +| Reproducibility | `llm.py` | responses cached on disk keyed 
+          +by sha256(provider, model, prompt, schema); the cache is commi
+          +tted |                                                        
+       46  
+       36 -**Extract (LLM, `extract.py`).** Two extractors run on every d
+          -ocument with strict JSON-schema                               
+       37 -outputs at temperature 0: *document facts* (what the text real
+          -ly is, H&P completion date, consent                           
+       38 -signature status and the procedure it names, a stated procedur
+          -e date, every measured BP/temperature                         
+       39 -with its clock time, "vitals deferred" flags) and *anticoagula
+          -tion facts* (per-drug "currently                              
+       40 -taking" status as of that note, and the plan's pre-op / post-o
+          -p parts with an `explicit` flag and a                         
+       41 -deferral flag). The second extractor only runs on documents wh
+          -ose text matches a broad                                      
+       42 -anticoagulation regex, which is a code-side guard rather than 
+          -an LLM judgement. Each extractor sees                         
+       43 -one document plus the planned procedure name; it never sees th
+          -e policy and is never asked for a                             
+       44 -decision. Per-document calls keep each prompt small, make the 
+          -cache granular, and allow parallelism.                        
+       47 +**Why this split.** The policy is a small decision table, and 
+          +decision tables belong in code where                          
+       48 +they can be unit-tested at their boundaries (day 30/31, 179/18
+          +0), audited, and changed without                              
+       49 +re-prompting. Reading messy clinical prose is the only genuine
+          +ly hard part, so it is the only part                          
+       50 +delegated to a model, and even there the model must point at t
+          +ext the code can check.                                       
+       51  
+       46 -**Verify (code, `verify.py`).** Every positive claim must carr
+          -y a quote, and every quote must be an                         
+       47 -exact or whitespace/unicode-normalized substring of the cited 
+          -document. A failing quote triggers one                        
+       48 -repair call that lists the offending quotes; anything still un
+          -verified is kept only as an *unverified*                      
+       49 -fact. The rule engine treats unverified facts asymmetrically: 
+          -they can turn a PASS into UNKNOWN but                         
+       50 -can never produce a PASS. This is the anti-hallucination guard
+          -, and the extraction fixture test                             
+       51 -asserts that every reading driving a decision was verified.   
+       52 +**The evidence packet** is built for the nurse who reviews eve
+          +ry non-READY case and samples READY                           
+       53 +ones: `decision_rationale` (one sentence naming the deciding r
+          +ules), `reference_dates` (procedure date                      
+       54 +and where it came from, risk, review time), `issues[]` (catego
+          +ry, rule, summary, a concrete                                 
+       55 +`resolution`, and `evidence[]` where each item is a structured
+          + field path or a `doc_id` + verbatim                          
+       56 +`quote` + `verified` flag), `checks[]` (every rule including P
+          +ASSes, with the inputs used, so a sampled                     
+       57 +READY is auditable without re-reading the chart), `assumptions
+          +_applied`, and `meta` (model, failures,                       
+       58 +unverified-quote counts). `view_report.py` renders all of it; 
+          +the schema is in README.                                      
+       59  
+       53 -**Rule engine (code, `rules.py`).** One pure function per sub-
+          -rule (H&P window, signed consent,                             
+       54 -CBC, CMP, anticoagulation plan per current drug, BP, temperatu
+          -re, plus procedure-date and risk                              
+       55 -reference checks). Each returns a `Check` with `PASS | FAIL | 
+          -UNKNOWN | NOT_APPLICABLE`, the inputs                         
+       56 -it used (dates, day deltas, thresholds), the reference dates, 
+          -the evidence and the assumption IDs it                        
+       57 -relied on. Precedence: any `ACUTE_SAFETY_EXCLUSION` FAIL → `NO
+          -T_CLEARED`; otherwise any FAIL or                             
+       58 -UNKNOWN → `NEEDS_FOLLOW_UP`; otherwise `READY`. A NOT_CLEARED 
+          -patient still lists every follow-up                           
+       59 -issue. The engine is covered by 74 tests that never touch the 
+          -LLM.                                                          
+       60 +## 3. Assumptions                                             
+       61  
+       61 -**Fail-safe.** Any provider error, timeout or schema failure i
+          -s caught in `llm.py` and recorded; the                        
+       62 -affected document becomes "unreadable", which is itself an UNK
+          -NOWN check, so the case degrades to                           
+       63 -NEEDS_FOLLOW_UP with a `MISSING_REQUIRED_DATA` issue naming th
+          -e document. `tests/test_extraction_fixtures.py`               
+       64 -proves that a dead provider yields NEEDS_FOLLOW_UP, never READ
+          -Y.                                                            
+       62 +Nineteen numbered interpretations, each cited by the checks th
+          +at rely on it and each pointing to the                        
+       63 +function that enforces it. Full text and code pointers: [notes
+          +/assumptions.md](notes/assumptions.md)                        
+       64 +(generated from `preop_triage/assumptions.py`; a test fails if
+          + either drifts). The ones that decide cases:                  
+       65  
+       66 -**Reproducibility.** Provider and model are configurable; resp
+          -onses are cached on disk keyed by a hash                      
+       67 -of (provider, model, prompt, schema). The cache is committed, 
+          -so `make baseline`, `make summary`,                           
+       68 -`make determinism` and the tests run without an API key, and t
+          -he determinism check is trivially 100%.                       
+       69 -                                                              
+       70 -Why this split: the policy is a small decision table, and deci
+          -sion tables belong in code where they                         
+       71 -can be unit-tested at their boundaries (179/180, day 30/31), a
+          -udited, and changed without re-prompting.                     
+       72 -What is genuinely hard, reading messy clinical prose, is the o
+          -nly part delegated to the model, and                          
+       73 -even there the model is constrained to point at text we can ch
+          -eck.                                                          
+       74 -                                                              
+       75 -## 3. The evidence packet, designed for the nurse             
+       76 -                                                              
+       77 -A pre-op nurse reviews every non-READY case and a sample of RE
+          -ADY ones, so the packet is built                              
+       78 -around two questions: *what blocks this patient, and how do I 
+          -confirm it in under a minute?*                                
+       79 -                                                              
+       80 -- `decision_rationale`: one sentence naming the deciding rule(
+          -s).                                                           
+       81 -- `reference_dates`: the procedure date, where it came from (s
+          -tructured field or a `doc_id` + quote),                       
+       82 -  the risk category, and the review time, because every window
+          - hinges on these.                                             
+       83 -- `issues[]`: category, rule, a one-line summary, a concrete `
+          -resolution` ("Obtain a plan naming                            
+       84 -  apixaban with pre-op hold and post-op resumption instruction
+          -s"), and `evidence[]` where each item                         
+       85 -  is either a structured field path (`labs[2]`, `medications[1
+          -]`, `procedure.procedure_risk`) or a                          
+       86 -  `doc_id` + `doc_type` + `date` + verbatim `quote` with a `ve
+          -rified` flag. No prose evidence without a                     
+       87 -  pointer.                                                    
+       88 -- `checks[]`: every rule including the PASSes, with the inputs
+          - used ("CBC 2026-02-11, 18 days before,                       
+       89 -  limit 30"), so a sampled READY case is auditable without re-
+          -reading the chart.                                            
+       90 -- `assumptions_applied`: the IDs of the interpretations that w
+          -ere exercised, which lets a reviewer                          
+       91 -  disagree with an interpretation rather than with the system.
+       92 -- `meta`: model, pipeline version, LLM failures and unverified
+          --quote counts, so an operator can tell a                      
+       93 -  clean run from a degraded one.                              
+       94 -                                                              
+       95 -`view_report.py` renders all of this in the provided TUI (issu
+          -es with evidence pointers, the full                           
+       96 -check list with PASS/FAIL/UNKNOWN colouring, reference dates, 
+          -assumptions, meta).                                           
+       97 -                                                              
+       98 -## 4. Assumptions (numbered; cited by checks and packets)     
+       99 -                                                              
+      100 -(Source of truth: `preop_triage/assumptions.py`.)             
+      101 -                                                              
+      102 -- **A1.** All timestamps are treated as UTC and reduced to cal
+          -endar dates; windows are whole-day counts.                    
+      103 -- **A2.** 'Within N days' is inclusive: 0 <= procedure_date - 
+          -item_date <= N. Day 30 passes, day 31 fails; day 14 passes, da
+          -y 15 fails.                                                   
+      104 -- **A3.** Items dated after the procedure date are not pre-ope
+          -rative and are excluded; the most recent qualifying item on or
+          - before the procedure date is used.                           
+      105 -- **A4.** Procedure date: the structured field wins; if null, 
+          -a date explicitly stated as the scheduled/target procedure dat
+          -e in the documents is used only when every stated date agrees,
+          - no document says the date is still TBD/pending, and the date 
+          -is not earlier than the document stating it. Otherwise -> unkn
+          -own -> MISSING_REQUIRED_DATA, and the window checks that depen
+          -d on it are folded into that single issue.                    
+      106 -- **A5.** Procedure risk comes only from the structured field.
+          - Missing or not LOW/MODERATE/HIGH -> MISSING_REQUIRED_DATA. Te
+          -sting checks still FAIL when they fail under every possible ri
+          -sk (e.g. no CBC at all) and PASS only when they pass under eve
+          -ry risk.                                                      
+      107 -- **A6.** Rule 4 review time is metadata.submission_received_a
+          -t (falls back to the latest vital). Readings are not discarded
+          - for age; the most recent reading per vital type is used.     
+      108 -- **A7.** Vitals come from the structured list and from free t
+          -ext (nursing/intake notes, H&P exam lines). 'See flowsheet', d
+          -eferred vitals and patient-reported home logs are not readings
+          -. A text reading carries the document date plus the clock time
+          - if the note states one.                                      
+      109 -- **A8.** Most-recent vital tie-break: order by date then time
+          -. If the latest-dated readings include one without a time, or 
+          -share the same time, the more abnormal reading wins (conservat
+          -ive).                                                         
+      110 -- **A9.** No reading at all for a required vital (BP or temper
+          -ature) -> unknown -> MISSING_REQUIRED_DATA, never READY.      
+      111 -- **A10.** Temperatures in Celsius are converted (F = C*9/5 + 
+          -32) before the strict > 100.4 F comparison.                   
+      112 -- **A11.** CBC/CMP are recognized from code and display ('Hemo
+          -gram/CBC', 'CBC w/ Differential', 'LAB-CMP', 'CMP w/ Magnesium
+          -'); a BMP is never a CMP. Only status final/corrected/amended 
+          -counts; entered-in-error, cancelled, preliminary results are s
+          -kipped and the next most recent qualifying result is used.    
+      113 -- **A12.** A document is an H&P when its text is an H&P, regar
+          -dless of the type label; notes that merely reference an H&P ('
+          -not on file') are not H&Ps. The most recent completed H&P is c
+          -hecked, dated by its stated date of service, else the document
+          - date. Whether it is specifically a pre-op evaluation is repor
+          -ted but not required.                                         
+      114 -- **A13.** Consent passes only with a consent signed by the pa
+          -tient (a physician attestation alone is not a signature) for t
+          -he planned procedure. A signed consent is not invalidated by a
+          -nother pending/unsigned form; a signed consent for a different
+          - procedure does not count.                                    
+      115 -- **A14.** Anticoagulants: warfarin, apixaban, rivaroxaban, da
+          -bigatran, edoxaban, betrixaban, enoxaparin, dalteparin, fondap
+          -arinux, heparin (brand names mapped to generics). Antiplatelet
+          -s (aspirin, clopidogrel, ticagrelor, prasugrel, dipyridamole) 
+          -are not anticoagulants.                                       
+      116 -- **A15.** 'Currently taking' is resolved from the med list pl
+          -us notes: active=true -> current; active=false -> not current 
+          -unless the most recent note says current (conflict -> unknown)
+          -; active=null -> the most recent note decides, else unknown; a
+          - drug a note says the patient currently takes counts even if a
+          -bsent from the list. Unknown status -> MISSING_REQUIRED_DATA. 
+      117 -- **A16.** A plan is complete only if the most recent plan doc
+          -ument naming the current drug (brand/generic equivalence appli
+          -ed) gives an explicit pre-op instruction (hold/stop with timin
+          -g) AND an explicit post-op instruction (resume/restart timing 
+          -or bridge). Deferrals ('to be determined by the surgical team'
+          -, 'will be addressed after surgery') and plans naming a differ
+          -ent drug are incomplete/ambiguous -> ANTICOAGULATION_MANAGEMEN
+          -T.                                                            
+      118 -- **A17.** Fail-safe: an LLM error, schema failure or unverifi
+          -able quote degrades the affected fact to unknown. Unknown fact
+          -s can turn a PASS into UNKNOWN but never a FAIL into PASS; any
+          - UNKNOWN check yields NEEDS_FOLLOW_UP.                        
+      119 -- **A18.** Category string is ANTICOAGULATION_MANAGEMENT; the 
+          -PDF's 'ANTICOAGULATION_MANAGEMENTJSON' is a PDF extraction art
+          -ifact (the harness Literal and labels use the former).        
+      120 -- **A19.** Issues: one per failing sub-check; unknowns are rep
+          -orted as MISSING_REQUIRED_DATA, one per missing datum. A NOT_C
+          -LEARED patient still lists every follow-up issue.             
+      121 -                                                              
+      122 -## 5. Results                                                 
+      123 -                                                              
+      124 -All numbers from `scripts/score_local.py`, which reproduces th
+          -e harness metrics locally; the                                
+      125 -official `run_evals.py` reports are in `results/baseline_eval_
+          -report.json` (73.33) and                                      
+      126 -`results/final_eval_report.json` (100.0). Model: `gpt-4.1-mini
+          -` in both.                                                    
+      127 -                                                              
+      128 -| metric | naive baseline | final pipeline |                  
+       66 +| ID | interpretation | enforced in |                         
+       67  |---|---|---|
+      130 -| json_schema_valid | 98.0% | 100.0% |                        
+      131 -| decision_match_oracle | 70.0% | 100.0% |                    
+      132 -| issue_categories_match_oracle | 52.0% | 100.0% |            
+      133 -| **aggregate (harness primary score)** | **73.33%** | **100.0
+          -%** |                                                         
+      134 -| false READYs | 1 (case_00026) | 0 |                         
+      135 -| determinism (10× replay, record 0) | not stable | 100% decis
+          -ion / JSON / exact output |                                   
+      136 -| LLM calls per full run | 50 | 342 cold, 0 from cache |      
+       68 +| A2 | windows are inclusive whole days: day 30 passes, day 31
+          + fails | `normalize.within_window` |                          
+       69 +| A4 | procedure date: structured field, else a stated schedul
+          +ed date only if all stated dates agree, none says TBD, and it 
+          +is not before its own document; otherwise unknown → one MISSIN
+          +G_REQUIRED_DATA issue that absorbs the window checks | `pipeli
+          +ne._procedure_date` |                                         
+       70 +| A5 | risk comes only from the structured field; with risk un
+          +known a lab check still FAILs if it fails under every risk (no
+          + CBC at all) and PASSes only if it passes under every risk | `
+          +rules.check_lab` |                                            
+       71 +| A7, A9 | vitals in note text count (H&P exam lines, nursing 
+          +addenda); "see flowsheet" and home readings do not; no reading
+          + at all → MISSING_REQUIRED_DATA, never READY | `pipeline._read
+          +ings`, `rules.check_vital` |                                  
+       72 +| A8 | same-day readings with a missing or equal clock time: t
+          +he more abnormal wins | `normalize.most_recent_reading` |     
+       73 +| A11 | only final/corrected/amended labs count; entered-in-er
+          +ror is skipped and the next most recent used | `rules._latest_
+          +lab` |                                                        
+       74 +| A12 | any document whose *text* is an H&P counts (incl. well
+          +ness/establish-care); "H&P not on file" references do not | `p
+          +ipeline._hps` |                                               
+       75 +| A13 | consent needs the patient's signature for the planned 
+          +procedure; a later signed consent supersedes a pending one; si
+          +gned-for-another-procedure fails | `rules.check_consent` |    
+       76 +| A15 | "currently taking" = med list `active`, resolved by th
+          +e most recent note when the flag is null or absent; a note say
+          +ing the patient takes a drug missing from the list makes it cu
+          +rrent | `pipeline._drugs` |                                   
+       77 +| A16 | a plan is complete only if the most recent plan naming
+          + the current drug has explicit pre-op *and* post-op instructio
+          +ns and no deferral | `rules.check_anticoagulation` |          
+       78 +| A17 | unverified facts and LLM failures can lower a check to
+          + UNKNOWN but never raise one to PASS | `verify`, `llm`, `rules
+          +.decide` |                                                    
+       79  
+      138 -**Confusion matrices** (rows = label, columns = predicted):   
+       80 +## 4. Results                                                 
+       81  
+      140 -Baseline:                                                     
+       82 +Official reports from the provided `run_evals.py`: `results/ba
+          +seline_eval_report.json` (73.33) and                          
+       83 +`results/final_eval_report.json` (100.0). `scripts/score_local
+          +.py` reproduces the same metrics                              
+       84 +locally and adds the confusion matrix (`results/*_summary.md`)
+          +. Model: gpt-4.1-mini throughout.                             
+       85  
+      142 -| label \ predicted | READY | NEEDS_FOLLOW_UP | NOT_CLEARED | 
+          -INVALID |                                                     
+      143 -|---|---|---|---|---|                                         
+      144 -| READY (17) | 6 | 11 | 0 | 0 |                               
+      145 -| NEEDS_FOLLOW_UP (25) | 1 | 24 | 0 | 0 |                     
+      146 -| NOT_CLEARED (8) | 0 | 2 | 5 | 1 |                           
+       86 +| metric | naive baseline | pipeline run 1 | final pipeline | 
+       87 +|---|---|---|---|                                             
+       88 +| json_schema_valid | 98.0% | 100% | 100% |                   
+       89 +| decision_match_oracle | 70.0% | 98.0% | 100% |              
+       90 +| issue_categories_match_oracle | 52.0% | 96.0% | 100% |      
+       91 +| **aggregate (harness primary score)** | **73.33%** | **98.0%
+          +** | **100.0%** |                                             
+       92 +| false READYs | 1 (case_00026) | 0 | 0 |                     
+       93 +| determinism (10× replay, record 0) | unstable | — | 100% dec
+          +ision / JSON / exact output |                                 
+       94  
+      148 -Final:                                                        
+       95 +Decision confusion (rows = label, columns = predicted). Baseli
+          +ne: READY 6/11/0, NEEDS_FOLLOW_UP                             
+       96 +1/24/0, NOT_CLEARED 0/2/5 (+1 invalid). Final: diagonal 17 / 2
+          +5 / 8.                                                        
+       97 +Per-category issue precision and recall (final): 100% / 100% f
+          +or all five categories                                        
+       98 +(12 REQUIRED_DOCUMENTATION, 7 REQUIRED_TESTING, 7 ANTICOAGULAT
+          +ION_MANAGEMENT, 8 ACUTE_SAFETY_EXCLUSION,                     
+       99 +9 MISSING_REQUIRED_DATA labelled occurrences). Baseline per-ca
+          +tegory numbers: `results/baseline_summary.md`.                
+      100  
+      150 -| label \ predicted | READY | NEEDS_FOLLOW_UP | NOT_CLEARED | 
+          -INVALID |                                                     
+      151 -|---|---|---|---|---|                                         
+      152 -| READY (17) | 17 | 0 | 0 | 0 |                               
+      153 -| NEEDS_FOLLOW_UP (25) | 0 | 25 | 0 | 0 |                     
+      154 -| NOT_CLEARED (8) | 0 | 0 | 8 | 0 |                           
+      101 +**Verification telemetry (final):** the live run made 342 call
+          +s with 0 provider failures. Replaying                         
+      102 +from the committed cache touches 326 cached responses (fewer r
+          +epair calls are triggered after the                           
+      103 +verifier hardening below) and leaves 2 unverified quotes in 50
+          + cases, both correct rejections                               
+      104 +(a spliced quote and a unit-less quote) with no decision impac
+          +t.                                                            
+      105  
+      156 -**Per-category issue precision / recall (final):** 100% / 100%
+          - for all five categories                                      
+      157 -(REQUIRED_DOCUMENTATION 12, REQUIRED_TESTING 7, ANTICOAGULATIO
+          -N_MANAGEMENT 7,                                               
+      158 -ACUTE_SAFETY_EXCLUSION 8, MISSING_REQUIRED_DATA 9 labelled occ
+          -urrences). Baseline per-category                              
+      159 -numbers are in `results/baseline_summary.md`.                 
+      106 +**Cost and latency:** ~6.5 calls per case; a cold run of 50 ca
+          +ses is roughly 15–25 minutes and about                        
+      107 +$0.40 at list prices; the cached replay takes 2 seconds.      
+      108  
+      161 -**Verification telemetry (final):** 0 provider failures, 2 unv
+          -erified quotes in 50 cases (both correct                      
+      162 -rejections of a spliced or unit-less quote; neither affected a
+          - decision).                                                   
+      109 +## 5. Error analysis                                          
+      110  
+      164 -The first full pipeline run scored 98.0% (2 misses); the final
+          - number follows one iteration of error                        
+      165 -analysis. Because the labels were visible while iterating, 100
+          -% is an in-sample figure.                                     
+      111 +Full detail in [notes/error_analysis.md](notes/error_analysis.
+          +md). Fixes were always to the general                         
+      112 +cause; no case IDs appear in the code.                        
+      113  
+      167 -## 6. Error analysis                                          
+      168 -                                                              
+      169 -Full detail in `notes/error_analysis.md`. Grouped by root caus
+          -e:                                                            
+      170 -                                                              
+      171 -- **Extraction (2 misses in run 1, both fixed generally).**   
+      172 -  (i) The document extractor reported a consent *signature* da
+          -te as the procedure date when the                             
+      173 -  structured date was null, so a fake date made the CBC window
+          - run and fail. Fix: a procedure date                          
+      174 -  must be an explicit scheduled/target date; signature, visit,
+          - service and lab dates are excluded;                          
+      175 -  code rejects a stated date earlier than its own document and
+          - treats any "TBD" statement as a                              
+      176 -  conflict → unknown (A4).                                    
+      114 +- **Extraction (2 misses in run 1, both fixed).**             
+      115 +  (i) With the structured procedure date null, the extractor r
+          +eturned a consent's *signature* date as                       
+      116 +  the procedure date, so the CBC window ran and failed. Fix: t
+          +he prompt defines a procedure date as an                      
+      117 +  explicit scheduled/target date and excludes signature, visit
+          +, service and lab dates; code rejects a                       
+      118 +  stated date earlier than its own document and treats any ver
+          +ified "TBD" statement as a conflict (A4).                     
+      119    (ii) The anticoagulation extractor took an H&P line ("contin
+           ue home medications except as directed
+      178 -  by perioperative instructions") as a perioperative plan; bei
+          -ng newer, it shadowed the real plan.                          
+      179 -  Fix: a plan must give recommendations for a *named* anticoag
+          -ulant; the generic pattern is called                          
+      180 -  out as not-a-plan; when a later note supersedes an earlier c
+          -omplete plan, both are cited.                                 
+      181 -- **Normalization (0 misses, but 68 → 2 unverified quotes).** 
+          -Degree-sign mojibake and dropped                              
+      182 -  parentheses in model quotes were rejected by the verifier an
+          -d the facts dropped. Fixes: the verifier                      
+      183 -  removes control characters (with the character they garbled)
+          - and degree signs, and has a                                  
+      120 +  by perioperative instructions") as a perioperative plan for 
+          +Xarelto; being newer, it shadowed the                         
+      121 +  real plan. Fix: a plan must give recommendations for a *name
+          +d* anticoagulant and the generic pattern                      
+      122 +  is called out as not-a-plan; when a later note supersedes an
+          + earlier complete plan, both are cited.                       
+      123 +- **Normalization (0 misses; 68 → 2 unverified quotes).** The 
+          +model writes `°F` as a control character                      
+      124 +  plus "6" and sometimes drops parentheses; those quotes were 
+          +rejected and the facts dropped. The                           
+      125 +  verifier now strips control characters (with the character t
+          +hey garbled) and degree signs and has a                       
+      126    punctuation-insensitive tier that keeps every digit exact. A
+            paraphrased "vitals not recorded" quote
+      185 -  (52 occurrences, no decision impact) was removed by requirin
+          -g a quoted phrase for that flag.                              
+      186 -- **Rule interpretation (0 misses).** The boundary cases in th
+          -e data (H&P at day 30 and 31, CBC at                          
+      187 -  day 15 for HIGH risk, DBP exactly 110, 37.9 °C = 100.2 °F) a
+          -ll resolve under A2/A10 as the labels                         
+      188 -  expect.                                                     
+      189 -- **Label disagreement (0).** I found no label that contradict
+          -s the policy. Places where a different                        
+      190 -  reading was possible (missing temperature, note-reported ant
+          -icoagulants, establish-care H&Ps,                             
+      191 -  null procedure date not cascading into documentation/testing
+          - issues) are listed in the notes.                             
+      127 +  (52 occurrences, no decision impact) was removed by requirin
+          +g the quoted phrase.                                          
+      128 +- **Rule interpretation (0 misses).** The boundary cases prese
+          +nt in the data (H&P at day 30 and 31,                         
+      129 +  CBC at day 15 for HIGH risk, DBP exactly 110, 37.9 °C = 100.
+          +2 °F) all resolve under A2/A10 as labelled.                   
+      130 +- **Label disagreement (0).** No label contradicts the policy.
+          + Four places where a different reading was                    
+      131 +  defensible (missing temperature → MISSING_REQUIRED_DATA; not
+          +e-reported anticoagulants count;                              
+      132 +  establish-care H&Ps count; a null procedure date does not al
+          +so fail documentation/testing) are                            
+      133 +  spelled out in the notes; in each the labels agree with the 
+          +safer reading.                                                
+      134  
+      193 -What the baseline got wrong, for contrast: invented criteria (
+          -A1c, CMP for low risk, "old" H&Ps), wrong                     
+      194 -most-recent selection, categories reported per observation ins
+          -tead of per failed rule, one invalid                          
+      195 -JSON, one false READY on a missing CBC, and no run-to-run stab
+          -ility.                                                        
+      135 +## 6. Depth and validation                                    
+      136  
+      197 -## 7. Known limitations                                       
+      137 +- **84 tests, none touching the network** (`make test`, ~2 s).
+          + 50 rule-engine tests at the boundaries                       
+      138 +  (179/180, 109/110, 100.4/100.5, day 30/31, 14/15), precedenc
+          +e, tie-breaks, entered-in-error labs,                         
+      139 +  missing date/risk, plan completeness. 25 normalization/verif
+          +ier tests, including mojibake and                             
+      140 +  altered-digit rejection. 3 extraction-fixture tests run the 
+          +real extractors against a committed cache                     
+      141 +  and assert that every reading driving the decision was verif
+          +ied, and that a dead provider yields                          
+      142 +  NEEDS_FOLLOW_UP, never READY. 3 tests keep the assumption li
+          +st, the code and `notes/assumptions.md`                       
+      143 +  in sync.                                                    
+      144 +- **Determinism:** `make determinism` replays record 0 ten tim
+          +es through `triage_submission`: 100%                          
+      145 +  decision, JSON and exact-output stability (temperature 0 plu
+          +s the cache make this structural).                            
+      146 +- **Reproducibility:** the clean-clone replay reproduces every
+          + committed packet byte for byte apart from                    
+      147 +  call counters.                                              
+      148 +- **Auditability:** each packet lists every check, its inputs 
+          +and evidence, and the assumption IDs used;                    
+      149 +  the TUI (`make report`) shows them per case next to the labe
+          +ler's rationale.                                              
+      150  
+      199 -- **Sample size.** 50 labelled cases, synthetic and fairly tem
+          -plated. The rule engine is tested at its                      
+      200 -  boundaries, but the extractors have only been exercised on t
+          -his distribution of note styles.                              
+      201 -- **Extraction is still an LLM.** Quote verification guarantee
+          -s that cited text exists, not that it was                     
+      202 -  interpreted correctly (e.g. whether a consent's procedure "m
+          -atches" the planned one is the model's                        
+      203 -  judgement). Negative claims (NOT_A_CONSENT, no vitals) carry
+          - no quote and cannot be verified; a                           
+      204 -  missed reading can only be caught by a later reading or by a
+          - nurse.                                                       
+      205 -- **Procedure-date fallback.** When the structured date is nul
+          -l the pipeline accepts a date stated in                       
+      206 -  the documents only if every stated date agrees; a confidentl
+          -y wrong date in an H&P would be used.                         
+      207 -- **Anticoagulation plan semantics** are reduced to pre-op pre
+          -sent/explicit, post-op present/explicit,                      
+      208 -  deferred, and drug match. Dose-level correctness is out of s
+          -cope by policy and by design.                                 
+      209 -- **Tie-breaks and staleness.** The conservative same-day tie-
+          -break (A8) can hold a patient on an                           
+      210 -  older abnormal reading when the recheck time is not recorded
+          -; the policy says nothing about how                           
+      211 -  old a vital may be, so none is enforced (A6).               
+      212 -- **Latency/cost.** ~5–9 calls per case with gpt-4.1-mini; a c
+          -old run of 50 cases takes several                             
+      213 -  minutes. Cached reruns are instant.                         
+      151 +## 7. Limitations                                             
+      152  
+      153 +- **Sample size and in-sample tuning.** 50 synthetic, fairly t
+          +emplated cases; two prompts were revised                      
+      154 +  after seeing misses. The engine is tested at its boundaries,
+          + but extractor recall is only known on                        
+      155 +  this distribution of note styles.                           
+      156 +- **Extraction is still an LLM.** Verification guarantees a qu
+          +oted string exists, not that it was                           
+      157 +  interpreted correctly (e.g. whether a consent's procedure "m
+          +atches" the planned one). Negative claims                     
+      158 +  (NOT_A_CONSENT, "no vitals here") carry no quote and cannot 
+          +be verified; a missed reading is caught                       
+      159 +  only by another reading or by the nurse.                    
+      160 +- **Procedure-date fallback.** With the structured date null, 
+          +a single confidently wrong date stated in                     
+      161 +  an H&P would be used if nothing contradicts it.             
+      162 +- **Plan semantics are coarse:** pre-op present/explicit, post
+          +-op present/explicit, deferred, drug match.                   
+      163 +  Dose-level correctness is out of scope by policy.           
+      164 +- **Staleness is not enforced** (the policy sets no maximum vi
+          +tal age, A6), and the conservative                            
+      165 +  same-day tie-break (A8) can hold a patient on an older abnor
+          +mal reading when a recheck has no time.                       
+      166 +- **One provider.** Only OpenAI is implemented behind the `Pro
+          +vider` protocol.                                              
+      167 +- **No ablation or perturbation study.** The contribution of e
+          +ach component (verification, repair                           
+      168 +  retry, text vitals) and robustness to date shifts, unit flip
+          +s and renamed document types are argued,                      
+      169 +  not measured. This is the first item below.                 
+      170 +                                                              
+      171  ## 8. What I would do next
+      172  
+      217 -1. **Confidence-based routing.** Attach a confidence to each c
+          -heck (unverified quotes, repair retries,                      
+      218 -   disagreements between the two extractors or between the med
+          - list and notes) and route low-confidence                     
+      219 -   READYs to the nurse sample instead of sampling uniformly.  
+      220 -2. **A larger, adversarial eval set.** Mutate the 50 cases sys
+          -tematically (shift dates across each                          
+      221 -   boundary, flip units, move facts between structured fields 
+          -and text, rename document types,                              
+      222 -   inject conflicting notes) to measure extractor recall per f
+          -act type rather than overall accuracy.                        
+      223 -3. **Production monitoring of false READYs.** Log every packet
+          -; reconcile READY decisions against the                       
+      224 -   nurse's final disposition and day-of-surgery cancellations;
+          - alert on any false READY, and track the                      
+      225 -   UNKNOWN rate per missing-datum key as a data-quality signal
+          - for the intake feed.                                         
+      226 -4. **Two-model agreement on safety facts.** Run the vitals/con
+          -sent extractors with a second model (or a                     
+      227 -   second prompt) and treat disagreement as UNKNOWN.          
+      228 -5. **Cheaper reading.** Many documents are templated (nutritio
+          -n, PT, portal messages); a small                              
+      229 -   classifier could skip them, and a regex pre-pass could cove
+          -r the structured vitals lines so the LLM                      
+      230 -   only handles the irregular prose.                          
+      173 +1. **A perturbation suite.** Mutate the 50 cases systematicall
+          +y (shift dates across each boundary, flip                     
+      174 +   units, move facts between structured fields and text, renam
+          +e document types, inject conflicting                          
+      175 +   notes) and measure extractor recall per fact type; ablate v
+          +erification and the repair retry to                           
+      176 +   quantify what each buys.                                   
+      177 +2. **Confidence-based routing.** Score each check (unverified 
+          +quotes, repair retries, disagreement                          
+      178 +   between the two extractors or between med list and notes) a
+          +nd route low-confidence READYs to the                         
+      179 +   nurse sample instead of sampling uniformly.                
+      180 +3. **Production monitoring of false READYs.** Log every packet
+          +, reconcile READY decisions against the                       
+      181 +   nurse's disposition and day-of-surgery cancellations, alert
+          + on any false READY, and track the                            
+      182 +   UNKNOWN rate per missing-datum key as an intake data-qualit
+          +y signal.                                                     
+      183 +4. **Two-model agreement on safety facts.** Run the vitals and
+          + consent extractors with a second model                       
+      184 +   or prompt and treat disagreement as UNKNOWN.               
+      185 +5. **Cheaper reading.** Skip templated documents (nutrition, P
+          +T, portal messages) with a small                              
+      186 +   classifier and cover templated vitals lines with a regex pr
+          +e-pass so the LLM handles only irregular prose.               
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+⏺ Write(notes/submission_checklist.md)
+  ⎿  Wrote 154 lines to notes/submission_checklist.md
+       1 # Submission checklist (final pass, 2026-10-22)
+       2 
+         e repository with
+       4 `OPENAI_API_KEY` unset, unless stated otherwise.
+       5 
+       7 
+       8 **Clean-clone reproducibility** (fresh clone/copy in a temp dire
+         ctory, `uv 0.13.5`, Python 3.11.14)
+      10 | command | result | wall clock (cached) | uncached estimate | A
+         PI cost (uncached) |
+     … +239 lines (ctrl+o to expand)
+
+  Ran 1 shell command, wrote 1 memory (ctrl+o to expand)
+
+⏺ The pass is complete. Here is the recap.
+
+  Headline: the repo reproduces cleanly without an API key, every number in the 
+  write-up traces to an artifact, and the git history contains no secrets.
+  Nothing is committed yet. Three things the brief asked me to confirm do not
+  exist in the repo and I did not build them: an ablation study, a perturbation
+  suite, and a standalone review page. The write-up now states this as a
+  limitation and the checklist flags it.
+
+  What I verified on a clean copy, no key set
+
+  - make test: 84 tests pass, none touch the network.
+  - make baseline summary: 50 cases replay from the committed cache in about 2
+    seconds, 100% on all three harness metrics, 0 false READYs, byte-identical
+    to the committed packets.
+  - make determinism: 100 / 100 / 100. make run, make score, make lint all pass.
+    The TUI viewer renders checks, evidence, assumptions and meta, driven
+    headlessly.
+  - The fail-safe path with no cache and no key yields NEEDS_FOLLOW_UP, never
+    READY.
+  - Secrets: full history and every blob scanned. The only hit is the sk-...
+    placeholder in the README. No rewrite needed.
+  - Patient data: synthetic names appear only in the sample, the cache, and the
+    harness reports.
+  - Claims: all numbers reconcile. One drifted claim was corrected: the live run
+    made 342 calls, but the cached replay touches 326 responses because the
+    hardened verifier triggers fewer repairs. Two assumption texts (A3, A7) had
+    drifted from the code and were realigned, with no behaviour change.
+
+  What changed
+
+  - Dependencies pinned to the locked versions, ruff configured and applied,
+    dead code removed, docstrings and type hints added.
+  - New make targets: help, run, lint, format, check, assumptions. score and
+    report now fall back to the committed report instead of failing on a clean
+    clone.
+  - Assumptions now map to the functions that enforce them, exported to
+    notes/assumptions.md with a sync test.
+  - README gained a reviewer's path with a runtime and cost table. WRITEUP was
+    rewritten to the requested shape, 2,380 words.
+  - Full detail, remaining risks, and the exact reviewer command sequence are in
+    notes/submission_checklist.md.
+
+  Files you still need to add by hand: the /export of session 1 (the build
+  session) and of this session, plus any earlier exploratory session. Suggested
+  location is notes/sessions/. The checklist also gives the commit command. Do
+  not push to origin; it still points at Cadence's repository.
+
+✻ Brewed for 13m 49s · done 4:25 PM
+
+❯ /copy                                                                         
+  ⎿  Copied to clipboard (2477 characters, 23 lines)
+     Also written to /tmp/claude-501/response.md
+
+❯ Final step before submission: commit, recover or build the depth work         
+                                                                                
+  Read notes/submission_checklist.md and WRITEUP.md first.                      
+                                                                                
+  Step 1: Commit                                                                
+                                                                                
+  Commit all current uncommitted work using the commit command in               
+  notes/submission_checklist.md. Do not push. origin points at Cadence's        
+  repository.                                                                   
+                                                                                
+  Step 2: Search for lost depth work                                            
+                                                                                
+  An earlier session was supposed to build an ablation study, a perturbation    
+  suite and a review page, but they are not in the repo. Look for them:         
+  - git branch -a, git stash list, git worktree list                            
+  - git reflog, for commits lost in a reset                                     
+  - git fsck --lost-found, for dangling commits                                 
+  - files on disk outside git tracking: eval/, results/ablation*,               
+  results/perturb*, review/                                                     
+                                                                                
+  If you find the work, show me what you found and where, and wait for my       
+  go-ahead before merging. Then stop.                                           
+                                                                                
+  Step 3: If nothing is found, build a scoped version                           
+                                                                                
+  Don't refactor existing code. Keep make test, make baseline and make lint     
+  green throughout.                                                             
+                                                                                
+  3a. Perturbation suite (eval/perturb.py, make perturb)                        
+                                                                                
+  Generate seeded mutations of sample records where the correct decision and    
+  issue category follow from the mutation by construction:                      
+  - Date boundaries: day N vs. N+1 for the 14- and 30-day windows (CBC, CMP,    
+  H&P).                                                                         
+  - Vital thresholds: SBP 179/180, DBP 109/110, temperature 100.4/100.5°F and   
+  the same values in °C; an abnormal reading followed by an in-range recheck,   
+  and the reverse.                                                              
+  - Anticoagulants: brand ↔ generic swaps, a plan missing its post-op part, a   
+  plan naming the wrong drug.                                                   
+  - Documents: consent "to be signed", a null procedure_date with the date only 
+  in note text, a missing procedure_risk.                                       
+                                                                                
+  Mutations that only touch structured fields must run without an API key. Mark 
+  the ones that change free text as needing the LLM, and cache their responses  
+  so a reviewer can replay them without a key. Report pass rate per mutation    
+  family in results/perturbation.md. Fix general bugs you find and record each  
+  one there; never special-case individual records.                             
+                                                                                
+  3b. Ablation (make ablation)                                                  
+                                                                                
+  Add config flags to turn off quote verification and the fail-safe (UNKNOWN →  
+  NEEDS_FOLLOW_UP). Run the sample set and the perturbation set with each one   
+  off. Write a single table to results/ablation.md: accuracy and false READYs   
+  per variant, with the baseline for comparison.                                
+                                                                                
+  3c. Close out                                                                 
+                                                                                
+  - Replace the "not built" limitation in WRITEUP.md with a short results       
+  section citing these two files. Every number must trace to an artifact.       
+  - Update the README reviewer's path, the runtime and cost table, and          
+  notes/submission_checklist.md.                                                
+  - Re-run make test, make baseline, make lint and make determinism on a clean  
+  copy with no API key set.                                                     
+  - Commit. Do not push.                                                        
+                                                                                
+  Skip the review page; the TUI viewer covers it.                               
+                                                                                
+  Finish                                                                        
+                                                                                
+  Give me a short recap: what you found or built, the perturbation pass rates,  
+  the ablation table, and any bugs fixed. Remind me to add all session exports  
+  to notes/sessions/.                                                           
+
+⏺ I'll commit the current work first, then search git and the disk for the
+  missing depth work.
+
+  Listed 1 directory, ran 3 shell commands (ctrl+o to expand)
+
+⏺ I found nothing recoverable—no branches, stash, worktrees, reflog entries,
+  dangling objects, files, or transcript mentions. Moving to Step 3, I'll first
+  check if the handoff's key still works before building the perturbation suite
+  and ablation. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Write(preop_triage/config.py)
+  ⎿  Wrote 37 lines to preop_triage/config.py
+       1 """Runtime switches used only by the ablation study (`make ablat
+       2 
+       3 TRIAGE_ABLATE is a comma-separated list; the production defaults
+          are all on:
+         nst the document (A17 off, part 1)
+       5   no_failsafe  - UNKNOWN checks no longer block clearance or pro
+       6 """
+       7 
+       8 from __future__ import annotations
+      10 import os
+     … +35 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Now the perturbation suite itself.
+
+⏺ Write(eval/perturb.py)
+  ⎿  Wrote 657 lines to eval/perturb.py
+      1 #!/usr/bin/env python3
+        orrect answer follows by construction.
+      3 
+         on the base case's extracted
+      5 facts, which replay from the committed LLM cache) and applies a m
+      6 decision and issue categories is known from the policy alone. Str
+        uctured-field mutations never
+         run without an API key.
+      8 Text mutations (`needs_llm`) change a document; their responses a
+      9 reviewer can replay them without a key.
+     … +837 lines (ctrl+o to expand)
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+⏺ Write(eval/ablation.py)
+  ⎿  Wrote 135 lines to eval/ablation.py
+       1 #!/usr/bin/env python3
+         d re-score.
+       3 
+       4 Variants are selected through the TRIAGE_ABLATE environment vari
+       5 and evaluated on two sets:
+       6   - the 50 labelled sample cases (expected = human labels)
+         struction; text mutations are
+       8     included only when their LLM responses are already cached)
+       9 
+         e committed cache; no API key needed.
+     … +163 lines (ctrl+o to expand)
+
+  Ran 5 shell commands (ctrl+o to expand)
+⏺ The replay diff is probably the new value_c field appearing in the echoed
+  submission, not in the packets. Checking that, then moving to the docs.
+
+  Ran 7 shell commands (ctrl+o to expand)
+
+⏺ Done. Two commits are on main, nothing pushed.
+
+  Step 1. The submission-readiness work is committed as d71f767.
+
+  Step 2, search. Nothing was recoverable. No local or remote branch, stash,
+  worktree, reflog entry or dangling object contains ablation or perturbation
+  work. Nothing exists on disk under eval/, results/, review/ or nearby folders,
+  and the earlier session transcript never mentions either. So I built them.
+
+  Step 3, built and committed as 5ed224e.
+
+  - Perturbation suite (eval/perturb.py, make perturb): 16 families, 170 seeded
+    mutations with answers known by construction. 148 are structured-only and
+    need no key. The 22 text mutations were run once live with the key from your
+    documented .env (28 calls, about 90 seconds, roughly $0.03) and their
+    responses are committed, so the whole suite replays in about 4 seconds
+    without a key.
+
+    Pass rates: 170/170 (100%), 0 false READYs, in every family: H&P day 30/31,
+    CBC 30/31 and 14/15, CMP 14/15 under HIGH, entered-in-error labs, risk
+    upgrade, BP 179/180 and 109/110, temperature 100.4/100.5 °F and 38.0/38.1 °C
+    as structured values and as note text, abnormal-then-recheck and the
+    reverse, brand/generic swaps, wrong drug on the med list, deferred post-op
+    plan, pending consent, null procedure date with the date only in text,
+    missing risk.
+  - Ablation (eval/ablation.py, make ablation), via TRIAGE_ABLATE in
+    preop_triage/config.py; production defaults are unchanged and the cached
+    replay stays byte-identical:
+
+  | variant               | sample accuracy | sample false READYs | perturbation
+  accuracy | perturbation false READYs |
+  |-----------------------|-----------------|---------------------|-------------
+  ----------|---------------------------|
+  | full pipeline         | 100.0%          | 0                   | 100.0%
+           | 0                         |
+  | no quote verification | 100.0%          | 0                   | 100.0%
+           | 0                         |
+  | no fail-safe          | 90.7%           | 5                   | 96.5%
+           | 6                         |
+  | neither               | 90.7%           | 5                   | 96.5%
+           | 6                         |
+    The fail-safe is what prevents false READYs. Quote verification changed no
+    decision on this data. The write-up says so plainly: the extractor never
+    hallucinated a decision-relevant fact here, so the guard is untested against
+    a real one.
+  - Bug fixed (general): the provided input schema had no value_c on temperature
+    vitals, so a structured Celsius reading was silently dropped before the
+    pipeline ever saw it. Recorded in results/perturbation.md. No other bugs
+    surfaced.
+  - Close-out: WRITEUP §4.1 and §4.2 cite the two result files, the old "not
+    built" limitation is replaced, README and the checklist are updated, and
+    make check now includes both runs. On a clean copy with no key: 90 tests
+    pass, lint clean, make baseline 100%, determinism 100/100/100, and both
+    reports regenerate identically.
+
+  Reminder: add the session exports to notes/sessions/ (session 1 build, session
+  2 readiness pass, this session 3, plus any earlier exploratory one), then
+  commit. Do not push; origin is Cadence's repository.
+
+✻ Sautéed for 12m 37s · done 4:42 PM
+
+※ recap: Goal: make the Cadence take-home submission-ready. The perturbation suite and ablation are built, verified on a clean copy, and committed on main. Next: add your session exports to notes/sessions/, commit, and submit without pushing.
